@@ -2,7 +2,7 @@
 
 (set $siteName "programming.nu")
 (set $siteTitle "Programming Nu")
-(set $siteSubtitle "Reduce, Reuse, and Recycle... your <em>code</em>.")
+(set $siteSubtitle "Website for the Nu programming language.")
 (set $siteDescription "The Nu Language Website")
 (set $siteAddress "http://programming.nu")
 
