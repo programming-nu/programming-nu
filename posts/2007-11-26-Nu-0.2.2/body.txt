@@ -1,0 +1,3 @@
+There's a new release on the downloads page.  This one is a relatively small update: it contains some enhancements to the TextMate bundle (thanks to Jason Sallis!), some early support for CoreData applications (see the git logs and class reference documentation for details), and some changes that allow NuAnywhere to be used on OS 10.5.  It was built and tested on OS 10.4 and 10.5.  
+
+Beginning with Nu-0.3.0, I am planning to build and test Nu for Mac OS 10.5 only.

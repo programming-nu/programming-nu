@@ -1,0 +1,2 @@
+<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= $siteAddress %>/xml/rss20/feed.xml" />
+<link rel="alternate" type="application/atom+xml" title="Atom" href="<%= $siteAddress %>/xml/atom10/feed.xml" />

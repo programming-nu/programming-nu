@@ -1,0 +1,7 @@
+h1. Embedding Nu
+
+Do you want to ship an application that uses Nu without requiring your users to install it?
+
+You can do that easily by embedding Nu as a private framework inside your application.  
+
+h2. Here's how.

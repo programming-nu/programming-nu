@@ -1,0 +1,4 @@
+
+You can download the application from this link: "NuPagePacker.dmg":/files/NuPagePacker.dmg.  It's a universal binary that includes Nu as a private framework.  
+
+See my blog for "more details":http://blog.neontology.com/posts/2007/12/12/the-pagepacker-challenge and look for the source in my git archives at "code.neontology.com":http://code.neontology.com.  Build the shippable disk image with "nuke dmg".  Just be sure to have Nu-0.2.4 or later installed when you build it.

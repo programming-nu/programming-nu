@@ -1,0 +1,14 @@
+
+RubyObjC became stable by the beginning of 2007 and was then used to build some interesting prototypes.  But in the process, it became clear that both RubyObjC and RubyCocoa faced fundamental limitations, and that those limitations could only be addressed by something new.
+
+# Ruby and Objective-C have completely different and inconsistent syntaxes for message sending.  Along with many other language bridges, the Ruby to Objective-C bridges force an awkward solution on Ruby programmers.  This is a minor but annoying problem that conveniently disappears when we switch to a syntax of S-expressions.
+#  Ruby and Objective-C have completely different representations of standard data elements such as strings, numbers, arrays, hashes, and exceptions.  Bridges must either automatically convert values when they cross the bridge (which is expensive) or try to teach the types of one language to masquerade as the types of the other.  Deceptively, this sometimes works, but it is nearly impossible to fully hide this problem.
+# Ruby and Objective-C have large and overlapping libraries.  It's tempting to believe that combining them provides the best of both, but in practice a developer usually has to favor one set of libraries over another, and like the standard elements, library objects such as files, dates, and ranges must be converted whenever they cross the bridge.
+# Ruby and Objective-C store objects differently.  As a result, objects with data in both languages (instances of Ruby classes derived from Objective-C classes) must be stored in two places and both parts must be correctly maintained.
+# Ruby and Objective-C have completely different memory management schemes.  Ruby is garbage collected and Objective-C is typically reference counted.  An important challenge for a Ruby bridge is to make sure that the Ruby garbage collector never deletes objects that are needed by Objective-C instances.  Mistakes in memory management usually lead to sudden and hard-to-debug crashes.
+# The Ruby and Objective-C threading models are different and completely incompatible.  In a multithreaded application, it is impossible to use Ruby in any thread but the main application thread, and even this requires a patch to the Ruby language implementation.  With multicore systems all around us, this is simply unacceptable.
+# Ruby and Objective-C libraries occasionally use the same names to represent different methods.  To resolve these conflicts, one side (usually the Ruby side) must convert any conflicted names into something different, typically by adding a prefix.  This is workable but can lead to surprising errors.
+
+Inconsistencies like these are an intrinsic part of language bridges, and the problems listed here are for a well-matched pair of languages.  The problems of bridging Objective-C to any other scripting language are worse.
+
+But all of these limitations have been successfully resolved in Nu.

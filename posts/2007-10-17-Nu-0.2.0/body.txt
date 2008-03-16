@@ -1,0 +1,5 @@
+Today I posted download links for Nu-0.2.0, a small but significant set of upgrades to Nu.  The release contains two changes that can break existing programs (they broke some of mine!), hence the new minor version number.
+
+I'll describe each change in more detail in subsequent posts (see the git commit logs if you don't want to wait), and I'll also be updating the documentation to cover the new topics.  
+
+Here's a brief list of the changes:

@@ -1,0 +1,32 @@
+
+First, build your application as usual with nuke.
+
+Then, inside your application's bundle, add a directory called *Frameworks* under the *Contents* directory. Then copy *Nu.framework* inside this directory.
+
+Finally, you have to tell your compiled application code to look in its private *Frameworks* directory for *Nu.framework*.  Do this with a program called *install_name_tool* (see its man page for details). Here's how you'd do it for one of the Nu sample programs:
+
+<pre>
+% install_name_tool -change "Nu.framework/Versions/A/Nu" 
+"@executable_path/../Frameworks/Nu.framework/Versions/A/Nu" 
+Benwanu.app/Contents/MacOS/Benwanu 
+</pre>
+
+To confirm your change, remove *Nu.framework* from */Library/Frameworks* and run your application.
+
+You can also confirm your change by checking your application's 
+shared library dependencies with <code>otool -L</code>. 
+
+<pre>
+% otool -L Benwanu.app/Contents/MacOS/Benwanu 
+Benwanu.app/Contents/MacOS/Benwanu: 
+        /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa 
+(compatibility version 1.0.0, current version 12.0.0) 
+        @executable_path/../Frameworks/Nu.framework/Versions/A/Nu 
+(compatibility version 0.0.0, current version 0.0.0) 
+        /usr/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0) 
+        /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current 
+version 111.0.0) 
+        /usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 227.0.0) 
+        /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation 
+(compatibility version 300.0.0, current version 677.0.0) 
+</pre>

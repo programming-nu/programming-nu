@@ -1,0 +1,9 @@
+h1. Lisp Links
+
+There's a lot of material about Lisp online, especially covering major dialects like Common Lisp and Scheme.   Since Nu isn't based on either, we have to go back to the roots of Lisp for inspiration.
+
+(By the way, did you know that by the time Common Lisp was standardized, Objective-C had been around for 8 years?)
+
+Here are the online resources that I find most useful.
+
+

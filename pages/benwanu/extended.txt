@@ -1,0 +1,13 @@
+Benwanu is named after Benoit  Mandelbrot, the discoverer of the Mandelbrot Set. Benwanu generates images of the Mandelbrot set.  Its renderings follow the one Mandelbrot used in his 1982 book, The Fractal Geometry of Nature.
+
+Benwanu demonstrates that Nu can be used to script multiple concurrent process threads (can your favorite scripting language do that?... today?).  Parts of Benwanu are based on a multithreaded example in Aaron Hillegass' and Mark Dalrymple's Advanced Mac OS X Programming; those parts are used by permission.  But all the bugs belong to me.
+
+Benwanu is written almost completely in Nu.  Only the innermost rendering loop uses C.  When Benwanu renders an image, it partitions the image into as many as eight sections and draws each section in a separate thread.  While the rendering in each thread is performed with C, each thread's control and communication with the main thread is written in Nu.
+
+Speedups vary depending on the image, but on my 8-core Mac Pro, I've seen 8-way renderings run up to six times faster than their single-threaded counterparts.
+
+Benwanu also includes application help and a simple about box.  See the sources for details.
+
+Build and run it with "nuke run".  To get error messages logged to the console, run it with "nuke debug".  If you make a change that causes a crash, use "nuke gdb" to run the app in the debugger.
+
+"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Benwanu;hb=HEAD

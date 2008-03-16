@@ -1,0 +1,186 @@
+
+h2. <a name="classesandmethods">Classes and Methods</a>
+
+The *class* operator defines or extends a class.
+If a subclass is specified, presumably a new
+class is to be created.  Subsequent expressions 
+within the operator may be used to add 
+instance methods, class methods, and instance
+variables to the class.  
+
+When the *class* operator is used to create a new class, the class's parent class must be specified after the *is* keyword.
+
+<pre>
+(class MyWindowController is NSWindowController
+   ...
+)
+</pre>
+
+When the *class* operator is used to extend a class that has already been defined, you can omit the superclass.
+
+<pre>
+(class NSString
+  ...
+)
+</pre>
+
+*imethod* adds an instance method to a class.
+It should only be used within a class operator. Return type and argument types may be specified in the method declaration.  The *is* keyword marks the end of the interface definition and the beginning of the method body.  
+
+The following example adds a method to a subclass of NSView:
+
+<pre>
+(class NuRocksView is NSView
+     ...    
+     (imethod (void) drawRect:(NSRect) rect is
+     ... ))  
+</pre>
+
+Type names must be specified in parentheses.  The types that can be specified are listed in the following table:
+
+<table width="100%">
+<tr><td width="20%">*void*</td><td> No value.  Use this to specify that a method returns no value.
+(void) should never be used as the type of an argument. </td></tr>
+<tr><td>*id*</td><td> An object. The Nu equivalent is an instance of any class. </td></tr>
+<tr><td>*int*</td><td> An integer. The Nu equivalent is an NSNumber. </td></tr>
+<tr><td>*BOOL*</td><td> A boolean. The Nu equivalent is an NSNumber. </td></tr>
+<tr><td>*double*</td><td> A double. The Nu equivalent is an NSNumber. </td></tr>
+<tr><td>*float*</td><td> A float. The Nu equivalent is an NSNumber. </td></tr>
+<tr><td>*NSRect*</td><td> A rectangle. The Nu equivalent is a list of four numbers. </td></tr>
+<tr><td>*NSPoint*</td><td> A point. The Nu equivalent is a list of two numbers. </td></tr>
+<tr><td>*NSSize*</td><td> A size. The Nu equivalent is a list of two numbers. </td></tr>
+<tr><td>*NSRange*</td><td> A range.  The Nu equivalent is a list of two numbers. </td></tr>
+<tr><td>*SEL*</td><td> A selector.  The Nu equivalent is a string that corresponds to the selector name.  </td></tr>
+<tr><td>*Class*</td><td> A class instance.  Classes may be specified with a symbol that matches the class name. </td></tr>
+</table>
+
+See the sample programs for many examples.  If type information is omitted, the Objective-C runtime will be checked for a method with a matching selector.  If found, its method signature will be used.  If there is no
+matching selector, the return type and all argument types will
+be assumed to be <strong>(id)</strong>.
+
+As a convenience, a dash (<strong>-</strong>) is a synonym for *imethod*.  So if you prefer, you can create instance methods with this simplified syntax:
+
+<pre>
+(class NuRocksView is NSView
+     ...    
+     (- drawRect:rect is
+     ... ))  
+</pre>
+
+This creates an instance method named drawRect.  The new method uses the signature that is obtained by sending *instanceMethodSignatureForSelector:* to the class being extended.  For more examples of the brief syntax, see the "NuRocks":/nurocks sample program.
+
+When a block is added as a method, it is wrapped in a libffi closure that automatically adds <tt>self</tt> and <tt>super</tt> to the block's context each time it is evaluated.  Method arguments are always evaluated in the calling context before the method block is evaluated.
+
+*cmethod* adds a class method to a class.
+It should only be used within a class operator.  Its usage mirrors that of *imethod*.  As a convenience, a plus sign (<strong>+</strong>) is a synonym for *cmethod*.
+
+*ivar* adds typed instance variables to a class.
+It should only be used before any instances of the
+associated class have been created.  Any number of new instance variables can be specified in a single *ivar* operator.  Each new instance variable is specified by its return type and name.  Here is an example from the "Benwanu":/benwanu sample program:
+
+<pre>
+(ivar (id) view 
+      (id) progressBar
+      (id) imageRep
+      (int) offset
+      (double) minX
+      (double) minY 
+      (double) maxX 
+      (double) maxY 
+      (int) width 
+      (int) height)
+</pre>
+
+*ivars* adds dynamic instance variables to a class.
+This operator should only be used
+before any instances of the associated class have been
+created.  It adds a hidden ivar to the class that's used to point to an
+NSMutableDictionary. From then on, you can add ivars to class
+instances whenever you want.  Whenever you set an ivar, If there's no
+corresponding one in the runtime, its value will be added to the
+dictionary with its name as the key.
+
+*ivar-accessors* adds automatic get and set methods for all instance variables of a class.  These methods are implemented using the 
+*handleUnknownMessage:withContext:* method of *NSObject(Nu)*.
+
+h2. <a name="exceptionhandling">Exception Handling Operators</a>
+
+*try*  wraps a sequence of statement evaluations in
+an exception handler.  Expressions that follow are evaluated
+until a list beginning with *catch* is reached.  The
+expressions in this list are not evaluated unless an exception
+is thrown by the evaluated expressions, in which case,
+execution jumps to the code in the catch section.
+
+<pre>
+(try 
+    (do-something-dangerous)
+    (catch (exception)
+        (handle-exception exception))
+</pre>
+
+*throw* throws an exception. Any object may be thrown as the exception.
+
+<pre>
+% (try 
+-   (throw 22)
+-   (catch (object)
+-      (puts object)))
+22
+</pre>
+
+h2. <a name="threadcontrol">Thread Control Operators</a>
+
+*synchronized* evaluates a list of expressions after synchronizing
+on an object.  The synchronization object is the first argument.
+
+<pre>
+(synchronized object
+	(task1)
+	(task2)
+	...)
+</pre>
+
+h2. <a name="system">System Operators</a>
+
+*load* loads a file or bundle. To load a file from a specific bundle, use the following form:
+
+<pre>
+(load "bundlename:filename")
+</pre>
+
+*system* executes an operating system command.
+
+<pre>
+(system "mkdir foo")
+</pre>
+
+*puts* writes a string to the console followed by a carriage return. 
+*print* writes a string to the console with no carriage return.
+Both operators return nil.
+
+<pre>
+% (puts "hello")
+hello
+()
+% (progn
+-   (print "hello, ")
+-   (puts "world"))
+hello, world
+()
+</pre>
+
+*help* returns help text for an object.
+
+<pre> 
+% (help do)
+This operator is used to create blocks.
+For example, the following expression creates a 
+block that returns the sum of its two arguments:
+(do (x y)
+        (+ x y))
+</pre>
+
+*version* returns a string describing the current version of Nu.
+
+*beep* causes the system to beep.

@@ -1,0 +1,10 @@
+On the right you'll find links to news, downloads, documentation, examples, and more.  The examples range from simple to complex; please read them before you start your own Nu programs.  There's also a link to a Google group where we can talk more about Nu.  
+
+Creating Nu has been so much fun that it has been tempting to keep all that fun to myself.  But Nu is a language for creating and working with components, and I think that by sharing it, I'll find that a lot of wonderful things grow from it.
+
+While it's not a requirement of the license, I hope that the people who use Nu use it to create open source components and products.  My own experience with this has been striking: of the headaches I've suffered on the way to Nu, the vast majority came from having to guess what was happening inside opaque, closed-source components and tools.  It's time to move to something better, even if we have to make it ourselves.
+
+If the past is a guide, it will be a lot of fun.
+
+Tim
+

@@ -1,0 +1,9 @@
+h1. About Me
+
+<div style="float:left; margin-right:20px; margin-bottom:10px">
+<img  src="/files/tim.jpg" height="100" alt="photo" class="photo"  style="padding:0"/>
+</div>
+
+I'm Tim Burks. I'm glad that you are looking at Nu; I learn a lot from the people who use it. Nu was built on lots of other people's ideas and components, but it was originally a solo project with a one-person audience: I wrote Nu because I wanted to be able to use it myself.
+
+

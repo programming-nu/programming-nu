@@ -1,0 +1,60 @@
+p.s. If you've been looking for an implementation of Markdown that you can easily call from Objective-C, this is it!
+
+p.p.s and worth noting: Grayson published his first Nu code last Tuesday when he shared his port of SmartyPants to Nu.  That was on Nu's second day of public life.  Amazing.
+
+h2. Update: calling Markdown from Objective-C
+
+I wanted to see how easy it would be to call Grayson's Markdown processor from Objective-C.  Since the best way to communicate between Objective-C and Nu is through the Objective-C runtime, first I added the following class declaration to Grayson's *markdown.nu*:
+
+<pre>
+(class NuMarkdown is NSObject
+	(+ convert:text is (Markdown text)))
+</pre>
+
+Now all that we have to do is send the *convert:* message to the *NuMarkdown* class.  Let's do that from a command-line program.  Here's the one that I wrote for this:
+
+<pre>
+#import <Cocoa/Cocoa.h>
+#import <Nu/Nu.h>
+
+@interface NuMarkdown : NSObject {}
++ (id) convert:(id) text;
+@end
+
+int main(int argc, char *argv)
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+    NSString *input = [[NSString alloc]
+        initWithData:[[NSFileHandle fileHandleWithStandardInput]
+                                                 readDataToEndOfFile]
+        encoding:NSUTF8StringEncoding];
+
+    id parser = [Nu parser];
+    id script = [parser parse:@"(load \"markdown\")"];
+    [parser eval:script];
+
+    Class NuMarkdown = NSClassFromString(@"NuMarkdown");
+    NSString *output = [NuMarkdown convert:input];
+    printf("%s", [output cStringUsingEncoding:NSUTF8StringEncoding]);
+
+    [pool release];
+}
+
+</pre>
+
+Notice that although I declared the interface to *NuMarkdown*, that's not strictly necessary.  That just keeps the compiler from generating a warning message about an unknown method.
+
+The main thing to see is how this little program sets up Nu by creating a parser and then evaluating the <code>(load "markdown")</code> operator to load Grayson's Nu code.  From then on, Nu is totally invisible.  As far as this program is concerned, the *NuMarkdown* class and its *convert:* method are completely implemented in Objective-C. 
+In fact, they are, because Nu is written "on, with, and for Objective-C":http://blog.neontology.com/posts/2007/08/11/whats-nu.
+
+To run this program, compile it with:
+<pre>
+gcc nudown.m -framework Cocoa -framework Nu -o nudown
+</pre>
+
+Then run it from the command line, giving it some Markdown on standard input.  You'll get formatted HTML on standard output.
+
+That's it! Thanks to Grayson and Nu, we now have a native Objective-C Markdown processor.
+
+What's next?

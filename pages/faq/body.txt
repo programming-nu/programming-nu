@@ -1,0 +1,53 @@
+h1. Frequently Asked Questions about Nu
+
+I've seen a lot of discussion of Nu on various forums.  Rather than chase after each thread, I've instead put some responses to common questions here.
+
+h3. Why S-expressions? Were you just too lazy to write a real parser?
+
+I have been wanting to write software with S-expressions for a long time.  Ironically, now that I've written a language that uses them, people are talking about putting a Ruby or Python syntax on top of it!  
+
+After you've written a certain amount of code, you begin to realize that your code isn't just an accomplishment.  If you've been successful, then your code is now a responsibility for you and other people to manage.  One of the best ways to manage something is to write tools to do that management for you, and S-expressions make code a lot easier to manage.  I also believe that S-expressions can make code easier to read (really!).  S-expressions make it easy to write tools that automatically format code and that automatically extract all kinds of useful information (documentation, for example).  And when something is easy, it usually gets done.
+
+Larry Wall has famously said that "laziness":http://www.oreilly.com/catalog/opensources/book/larry.html is a virtue.  But it's not about being too lazy to write a parser. Let's instead be too lazy to do things that get in the way of doing what we really want to do, which is to use the power of software to write better software.
+
+h3. I'd rather use a Smalltalk-style syntax.
+
+Then you should work with Philippe Mougin on the F-Script project.  He's been doing a lot of great work  on it for a long time, and through the power of Objective-C, Nu and F-Script are fully interoperable.
+
+h3. I'd rather use Ruby.
+
+OK.  I've "already commented on that":/rubycocoa-and-rubyobjc.
+
+h3. Is Nu a development language or a scripting language?
+
+Both! I was actually surprised by how easy it is to write scripts in Nu once you get familiar with the standard Objective-C classes and build up a few convenience functions, but I originally started working on Nu because I wanted a better development language.
+
+I wanted a development language that was interpreted and interactive, and one that was malleable enough for me to quickly write rough prototypes that I could smoothly transform into products.  I would have been willing to use an existing Lisp, but with what libraries?  and what community?  The Objective-C community is rich and thriving.  Objective-C has been the basis for one very successful computing platform (Mac OS X), and soon possibly another (the iPhone).  But apparently it hasn't been practical to build such large-scale platforms on Common (or any other) Lisp.  
+
+But back to the point, there is way too much code in the world written in compiled low-level languages like C and its dialects (C++ and Objective-C). Sure, things that have to be fast or tight can be written in C; that's the best way to stay close to the machine.  But if you are an application developer, I'll bet that the majority of your application can be written in a lightweight dynamic language like Nu, and you'll wind up with a lot less code (and fewer people on your team).  For an example, see the "Benwanu":/benwanu sample program, and if you're still not convinced, rewrite it in Objective-C and make some performance measurements.  Notice any difference?
+
+h3. How does Nu give me "the power of C" if it's interpreted?
+
+Because it is directly built on the Objective-C runtime, Nu can call methods written in Objective-C with _no glue code_. And because Nu and Objective-C methods are indistinguishable to the caller, you can gradually migrate code from Nu to Objective-C as your architecture stabilizes.  Want to convert a method from Nu to Objective-C?  Go ahead, none of its callers ever needs to know about the change.  
+
+h3. Can I use Nu without knowing Objective-C?
+
+No, at least not if you intend to use it to write Cocoa applications.  In "my":http://www.rubycocoa.com/about "experience":http://www.rubyobjc.com/about, it is a mistake to think that you can use Cocoa from any higher-level language if you don't understand what's happening at the Objective-C level.  But that doesn't mean that Nu is an "advanced" language.  Its interactive console is a great tool for Cocoa newcomers who want to explore outside their box of official Apple documentation.  
+
+h3. But I don't want to learn Objective-C!
+
+Sorry, but it's really not that hard, especially if you already know C.  Objective-C is just a thin layer of object-oriented features on top of C.  Its main features allow you to define classes with instance and class methods that act a lot like Ruby methods, but they are _fast_ because they are written in C.  And unlike Ruby, Java, C++, etc. you won't need a shelf-full of books to know what you need.  Just invest ten dollars in Andrew Duncan's "Objective-C Pocket Reference (O'Reilly)":http://www.rubycocoa.com/book_review/objective-c-pocket-reference.
+You can read it in an afternoon.  Then start browsing Apple's online class documentation and work your way through the Nu sample code.
+
+h3. Will Nu work with Objective-C 2.0 garbage collection?
+
+For now, no.  Currently the Nu binary release is only available in a reference-counted version.  
+But why are you using Objective-C garbage collection in the first place?  When you write with Nu, reference counts for objects are maintained automatically and your program will contain a lot less Objective-C source code.  Since currently Apple's garbage collection is closed-source, if you write code that uses it, your code is only as good as your understanding of Apple's good-but-never-perfect documentation. Also, did you notice that there's no garbage collection on the iPhone? But Nu and reference counted Objective-C run just fine on the iPhone and on Linux, which can open surprising "opportunities":/posts/2008/03/14/new-platforms.
+
+h3. Do I care if you use Nu or not?
+
+Well, yeah!  I've learned a lot from the people who've started using it.  It's been exciting to see the progress people made with it, even in the first week it was released.  If you're brave enough to join our "community":http://groups.google.com/group/programming-nu, I'll help you through the rough spots.
+
+h3. Is Nu really "more exciting than Leopard":http://rentzsch.com/psig/108?
+
+No. Nu is a boring language for programmers.  Its creator isn't charging the user community millions for upgrades, and you can't buy a family pack or swipe it off of BitTorrent.  Since it's been released, there's no suspense about Nu's ship date, and since it's open source, there's no mystery about how (or whether) it works. 

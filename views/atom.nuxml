@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <title><%= $siteTitle %></title>
+  <subtitle><%= $siteDescription %></subtitle>
+  <id>tag:programming.nu,2007:Nu</id>
+  <generator uri="http://programming.nu" version="4.0">Nu</generator>
+  <link href="<%= $siteAddress %>/xml/atom10/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="<%= $siteAddress %>/" rel="alternate" type="text/html"/>
+  <updated><%= (((posts 0) "creationDate") rfc3339) %></updated>
+<% (posts each: (do (post) %>
+  <entry>
+<% (if (post "author") %>
+    <author>
+      <name><%= ((post valueForKey:"author") valueForKey:"name") %></name>
+      <email><%= ((post valueForKey:"author") valueForKey:"email") %></email>
+    </author>
+<% ) %>
+    <id><%= (post "permalink") %></id>
+    <published><%= ((post valueForKey:"creationDate") rfc3339) %></published>
+    <updated><%= ((post valueForKey:"creationDate") rfc3339) %></updated>
+    <title><%= (post valueForKey:"title") %></title>	
+	<link href="<%= $siteAddress %><%= (post "linkForDate") %>" rel="alternate" type="text/html"/>
+    <content type="xhtml">
+		<div xmlns="http://www.w3.org/1999/xhtml">
+        <%= ((post valueForKey:"body") textileToHTML) %>
+		</div>	
+	</content>
+  </entry>
+<% )) %>
+</feed>

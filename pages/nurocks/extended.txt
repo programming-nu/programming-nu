@@ -1,0 +1,5 @@
+NuRocks is a warped version of a timeworn example.  With versions already in RubyCocoa and RubyObjC, this one had to be included, but this time with a twist.
+
+Build and run it with "nuke run".  If you're experimenting with it and something doesn't seem right, use "nuke debug" to get status messages on the console.
+
+"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/NuRocks;hb=HEAD

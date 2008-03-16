@@ -1,0 +1,9 @@
+<div id="header">
+<div style="float:left; margin-right:10px">
+<img src="/files/recycle-s.png" height="50" alt="recycling symbol" />
+</div>
+<div style="float:left">
+<h1><a href="/"><%= $siteTitle %><span style="font-size:70%; position:relative; top:-0.5em; color:#ccc">&#8482;</span></a></h1>
+<h3><%= $siteSubtitle %></h3>
+</div>
+</div>

@@ -1,0 +1,58 @@
+FigLeaf is extremely lightweight, and right now it's running on a Mac Mini over a DSL connection.  It is most notably influenced by Rails, but is more tightly integrated, is much less structured, and, with one exception, FigLeaf is completely written in Nu and Objective-C.
+
+Here are a some highlights.
+
+* The core web server is written in Objective-C.  It consists of a pair of classes that use the Cocoa run loop to provide event-driven handling of HTTP requests.  These classes are compiled into a framework that can be  loaded into any Cocoa application; when initialized, they run a built-in web server on any specified port.  They can also be loaded by a Nu script to create a server daemon.
+
+* Queries received by the web server are matched against regular expressions and handled by actions that can be written in either Objective-C or Nu.  
+
+* Site data is managed with Apple's CoreData framework, which also makes it possible to write desktop applications that work directly on the site data set.  But the main advantage of CoreData is that it is a robust and fast database abstraction that can be directly used from both Nu and Objective-C (although I'm eager to try "BaseTen":http://www.karppinen.fi/baseten, which has the same advantages but supports a more scalable database).
+
+* FigLeaf can be run as a desktop application that uses a Cocoa interface to directly edit articles.  It can also be run as a daemon, and in either case, FigLeaf allows content to edited through a more conventional web-based interface.
+
+* Page templates use a Nu version of Ruby's "erb".  Nu code can be embedded in arbitrary text; that code can be either executed to provide control flow or evaluated to generate text that is pasted into the template.  
+
+* Currently posts and articles use Textile markup.  Because I don't yet have a Textile processor in Objective-C or Nu, I'm using Ruby and the "RedCloth":http://whytheluckystiff.net/ruby/redcloth gem to convert Textile to HTML.  This is done using Cocoa's NSTask, and it's integrated as a new instance method of NSString.  Here's the Nu code:
+
+<pre>
+(class NSString
+   (imethod (id) textileToHTML is
+      (unless (set results ($textileCache objectForKey:self))
+              (set input (NSPipe pipe))
+              (set output (NSPipe pipe))
+              (set task ((NSTask alloc) init))
+              (task set: (launchPath: "/usr/local/bin/redcloth"
+                          standardInput: input
+                          standardOutput: output))
+              ((input fileHandleForWriting) writeData:
+                   (self dataUsingEncoding:NSUTF8StringEncoding))
+              ((input fileHandleForWriting) closeFile)
+              (task launch)
+              (task waitUntilExit)
+              (set results ((NSString alloc) 
+                            initWithData:((output fileHandleForReading)
+                                          readDataToEndOfFile) 
+                            encoding:NSUTF8StringEncoding))
+              ($textileCache setValue:results forKey:self))
+      results))
+</pre>
+
+The script that this calls is just a few lines of Ruby:
+<pre>
+#!/usr/bin/ruby
+require 'rubygems'
+require 'RedCloth'
+puts RedCloth.new(STDIN.read).to_html
+</pre>
+
+<tt>$textileCache</tt> is an NSDictionary, and like you, I'm amazed that a trick like this works.  Regardless, I think it is a weak link. Before long, I want to have Textile and/or Markdown in Nu or Objective-C.   
+
+h5. Postscript: Line counts
+
+FigLeaf currently consists of:
+
+* 500 lines of Objective-C, mostly for the HTTP server.
+
+* 1200 lines of Nu, covering request handling, a CoreData interface layer, and construction and management of the (nibless) Cocoa interface.
+
+* 800 lines of page templates.

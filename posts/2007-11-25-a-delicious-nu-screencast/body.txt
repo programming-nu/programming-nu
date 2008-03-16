@@ -1,0 +1,2 @@
+"Here":/files/DeliciousFunWithNu.mov is a screencast that shows some of the fun opportunities we have with Nu.  In it, I use "NuAnywhere":/nuanywhere (based on Jonathan Rentzsch's "mach_inject":http://rentzsch.com/mach_inject) to inject a Nu console into Wil Shipley's "Delicious Library":http://www.delicious-monster.com.  Then, after poking around a bit, we load a small script that demonstrates NuHTTP, an embeddable web server component that I've been writing and testing.
+

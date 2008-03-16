@@ -1,0 +1,33 @@
+h3. Changes
+
+Several improvements were made to Nu's interaction with NSProxy objects; these changes fixed problems with CoreAnimation and Distributed Objects, which both may now be used directly from Nu code.
+
+Since Apple didn't provide an API for constructing protocols at runtime, I made one. Now you can use it to create protocols from Nu and use Distributed Objects with 100%-Nu programs.
+
+The BridgeSupport reader is written in Objective-C and is faster. Still, if the idea of having your application read a dozen XML files containing thousands of symbols that your program won't use seems as wasteful to you as it does to me, it is also possible to during development to write a Nu source file containing the definitions of only those constants that you actually use. See the BridgeSupport +prune and +stringValue methods in objc/bridgesupport.m.
+
+Nu now compiles and tests cleanly on 64 bit x86. 64 bit ppc is untested. By default, only 32-bit versions are built (and in the binary installer).
+
+Patrick Thomson added handleUnknownMessage:withContext: for class methods.
+
+Aleksandr Skobelev contributed an emacs mode, look for it in the share directory.
+
+Thanks to Hugo Vincent, you can now use make instead of rake to bootstrap Nu.
+
+NuZero is no longer needed and is gone.
+
+A new class (NuPointer) exists to wrap and manipulate pointers from Nu. It is able to return appropriate Nu objects when their typeSignatures are known. The bridge also is now able to automatically allocate memory for return-by-reference pointer arguments.
+
+Comparison arguments are now implemented using the compare: message.
+
+The ternary operator is deprecated. It turned out to be a bad idea, because since it is implemented as a method, all of its arguments always get evaluated.
+
+There are a couple of dtrace probes that can be used to trace expression evaluations, but this needs more work.
+
+There is a new tool called *nubake* that bakes Nu source code into Objective-C.  nubake is a surprisingly simple script that reads a Nu source file and generates an Objective-C source file. This source file contains a function that, when called, returns the same parsed code structure that is created when the original file is parsed. This allows Nu source code to be "baked into" compiled Objective-C programs and libraries.
+
+For consistency, the *enu* tool has been renamed to *nutemplate*.
+
+Nu now builds and runs on Linux! The necessary changes haven't been merged into the main sources yet, but there has been some cleanup to prepare for that. See "my blog":http://blog.neontology.com for more news on Nu for Linux.
+
+Besides these, see the git logs for details of many more small changes and improvements.

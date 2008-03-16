@@ -1,0 +1,6 @@
+<img src="/files/NuScreenSaver.png" width="400" alt="screen saver control panel"/>
+
+h1. Screen Saver
+
+h2. Writing plug-in bundles with Nu
+

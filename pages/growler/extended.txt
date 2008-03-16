@@ -1,0 +1,5 @@
+This small example uses the console to send messages to Growl.  You'll need Growl and the Growl SDK.  See the source files for details.
+
+Build and run it with "nuke run".
+
+"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Growler;hb=HEAD

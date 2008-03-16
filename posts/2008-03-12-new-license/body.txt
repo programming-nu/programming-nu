@@ -1,0 +1,5 @@
+Effective today, Nu is released under the Apache License, v. 2.0.
+
+The Apache license is preferred for its greater familiarity to corporate users and for its explicit inclusion of software patent licenses.  
+
+Also, the Nu git repository is now hosted on "github":http://github.com/timburks/nu.

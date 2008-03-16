@@ -1,0 +1,1 @@
+See the downloads page for another small release.  It was built on OS 10.4 and tested on OS 10.4 and 10.5.  It contains two fairly significant additions and a couple of other minor enhancements.

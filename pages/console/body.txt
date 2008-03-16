@@ -1,0 +1,5 @@
+<img src="/files/console.png" alt="screen shot" width="525px" />
+
+h1. Console
+
+h2. A simple starting point for new Cocoa apps

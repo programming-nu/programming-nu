@@ -1,0 +1,3 @@
+h1. Type Reference
+
+Here are some notes on the handling of special types in Nu.

@@ -1,0 +1,148 @@
+h1. Nu Syntax
+
+Nu has a very simple syntax.  On the surface, this may seem strict and conservative, but in many important ways it allows Nu to be liberal and permissive.  
+
+h2. Elements
+
+The basic elements of Nu are symbols, numbers, strings, characters, regular expressions, and punctuation.
+
+h3. Symbols
+
+Symbols are sequences of characters that exclude punctuation and whitespace.  Symbols are used as names for values.  Names may be assigned values using the *set* operator.  
+
+Anything that can be parsed as a number is not a symbol.  Numbers may not be assigned values; by definition, a number is its own value.
+
+Symbols may include the colon character (':'), but only as the last character of the symbol.  A symbol that ends with a colon is called a *label*. A colon forces the parser to end the current symbol and begin scanning something new.  This allows us to write <tt>label:value</tt> pairs without having to include a space between the label and its associated value.  
+
+h3. Numbers
+
+Anything that looks like a number is a number.  If a token can be converted to a long with <code>strtol()</code>, it's an integer, and if it can be converted to a double with <code>strtod()</code> then it's a floating point number.  Both integer and floating point values are represented with instances of *NSNumber*.
+
+h3. Strings
+
+Strings are represented with instances of *NSString*. They can be defined in two ways and have one special feature.
+
+h4. Double-quoted strings
+
+Sequences of characters enclosed in double quotes are treated as strings.   Double-quoted strings must be defined on a single line; these strings may not contain newlines.  These strings also may not contain double quotes.  Here is an example, which also illustrates the use of the *set* operator:
+
+<pre>
+(set author "Isaac Asimov")
+</pre>
+
+h4. Here strings
+
+Multiline strings and strings containing double quotes can be created using Nu's "here string" notation.  A here string declaration begins with the three characters "<<-" or "<<+" immediately followed by an identifier that will be used to mark the end of the string.  This identifier ends at a newline, after which follows the definition of the string.  Here is an example.
+
+<pre>
+(set poem <<-END
+On Jupiter's second moon
+Few of the folks are at all well to do
+They work and they sweat
+but they're always in debt
+for their kids all attend Io U.END)
+</pre>
+
+h4. String Interpolation
+
+A string can contain embedded Nu code which is replaced with its evaluated results whenever the string itself is evaluated.  Here is an example.
+
+<pre>
+% (set laws "Asimov defined #{(+ 1 1 1)} laws of Robotics")
+% (puts laws)
+Asimov defined 3 laws of Robotics
+</pre>
+
+h4. Character Escape Sequences 
+
+Escape sequences are supported in both double-quoted and here strings.  Double-quoted strings are escaped by default.  For example, <code>"foo\nbar"</code> is parsed as a seven-character string with a newline in the middle.
+
+Strings that are prefixed with a minus sign (-) explicitly
+disable escaping.  For example, <code>-"foo\nbar"</code> is parsed as an eight character string with a slash and 'n' in the middle.
+Strings that are prefixed with a plus sign (+) explicitly
+enable escaping.  For example, <code>+"foo\nbar"</code> is parsed as a seven-character string with a newline in the middle.
+
+Here strings that begin with the "<<-" notation explicitly
+disable escaping. The following example shows an unescaped
+string:
+<pre>
+(set x <<-END
+foo\nbarEND)
+</pre>
+
+Here strings that begin with the "<<+" notation explicitly
+enable escaping.  The following example shows an escaped
+string:
+<pre>
+(set x <<+END
+foo\nbarEND)
+</pre>
+
+There is no ambiguous form for here strings.
+
+These escape sequences are supported:
+| \n | newline (0x0a) |
+| \r | carriage return (0x0d) |
+| \f | formfeed (0x0c) |
+| \b | backspace (0x08) |
+| \a | bell (0x07) |
+| \e | escape (0x1b) |
+| \s | space (0x20) |
+| \nnn | octal byte |
+| \xnn | hexadecimal byte |
+| \unnnn | unicode character (16 bits) |
+| \x | character x |
+
+h3. Character Literals
+
+Character literals are single characters or escape sequences
+enclosed in pairs of single quotes (').  The same escape
+sequences are supported for character literals and strings.
+Internally, a character literal is represented by an NSNumber
+with the appropriate unicode value.  This is the same value
+and type that is returned by the NSString characterAtIndex:
+method.
+
+h3. Regular Expression Literals
+
+Regular expressions may be specified with the following form:
+<pre>
+/regex/options
+</pre>
+
+Here "regex" is a regular expression and "options" is a string of lower-case alphabetic characters.
+
+The available options correspond to the options available for the NuRegex class:
+
+|  i  | case insensitive comparison |
+|  s  | dot metacharacter also matches newlines |
+|  x  | allow whitespaces and comments in pattern |
+|  l  | lazy quantifiers become greedy and vice versa |
+|  m  | caret and dollar anchors match at newlines |
+
+For example, <code>/^f(o+)$/i</code> matches strings "fo", "FOO",
+and "fooooOOOOO".  
+
+To include forward slashes in regular expressions, prefix each forward slash with a backslash.
+
+h3. Punctuation (Special Characters)
+
+A small number of characters are reserved for punctuation.
+
+<table width="100%"  style="background:#eee">
+<tr><th align="left" width="30%">character(s)</th><th align="left">usage</th></tr>
+<tr><td>parentheses</td><td>denote lists</td></tr>
+<tr><td>single quotes</td><td>quote objects, preventing evaluation</td></tr>
+<tr><td>double quotes</td><td>wrap strings</td></tr>
+<tr><td>semicolons and<br/>hash characters</td><td>begin comments</td></tr>
+</table> 
+
+h3. Comments
+
+Comments begin with a semicolon or hash character and span a single line.
+
+<pre>
+; This is a comment
+# This is a comment
+</pre>
+

@@ -1,0 +1,1 @@
+Today I posted links for Nu-0.2.1.  This release contains an assortment of changes and fixes for issues found in the last few weeks of Nu usage.  Here's a summary of the changes.

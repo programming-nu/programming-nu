@@ -1,0 +1,22 @@
+h1. Objective-C References
+
+Objective-C is easy to learn, especially if you already know C. Objective-C is a superset of C that adds a thin layer of object-oriented features.  Those features allow us to define classes with instance and class methods that look a lot like methods in Ruby, but these methods are _fast_ because they are written in C.  And unlike Java and C++, we don't need a shelf-full of books to use as a reference.  
+
+h2. Books
+
+Here are the three most important books for an Objective-C programmer to own.
+
+* If you are comfortable with C, then just invest ten dollars in Andrew Duncan's "Objective-C Pocket Reference (O'Reilly)":http://www.rubycocoa.com/book_review/objective-c-pocket-reference.
+You can read it in an afternoon, and it contains all the Objective-C you'll need to know to use Nu.
+
+* If you want some help with C as well, then I recommend Stephen Kochan's "Programming in Objective-C":http://www.amazon.com/Programming-Objective-C-Stephen-Kochan/dp/0672325861/ref=pd_bbs_sr_1/002-5741156-2316003?ie=UTF8&s=books&qid=1191784252&sr=8-1.
+Experienced C programmers may find it a bit verbose, but it is comprehensive and accurate.
+
+* The definitive Objective-C compiler is "gcc":http://gcc.gnu.org, and William von Hagen's "Definitive Guide to GCC":http://www.amazon.com/Definitive-Guide-GCC-Second/dp/1590595858/ref=sr_1_1/002-5741156-2316003?ie=UTF8&s=books&qid=1191784366&sr=1-1 
+is an excellent resource for answering in-depth questions about compiling Objective-C programs.
+
+h2. Online
+
+* Apple's "Introduction to the Objective-C Programming Language":http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html#//apple_ref/doc/uid/TP30001163.
+
+* Graham Lee's "comp.lang.objective-C FAQ":http://thaesofereode.info/clocFAQ.

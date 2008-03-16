@@ -1,0 +1,1 @@
+Nu-0.2.0 contains support for two new literal types: regular expressions and characters.

@@ -1,0 +1,295 @@
+h1. Nu Operators
+
+Nu includes many useful built-in operators; here is a list of them.
+
+* "Assignment":/operators#assignment
+* "Arithmetic and Logical":/operators#arithmeticandlogical
+* "List Processing":/operators#listprocessing
+* "Evaluation":/operators#evaluation
+* "Control Flow":/operators#controlflow
+* "Functions and Macros":/operators#functionsandmacros
+* "Classes and Methods":/operators#classesandmethods
+* "Exception Handling":/operators#exceptionhandling
+* "Thread Control":/operators#threadcontrol
+* "System":/operators#system
+
+h2. <a name="assignment">Assignment Operators</a>
+
+*set* assigns a value to a symbol. Assignments may have global, local, or instance-specific scope, depending on the leading character of the name.
+
+* Assignments to names beginning with '$' are given global scope.  Globally-assigned values are placed in slots in the underlying symbol representation.
+* Assignments to names beginning with '@' are given instance-specific scope.  These are instance variables.
+* All other assignments have local scope.  Locally-scoped assignments are maintained in dictionaries (instances of NSMutableDictionary) that are called *contexts*.
+
+<pre>
+(set x 22)
+</pre>
+
+*global* assigns a value to a symbol with a forced global scope.  This allows global values to be set for names that do not begin with '$'.
+
+<pre>
+(global Foo "foo")
+</pre>
+
+*let* creates a new context, makes a specified set of assignments within that context, and then evaluates a sequence of instructions in that same context.  
+
+<pre>
+(let ((x 2)
+      (y 3))
+     (+ x y))
+</pre>
+
+h2. <a name="arithmeticandlogical">Arithmetic and Logical Operators</a>
+
+<table width="100%">
+<tr><th align="left" width="50%">Operator</th>
+<th align="left" width="50%">Function</th></tr>
+<tr><td><strong>+ - * /<strong></td><td>basic arithmetic</td></tr>
+<tr><td><strong>& |<strong></td><td>bitwise logical</td></tr>
+<tr><td><strong>> < >= <= == != eq<strong></td><td>comparison</td></tr>
+<tr><td><strong> << >> <strong></td><td>shift</td></tr>
+<tr><td>and or not</td><td>logical</td></tr>
+</table>
+
+h3. Telling truth
+
+Several operators test values for truth.  In Nu, any object that is not <strong>nil</strong> 
+(the empty list) or <strong>0</strong> is considered to be true.
+The symbol <strong>t</strong> is also defined as a general-purpose "true" value.
+The value of <strong>t</strong> is itself.  It is as if we had said:
+<pre>
+(global t 't)
+</pre>
+
+h2. <a name="listprocessing">List Processing Operators</a>
+
+*list* evaluates its arguments and constructs a list of the results.
+
+*cons* evaluates its arguments and creates a new list with the evaluated first argument at the head and the evaluated second argument as the tail.
+
+*car* and *head* return the first element of a list.
+
+*cdr* and *tail* return the rest of a list after the first element has been removed.
+
+The following example constructs a list that has the same structure as <code>mylist</code>:
+<pre>
+(cons (car mylist) (cdr mylist))
+</pre>
+
+The last element of a list is a special value called *nil*.  In Nu, *nil* is represented by the singleton instance <code>[NSNull null]</code>. The following operations are equivalent:
+<pre>
+(list 1 2 3)
+(cons 1 (cons 2 (cons 3 nil)))
+</pre>
+
+*append* joins two lists together to form a new list. The arguments are unchanged.
+
+<pre>
+% (set a '(1 2))
+(1 2)
+% (set b '(3 4))
+(3 4)
+% (append a b)
+(1 2 3 4)
+% a
+(1 2)
+</pre>
+
+*atom* returns true if an element is not a list. <code>(atom nil)</code> also returns false, which is represented with *nil*.
+*nil* is displayed as an empty list, *()*.
+
+h2. <a name="evaluation">Evaluation Operators</a>
+
+*quote* prevents the evaluation of its argument. A single quote symbol is an abbreviated synonym for *quote*.
+
+<pre>
+(quote (1 2 3))
+'(1 2 3)
+</pre>
+
+*eval* causes its argument to be evaluated.
+
+<pre>
+(eval (quote (+ 2 2)))
+</pre>
+
+*parse* parses a string containing Nu source code into a list structure.
+<pre>
+(parse "(+ 2 2)")
+</pre>
+
+*context* returns the current execution context (an *NSMutableDictionary*).
+
+h2. <a name="controlflow">Control Flow Operators</a>
+
+h3. Conditional Operators
+
+*cond* scans through a list of lists, evaluating the 
+first member of each list.  When one evaluates true, the 
+remainder of that list is evaluated and the result of the
+last evaluation is returned.  If none evaluate true, the
+last list in the list of lists is evaluated.  Since the last clause is always evaluated, it is conventional but not required for it to begin with the *else* keyword.
+
+<pre>
+(cond ((eq x 1) (puts "x is 1"))
+      ((eq x 2) (puts "x is 2"))
+      (else (puts "x is something else")))
+</pre>
+
+*case* tests an expression against a sequence of values,
+each at the head of a list.  When the expression matches a value,
+the rest of that value's list is evaluated and the result of
+the last evaluation is returned.  If none of the values match,
+the last list in the list of lists is evaluated.  Since the last clause is always evaluated, it is conventional but not required for it to begin with the *else* keyword.
+
+<pre>
+(case  x
+      (1 (puts "x is 1"))
+      (2 (puts "x is 2"))
+      (else (puts "x is something else")))
+</pre>
+
+*if* tests an expression.  If it evaluates true,
+the rest of the expressions that follow are evaluated,
+except for any expressions in a list beginning with the
+*else* symbol.  These expressions will be evaluated
+if the expression evaluates false.
+
+<pre>
+(if (eq x 1) 
+    (puts "x is 1")
+    (puts "i'm sure it is")
+    (else 
+         (puts "x is not 1")))
+</pre>
+
+As a convenience, expressions can be grouped into lists 
+that begin with the *then* symbol.
+
+<pre>
+(if (eq x 1)
+    (then (puts "x is 1"))
+    (else (if (eq x 2) 
+                (then (puts "x is 2"))
+                (else (puts "x is something else")))))
+</pre>
+
+*unless* can be seen as the opposite of the *if* operator.  
+*unless* tests an expression.  If it evaluates false,
+the rest of the expressions that follow are evaluated,
+except for any expressions in a list beginning with the
+*else* symbol.  These expressions will be evaluated
+if the expression evaluates true.
+
+h3. Looping Operators
+
+*while* tests an expression.  If it evaluates true,
+the rest of the expressions that follow are evaluated.
+Then the expression is tested again and evaluations continue
+until the expression evaluates to false. The following while expression prints the numbers from 1 to 10:
+
+<pre>
+(set i 1)
+(while (<= i 10)
+    (puts i)
+    (set i (+ i 1)))
+</pre>
+
+*until* can be seen as the opposite of the *while* operator.
+*until* tests an expression.  If it evaluates false,
+the rest of the expressions that follow are evaluated.
+Then the expression is tested again and evaluations continue
+until the expression evaluates to true.
+The following until expression prints the numbers
+from 1 to 10:
+
+<pre>
+(set i 1)
+(until (eq i 10)
+    (puts i)
+    (set i (+ i 1)))
+</pre>
+
+*for* acts like the C for loop. Its first argument
+should be a list of three expressions that will be evaluated
+(1) to initialize the loop, (2) to test whether to evaluate the 
+loop body, and (3) to modify a state variable after each
+time the loop body is evaluated.  The rest of the expressions
+are used as the loop body.
+The following for expression prints the numbers
+from 1 to 10:
+
+<pre>
+(for ((set i 1) (<= i 10) (set i (+ i 1)))
+     (puts i))
+</pre>
+
+*break* throws an exception that will be caught by
+the innermost while, until, or for loop, which will immediately
+terminate.
+
+*continue* throws an exception that will be caught by
+the innermost while, until, or for loop, which will immediately
+continue to the next loop iteration.
+
+h3. Sequencing Operators
+
+*progn* evaluates a sequence of expression and returns
+the result of the last evaluation.  Many Nu operators contain
+implicit progn operators.
+
+*send* sends a message to an object.  Normally
+it is not needed, but for a few kinds of objects,
+such as blocks, functions, and macros, the normal
+list syntax for message sending is treated as a 
+call.  This operator was added to allow messages 
+to be sent to these objects.
+
+h2. <a name="functionsandmacros">Functions and Macros</a>
+
+*function* creates a named function in the current evaluation
+context. It expects three arguments: the function name,
+a list of function parameters, and the body of the function.
+The body of the function is an implicit *progn*.
+
+<pre>
+(function addtwo (x y)
+   (+ x y))
+</pre>
+
+*do* is used to create blocks, otherwise known as anonymous functions.
+As an example, the following expression creates a 
+block that returns the sum of its two arguments:
+
+<pre>
+(do (x y)
+	(+ x y))
+</pre>
+
+A block is represented by a list of argument names, an execution context (saved when the block is created), and the parsed code to be evaluated.  The *do* operator can be used to explicitly create blocks; several other operators create blocks implicitly.
+
+Blocks and functions can now defined to accept variable numbers of arguments. To do this, the last parameter in the parameter list should begin with an asterisk; this name (including the asterisk) will be bound to a list of remaining arguments when the block is evaluated. That list can be nil if no additional arguments are specified. For example, the following function returns a list constructed from its variably numbered arguments:
+<pre>
+(function my-list (*args) *args)
+</pre>
+
+When a block is created with the *function* operator or called anonymously, all of its arguments are evaluated in the calling context before the block is evaluated. Most of the time, the evaluation of  code in a block takes place in the context that was saved when the block was created.  But when a block is created with the *macro* operator, things are handled differently.  
+
+*macro* creates a named macro  in the current evaluation 
+context. It expects two arguments: the macro name, followed by
+the body of the macro.  Inside the macro, its arguments may be accessed by referring to the *margs* special variable.
+
+When a block is created with the *macro* operator, no context is kept.  Instead, when the macro is evaluated, all block evaluation takes place in the caller's context.  To access the macro's arguments, a special symbol *margs* is pushed into that context (and if there's an existing value, that's saved until the macro finishes).  The *margs* symbol is just the list of unevaluated arguments to the macro; the macro itself determines when and how they are evaluated.  Next, any names in the block that begin with a double underscore are replaced with generated symbols, and then the block is evaluated.  Here's a simple example:
+
+<pre>
+(macro factorial	
+     (set __x (eval (car margs)))
+     (if (== __x 0) 
+         (then 1)
+         (else (* (factorial (- __x 1)) __x)))) 
+</pre>
+
+In practice, you'd never compute factorials like this, but it illustrates an important problem that can occur with macros.  Since macros are evaluated in the caller's context, each recursive evaluation of *factorial* potentially sets our 
+double-underscored <strong>x</strong> to a new value.  
+That would be bad, so each time we evaluate this macro in Nu, the double-underscored <strong>x</strong> is replaced with a new automatically-generated name that is guaranteed to be unique.
+

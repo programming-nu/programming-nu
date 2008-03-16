@@ -1,0 +1,3 @@
+There's a small new release on the "downloads":/downloads page.  Nu-0.1.4 includes a new nuke macro called *bundle-tasks*.  With this, we can easily build Cocoa bundles with nuke, and those bundles can contain Nu source code.
+
+To demonstrate this, the release also contains a new example, a simple "screen saver":/screensaver.

@@ -1,0 +1,5 @@
+h1. Examples
+
+The best way to learn Nu is to see some examples. 
+
+Here are several.  You can find them in the <code>examples</code> directory of the Nu source distribution, or in <code>/usr/local/share/nu/examples</code> after you've installed Nu.  

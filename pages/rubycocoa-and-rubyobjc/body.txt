@@ -1,0 +1,5 @@
+h1. RubyCocoa and RubyObjC
+
+RubyCocoa is an open-source bridge between Ruby and Objective-C.  <nobr>I began</nobr> attempting to use RubyCocoa in January 2006 and documented my efforts at a web site that I called "RubyCocoa Resources":http://www.rubycocoa.com.  RubyCocoa is currently being actively enhanced by Apple and will be included with Apple's release of OS  10.5 (Leopard).
+
+RubyObjC is a project that I created after facing several technical difficulties with RubyCocoa and tearing down to the basics of Ruby and Objective-C interaction.  RubyObjC is a completely new bridge written from scratch. The source for RubyObjC is available on RubyForge, and documentation is on the "RubyObjC web site":http://www.rubyobjc.com.

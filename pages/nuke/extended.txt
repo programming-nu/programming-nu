@@ -1,0 +1,58 @@
+
+h3. About nuke
+
+*nuke* is a build and task management tool that allows Nu to be used to build Nu-based frameworks and applications.  It is inspired by the Ruby *rake* tool. Like *rake*, the *nuke* task system is completely general purpose, allowing *nuke* to be used for other varied tasks such as software testing, deployment, and management.
+
+*nuke* can be used to build frameworks, applications, and standalone binaries, to run tests, and to setup and archive application data files.  Here is an excerpt from Nu's main Nukefile:
+<pre>
+(task "test" => "framework" "nush" is
+     (SH "nutest test/test_*.nu"))
+
+(task "doc" is
+      (SH "headerdoc2html -o doc objc")
+      (SH "gatherheaderdoc doc index.html"))
+
+(task "default" => "nush")
+
+; Build a disk image for distributing the framework.
+(task "framework_image" => "framework" is
+      (SH "rm -rf '#{@framework}.dmg' dmg")
+      (SH "mkdir dmg; cp -Rp '#{@framework}.framework' dmg")
+      (SH "hdiutil create -srcdir dmg '#{@framework}.dmg' -volname '#{@framework}'")
+      (SH "rm -rf dmg"))
+
+(task "install" => "nush" is
+      ('("nuke" "nubile" "enu" "nutest") each: 
+        (do (program)
+            (SH "sudo cp tools/#{program} /usr/local/bin")))
+      (SH "sudo cp nush /usr/local/bin")
+      (SH "sudo rm -rf /Library/Frameworks/#{@framework}.framework")
+      (SH "cp -pRfv #{@framework}.framework /Library/Frameworks/#{@framework}.framework"))
+</pre>
+
+A Nukefile is just a Nu source file, so it can contain any Nu expressions. "task" is a Nu macro that creates and manages NukeTask objects, which are connected together to build a tree of dependencies.
+
+Unlike make and rake, *nuke* doesn't support rules, so build tasks are created by looping over the necessary files.  Also, *nuke* doesn't yet have a way to extract and include header file dependencies, but generated dependencies can be easily added with lines like the following one, in which *objectName* and *headerName* are variables containing the names of respective files:
+
+<pre>
+ (file objectName => headerName)
+</pre>
+
+h3. Usage
+
+To use *nuke*, just type "nuke <taskname>" at the command line.  
+Here are some common tasks:
+
+table{background:#eee}.
+| *application* | builds an application, usually the default |
+| *run* | builds and runs an application |
+| *debug* | builds and runs an application, with standard out (and NSLog messages) going to the terminal |
+| *gdb* | builds and runs an application inside gdb |
+| *test* | builds and runs a suite of tests |
+| *framework* | builds a framework |
+| *clean* | removes build files |
+| *clobber* | removes build files and build products |
+| *doc* | generates documentation with nudoc |
+
+The tasks available depend on the contents of the Nukefile.
+*nuke* must be run in a directory that contains a Nukefile.

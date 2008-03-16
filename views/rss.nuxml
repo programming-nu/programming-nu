@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/stylesheets/rss.css" type="text/css"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title><%= $siteTitle %></title>
+    <link><%= $siteAddress %>/</link>
+    <language>en-us</language>
+    <ttl>40</ttl>
+
+    <description><%= $siteDescription %></description>
+    <% (posts each: (do (post) %>
+      <item>
+        <title><%= (post "title") %></title>
+        <description>
+        	<%= ((post "body") textileToHTML) %>
+        </description>
+        <link><%= $siteAddress %><%= (post "linkForDate") %></link>
+<% (if (post "author") %>
+        <author><%= ((post "author") "email") %></author>   
+<% ) %>
+        <pubDate><%= ((post "creationDate") rfc822) %></pubDate>
+        <guid isPermaLink="false">
+        <%= (post "permalink") %>
+	    </guid>
+      </item>
+    <% )) %>
+  </channel>
+</rss>

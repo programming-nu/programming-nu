@@ -1,0 +1,101 @@
+h3. Currying
+
+"Currying":http://en.wikipedia.org/wiki/Currying is a common functional programming technique for converting a function of a list of parameters into a function of a shorter list of parameters.
+
+After a brief discussion of currying on the mailing list, the following example emerged to illustrate currying with Nu:
+<pre>
+;; The curry function takes a function and a single argument 
+;; and returns a new function that is the original function with 
+;; its first parameter replaced by the specified argument.
+(function curry (f arg)
+    (set remaining-parameters ((send f parameters) cdr))
+    (eval (list 'do remaining-parameters 
+                 (append (list f arg) remaining-parameters))))
+
+;; This example function just returns the sum of three numbers
+(function add-triple (x y z) (+ x y z))
+(puts (add-triple 5 4 3))
+
+;; curry a 2-parameter function
+(set add5-to-pair (curry add-triple 5))
+(puts (add5-to-pair 4 3))
+
+;; curry a 1-parameter function
+(set add9-to-value (curry add5-to-pair 4))
+(puts (add9-to-value 3))
+
+;; curry a 0-parameter function
+(set twelve (curry add9-to-value 3))
+(puts (twelve))
+</pre>
+
+Currently in Nu, this example only works for functions, because only functions are able to respond to the "<code>parameters</code>":http://programming.nu/doc/classes/NuBlock.html#parameters message.
+
+Operators such as <code>+</code>, <code>-</code>, etc. must be handled differently because they accept a variable number of arguments and have no well-defined parameter list.  
+
+This also raises the issue that there is no way yet to define functions accepting a variable number of arguments in Nu, but I'll gladly adopt something from existing Lisp or Scheme conventions.
+
+h3. Variable Scope
+
+The other discussion was on the subject of variable scope:
+
+<pre>
+I've recently run into a problem with `do` blocks and I don't think
+that the behavior is correct.  The operators documentation says:
+"Most of the time, the evaluation of code in a block takes place in
+the context that was saved when the block was created."  If I have a
+variable outside of a `do` block that I try to set in the block, it
+isn't the set value in subsequent iterations or after the block
+exits.  I can use "$" to denote variables as global but I'd prefer
+objects to be limited to their scope.
+
+Sincerely,
+Grayson Hansard
+
+       (set x 0)
+       ('(1 2 3 4 5) each:(do (n) (set x (+ x n))))
+       (puts x) ; Outputs 0; Expected 15 (1+2+3+4+5).
+
+       (set l (NSMutableArray array))
+       ('(1 2 3 4 5) each:(do (n) (l addObject:n)))
+       (puts (l list)) ; Outputs "(1 2 3 4 5)";  Works as expected.
+</pre>
+
+Grayson's observations about blocks were spot on (the documentation he quoted is "here":http://localhost:3000/operators#functionsandmacros). What he described is a result of Nu's block scoping rules.  In his example, <code>x</code> and <code>l</code> are
+names that are defined in a context that exists outside the block
+definitions.  When the blocks are created with <code>do</code>, these names and their assigned values are kept with the blocks for use when the blocks are evaluated.
+
+In the first case, the name <code>x</code> is given a new value inside the block. This new value assignment exists only in the context of the block and is not made in any outside context, so the value of <code>x</code> outside the block is unchanged, and the value for <code>x</code> for other evaluations of the block is also unchanged. It might not be obvious yet, but those other block evaluations may be occurring in parallel.
+
+In the second case, the value associated with the name <code>l</code> is unchanged inside the block.  Instead the block is making changes to an array object, and since there is only one array object, those changes are visible outside the block and in other evaluations of the block. Parallel evaluation of this block would be a problem.
+
+So while the behavior seems surprising at first, it's what
+I prefer for Nu.  It is conceptually  simpler and it makes it more
+feasible to write parallelizing methods such as this:
+
+<pre>
+(arrayOfTasks eachInSeparateThread: (do (task) ... ))
+</pre>
+
+But if you really must have the other behavior, there's a way to get it.  It's illustrated in the example below.  For
+more detail, please look at the class documentation for the
+"NuReference":http://programming.nu/doc/classes/NuReference.html class.
+
+<pre>
+(set y ((NuReference alloc) init))
+(y setValue:0)
+('(1 2 3 4 5) each:(do (n) (y setValue:((+ (y value) n)))))
+(puts (y value))
+</pre>
+
+As you'll see in the class documentation, this isn't the reason that I
+created the NuReference class, but as I heard Jim Coplien say at a C++ conference many years ago:
+
+bq. All interesting problems in computer science reduce to what's in a name, and can be solved by one more level of indirection.
+
+h3. Update
+
+This question of variable scope is now resolved.  Enough people argued convincingly for the other interpretation that beginning in Nu-0.2.0, closures are now made on variable bindings rather than values.
+
+More details are in this post, titled "Closures in Nu":http://programming.nu/posts/2007/10/17/closures-in-nu.
+

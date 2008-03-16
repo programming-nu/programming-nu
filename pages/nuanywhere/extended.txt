@@ -1,0 +1,15 @@
+This example uses Jonathan Rentzsch's "mach_inject":http://rentzsch.com/mach_inject library to load a bundle of Nu and Objective-C code into a running Cocoa application.  We do it by first creating a framework called *NuInject*.  When this framework is loaded, it adds a class method to the *Nu* class that allows an arbitrary bundle to be added to any process, given its process id:
+
+<pre>
+(Nu injectBundleWithPath:bundle intoProcess:pid)
+</pre>
+
+Yes, it's that simple! In our example, the bundle that we add is called *NuConsole*, and when it is loaded, it includes an initialization function that creates a floating panel that contains an interactive Nu console.  You can use this console to talk to the internals of your target application, and because it runs in the main thread, you can safely use this console to interact with AppKit interface objects.  The bundle initialization also adds an item to the *Window* menu to show and hide the Nu console.
+
+The image above is of a screencast that shows *NuAnywhere* in action.  In the screencast, *NuAnywhere* is used to inject a Nu console into Wil Shipley's "Delicious Library":http://www.delicious-monster.com.  We briefly explore some internal details of Delicious Library, then load a script that adds a web server to Delicious Library using a Nu component.
+
+To see the full screencast, click on the image or "click here":/files/DeliciousFunWithNu.mov.
+
+Please note: on Mac OS 10.5, *NuAnywhere* only works with Nu-0.2.2 or later or when built from the latest Nu sources.
+
+"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/NuAnywhere;hb=HEAD

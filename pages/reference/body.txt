@@ -1,0 +1,8 @@
+h1. Nu Reference
+
+h2. "Syntax":/syntax
+
+Nu has a very simple syntax.  On the surface, this may seem strict and conservative, but in many important ways it allows Nu to be liberal and permissive.  
+
+"More...":/syntax
+

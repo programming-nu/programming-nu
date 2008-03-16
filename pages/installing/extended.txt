@@ -1,0 +1,169 @@
+
+h2. Build the prerequisites
+
+
+1. Nu requires *PCRE*, the Perl-Compatible Regular Expression Library.
+Before building Nu, download and install *PCRE*, enabling UTF-8.
+Look for it at "www.pcre.org":http://www.pcre.org.  
+To build a universal binary with UTF-8 support, use the following command:
+
+<pre>
+% env CXXFLAGS="-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk" \
+      CFLAGS="-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk" \
+      LDFLAGS="-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk" \
+      ./configure --disable-dependency-tracking --enable-utf8
+</pre>
+
+Don't forget to build *PCRE* with UTF-8 support.  That's essential.  Subsequent build steps will fail if you don't do this.  The *-isysroot* specifications seem to only be necessary on PowerPC systems building universal binaries.
+
+When you install *PCRE*, it's best to put it in /usr/local (the default).
+If you put it anywhere else, you'll have to modify the Rakefile and Nukefile used to build Nu.
+
+
+2. Nu requires *libffi*.  On Mac OS 10.5, libffi is included as a shared library, so 10.5 users can skip this step.   But on Mac OS 10.4 and other systems, you may need to build your own libffi library.  A version has been provided in the libffi directory.  To build it, use the Ruby *rake* build tool and the included Rakefile.
+
+<pre>
+% cd libffi; rake; cd ..
+</pre>
+
+If you don't have *rake* on your system, get it with <nobr><code>gem install rake</code></nobr> or download it from "rake.rubyforge.org":http://rake.rubyforge.org.
+
+Also, you may see some warning messages from libtool when you build libffi.  It seems that they can be safely ignored.  Here's what I see when I build libffi on my development systems:
+
+<pre>
+[neon:~/Desktop/Nu/libffi] tim% rake
+(in /Volumes/Neon/Users/tim/Desktop/Nu/libffi)
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/types.o src/types.c
+/opt/local/lib/ruby/gems/1.8/gems/rake-0.7.1/lib/rake.rb:728: warning: Insecure world writable dir /Volumes, mode 041777
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/prep_cif.o src/prep_cif.c
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/x86/ffi_darwin.o src/x86/ffi_darwin.c
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/x86/darwin.o src/x86/darwin.S
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/powerpc/ffi_darwin.o src/powerpc/ffi_darwin.c
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/powerpc/darwin.o src/powerpc/darwin.S
+gcc -g -O3 -Wall -DMACOSX -Iinclude -I. -Isrc -arch i386 -arch ppc  -c -o src/powerpc/darwin_closure.o src/powerpc/darwin_closure.S
+libtool -static -o libffi.a src/types.o src/prep_cif.o src/x86/ffi_darwin.o src/x86/darwin.o src/powerpc/ffi_darwin.o src/powerpc/darwin.o src/powerpc/darwin_closure.o
+libtool: warning for architecture: i386 same member name (darwin.o) in output file used for input files: src/x86/darwin.o and: src/powerpc/darwin.o (due to use of basename, truncation, blank padding or duplicate input files)
+libtool: warning for architecture: i386 same member name (ffi_darwin.o) in output file used for input files: src/x86/ffi_darwin.o and: src/powerpc/ffi_darwin.o (due to use of basename, truncation, blank padding or duplicate input files)
+libtool: warning for architecture: ppc same member name (darwin.o) in output file used for input files: src/x86/darwin.o and: src/powerpc/darwin.o (due to use of basename, truncation, blank padding or duplicate input files)
+libtool: warning for architecture: ppc same member name (ffi_darwin.o) in output file used for input files: src/x86/ffi_darwin.o and: src/powerpc/ffi_darwin.o (due to use of basename, truncation, blank padding or duplicate input files)
+ranlib libffi.a
+</pre>
+
+h2. Build Nu
+
+3. Use *rake* to build *mininush*, a minimal version of the Nu shell.
+
+<pre>
+% rake
+</pre>
+
+4. Now use *mininush* to run nuke to complete the Nu build process.
+This builds *Nu.framework*, the Nu framework, and *nush*, the Nu shell.
+
+<pre> 
+% ./mininush tools/nuke
+</pre>
+
+h2. Install and Test Nu
+
+5. Use *mininush* again to install *Nu.framework*, *nush*, and the Nu tools.
+
+<pre>
+% ./mininush tools/nuke install
+</pre>
+
+Since the copying step uses *sudo*, you will be prompted for your password.  The framework goes in */Library/Frameworks*, executables go in */usr/local/bin*, and some support files go to */usr/local/share*.
+
+6. Test your installation with <code>nuke test</code>.  You should see results like these:
+
+<pre>
+[neon:~/Desktop/Nu] tim% nuke test
+nuke: nutest test/test_*.nu
+
+TestArray: running
+--- testCreate
+TestArray: completed 1 tests/3 assertions/0 failures
+
+TestControl: running
+--- testCase
+--- testCond
+--- testFor
+--- testForBreak
+--- testForContinue
+--- testIf
+--- testLoopMacro
+--- testUnless
+--- testUntil
+--- testUntilBreak
+--- testUntilContinue
+--- testWhile
+--- testWhileBreak
+--- testWhileContinue
+TestControl: completed 14 tests/27 assertions/0 failures
+
+TestDictionary: running
+--- testCreate
+--- testSet
+TestDictionary: completed 2 tests/6 assertions/0 failures
+
+TestExceptions: running
+--- testRangeException
+--- testUserRaisedException
+--- testUserThrownException
+--- testUserThrownObject
+TestExceptions: completed 4 tests/16 assertions/0 failures
+
+TestMacros: running
+--- testBrokenFactorialMacro
+--- testFactorialFunction
+--- testFactorialMacro
+--- testGensymInterpolation
+--- testMacroImplementation
+TestMacros: completed 5 tests/5 assertions/0 failures
+
+TestMath: running
+--- testAbs
+--- testArithmeticOperators
+--- testBooleanOperators
+--- testComparisonOperators
+--- testCos
+--- testExp
+--- testIntegerDivide
+--- testIntegerMod
+--- testLog
+--- testShiftOperators
+--- testSin
+--- testSqrt
+--- testSquare
+TestMath: completed 13 tests/59 assertions/0 failures
+
+TestRegex: running
+--- testRegex
+--- testScrape
+TestRegex: completed 2 tests/3 assertions/0 failures
+
+TestSwizzling: running
+--- testClassMethodSwizzling
+--- testInstanceMethodSwizzling
+TestSwizzling: completed 2 tests/12 assertions/0 failures
+
+TestTemplates: running
+--- testCodeSubstitution
+--- testCountingSubstitution
+TestTemplates: completed 2 tests/2 assertions/0 failures
+
+All: completed 45 tests/133 assertions/0 failures
+
+SUCCESS (0 failures)
+</pre>
+
+From now on, you can use the installed *nush* to run *nuke*. To see for yourself, rebuild everything from scratch:
+
+<pre>
+% nuke clobber
+% nuke
+% nuke install
+% nuke test
+</pre>
+
+See the Nukefile for other useful tasks.

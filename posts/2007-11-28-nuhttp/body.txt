@@ -1,0 +1,1 @@
+Git users can now download NuHTTP from "code.neontology.com":http://code.neontology.com.  Built as a Cocoa framework, NuHTTP includes a web server and a simple HTTP client class.

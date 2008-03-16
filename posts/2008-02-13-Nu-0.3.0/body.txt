@@ -1,0 +1,1 @@
+There's a new binary release on the downloads page. It is built and tested for Apple's OS 10.5 only. Read on for a summary of the changes since Nu-0.2.4.

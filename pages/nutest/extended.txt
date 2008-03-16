@@ -1,0 +1,23 @@
+h3. About nutest
+
+*nutest* is a test harness and a top-level class that is used to define unit tests.   New groups of tests are created by writing subclasses of the NuTestCase class; individual tests are instance methods of these subclasses.  A few common assertions are defined as macros and more can be easily added.  Tests may be run individually or in groups.
+
+Here's an example from the Nu regressions:
+
+<pre>
+(class TestArray is NuTestCase
+     (imethod (id) testCreate is
+          (set a (NSMutableArray arrayWithList:'(1 2))) 
+          (a << "three")
+          (assert_equal 3 (a count))
+          (assert_equal 2 (a 1))
+          (assert_equal "three" (a 2))))           
+</pre>
+
+h3. Usage
+
+*nutest* is run with a list of filename patterns as arguments.  Currently, filename patterns should be regular expressions.  For example, to run the  Nu tests from the Nu root directory, the "nuke test" task executes the following command:
+
+<pre>
+nutest test/test_*.nu
+</pre>

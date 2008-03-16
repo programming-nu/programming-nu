@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title><%= (post valueForKey:"title") %></title>
+<%= (render-partial "meta") %>
+<%= (render-partial "styles") %>
+</head>
+<body>
+<div id="container">
+<%= (render-partial "header") %>
+
+<div id="content">
+<div class="atomentry">
+	
+<% (unless (eq (post valueForKey:"permanent") 1) %>
+<h2 class="title">
+<a href="<%= (post "linkForDate") %>">
+<%= (post valueForKey:"title") %></a> 
+</h2>
+<p class="author">
+<%= ((post "creationDate") descriptionForBlog) %> 
+</p>
+<% ) %>
+
+<div class="content" style="margin-bottom:10px">
+<%= ((post valueForKey:"body") textileToHTML) %> 
+</div>
+
+<% (if (post valueForKey:"extended") %>
+<div class="extended">
+<%= ((post valueForKey:"extended") textileToHTML) %>
+</div>
+<% ) %>
+
+</div> <!-- atomentry -->
+</div> <!-- content -->
+<%= (render-partial "sidebar") %>
+<%= (render-partial "footer") %>
+</div><!-- container -->
+</body>	
+</html>

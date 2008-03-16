@@ -1,0 +1,5 @@
+Since every developer wants a Nu console in his or her app (to know it is to love it), here's a small example with just a console.  Use it as a base for your next Nu creation.
+
+Build and run it with "nuke run".
+
+"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Console;hb=HEAD

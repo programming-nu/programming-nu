@@ -1,0 +1,11 @@
+<% (set page-count ((/ (+ numberOfArticles $articlesPerPage -1) $articlesPerPage) intValue)) %>
+<% (if (> page-count 1) %>
+<p class="pagination">Older posts:
+<% (page-count times: (do (i) 
+     (if (eq i (- pageNumber 1)) (then %>
+<%= (+ i 1) %>
+<%       ) (else %>
+<a href="/articles/page/<%= (+ i 1) %>"><%= (+ i 1) %></a>
+<%       )))) %>
+</p>
+<% ) %>

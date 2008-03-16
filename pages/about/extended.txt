@@ -1,0 +1,60 @@
+h2. What's Nu?
+
+Nu is an interpreted object-oriented language.  Its syntax comes from Lisp, but Nu is semantically closer to Ruby than Lisp.   Nu is written in Objective-C and is designed to take full advantange of the Objective-C runtime and the many mature class libraries written in Objective-C.  Nu code can fully interoperate with code written in Objective-C; messages can be sent to and from objects with no concern for whether those messages are implemented in Objective-C or Nu. 
+
+h2. Why did I write Nu?
+
+No existing language had the expressiveness and power that I wanted.
+
+I wanted to write software with a language as flexible and powerful as Lisp, but I also wanted to be able to work with the many libraries and high-performance subsystems written in C, including the ones that I write myself.   I also wanted a language that worked well with native threads.
+
+Unlike other Lisp-like languages, for Nu, a tight integration with C was a top priority.  That led me to build Nu on Objective-C and drove many other details in the implementation of Nu.  The need to play well with C is what makes Nu "C over lambda."
+
+h2. Why Objective-C?
+
+It is easier to integrate with C when you have a disciplined way of structuring C code.  Popular scripting languages (Python, Ruby, Lua, etc.) make many implementation-dependent impositions on the C code that they call.  Their artifacts are often called "glue code" and are usually ugly, cumbersome, and unpleasant to generate.
+
+The Objective-C language is a proven technology for structuring C code in a way that allows run-time introspection and dynamic binding.  These features allow Objective-C components to be bound to scripting languages with no component-specific glue code.  But Objective-C can do much more.  Objective-C can also serve as a platform for a powerful dynamic language.  Nu was designed to take full advantage of that.  
+
+h2. The Ruby Factor
+
+Nu was also designed to provide many of the elements of successful scripting languages, notably Ruby, while adding the syntactic simplicity and flexibility of Lisp.   Some of the elements that Nu draws from Ruby include:
+
+* Consistent object-orientation.  In Nu, everything is an object.
+* The use of sigils to indicate variable type. A leading "@" denotes instance variables, "$" marks global variables, and "__" marks a variable as a generated symbol (generated symbols are used to write macros, which Ruby lacks).
+* The use of here strings and string interpolation.
+* Utilities: The Nu distribution includes a templating facility similar to Ruby's *erb*, and the Nu build tool, *nuke*, is modeled on Jim Weirich's *rake*.
+
+h2. System Requirements
+
+Nu currently requires Mac OS X version 10.5 or greater and runs on PowerPC and Intel systems.  Ports to Linux and the Apple iPhone are also available; contact me directly or visit my "blog":http://blog.neontology.com for more details.
+
+h2. Legal Details
+
+Nu(TM) is open-source software that is copyrighted by Neon Design Technology, Inc.  It is released under the Apache License, v. 2.0.
+
+Except for attributed quotations, the text of this website is copyrighted by Neon Design Technology, Inc. and may not be reproduced without express permission.  Permission is hereby granted for attributed quotes and excerpts containing up to 25% of an article.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a><br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 United States License</a>.
+
+Nu(TM) and Programming Nu(TM) are trademarks of "Neon Design Technology, Inc.":http://www.neontology.com
+
+<div class="vcard" style="float:left; width:350px; padding:0; background:#ddd; border:2px solid #ddd; margin-right:2em; margin-bottom:10px">
+<div style="float:left; margin:0; padding:5px 5px 1px 5px;">
+<a href="/about-me">
+<img  src="/files/tim.jpg" height="120" alt="photo" class="photo"  style="padding:0"/></a>
+</div>
+<div style="float:left;padding:20px 0 0 20px; margin:0; font-size:90%; line-height:110%">
+<a href="/about-me" style="font-size:200%; font-weight:bold; color:#101010; text-decoration:none">Tim Burks</a>
+<div class="org" style="margin-top:10px;">Neon Design Technology, Inc.</div>
+<div class="adr">
+<div class="street-address">180 Second Street, Suite B-2</div>
+<span class="locality">Los Altos</span>, 
+<span class="region">CA</span>
+<span class="postal-code">94022</span>
+</div>
+
+<div style="margin-top:10px">tim at neontology dot com</div>
+</div>
+</div>
+<br style="clear:both" />

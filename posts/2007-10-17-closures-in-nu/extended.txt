@@ -1,0 +1,29 @@
+
+In his "Revenge of the Nerds":http://www.paulgraham.com/icad.html essay,
+Paul Graham suggests that the power of a programming language can be measured by its ability to implement a solution to a particular problem:
+
+bq.  We want to write a function that generates accumulators -- a function that takes a number n, and returns a function that takes another number i and returns n incremented by i.
+
+Here is the solution to that problem in Nu:
+<pre>
+    (function make-accumulator (n)
+         (do (i) (set n (+ n i))))
+</pre>
+
+You'll find that example in Nu's unit tests.  There's also an example there that shows the use of the *let* operator to create value assignments in a local binding:
+<pre>
+(set x 0)
+;; Here we redefine x inside the let context, so
+;; assignments to x in the block do not affect the outer x
+(10 times: (do (i) (let ((x x)) (set x (+ x 1)))))
+(assert_equal 0 x)
+;; Here we refer to the outer binding of x, so
+;; assignments to x in the block do affect the outer x
+(10 times: (do (i) (set x (+ x 1)) (set y x)))
+(assert_equal 10 x)
+(assert_equal 10 ((context) objectForKey:'x))
+;; but assignments to y are invisible in the outer context
+(assert_equal nil ((context) objectForKey:'y))))
+</pre>
+
+This change gives Nu programmers the ability to implement entirely new object systems out of closures.  I won't go into that here because I'm currently quite happy with what I can do with Objective-C, but the power is there if you want it.  Use it wisely.

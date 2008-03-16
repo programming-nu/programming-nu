@@ -1,0 +1,5 @@
+h1. Wish List
+
+There's lots of work still to be done on Nu.  
+
+Here are a few things that I would specifically like to have, organized by category and roughly sorted with highest priority items first.

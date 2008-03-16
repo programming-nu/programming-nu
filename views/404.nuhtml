@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Programming Nu</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta content="37.444542, -122.161050" name="ICBM" />
+  <%= (render-partial "styles") %>
+</head>
+<body>
+<div id="container">
+<%= (render-partial "header") %>
+<div id="content">
+<div class="atomentry">
+<h2 class="title">Page not found</h2>
+<p class="author">HTTP Error 404: Not found.</p>
+<div class="content" style="margin-bottom:10px; clear:both">
+<p>The page you requested cannot be found.</p>
+<p>It might have been removed, have had its name changed, or be temporarily unavailable.</p>
+<p>Or maybe it was never there to begin with.</p>
+<p>Please try the following:
+<ul>
+<li>If you typed an address in the address bar, check that it is spelled correctly.</li>
+<li>Use the list of articles in the sidebar on the right to find the article you want.</li>
+<li>Click your browser's back button and try another link.</li>
+</ul>
+</p>
+</div>
+</div>
+</div>
+<%= (render-partial "sidebar") %>
+<br style="clear:both;" />
+<%= (render-partial "footer") %>
+</div>
+</body>	
+</html>

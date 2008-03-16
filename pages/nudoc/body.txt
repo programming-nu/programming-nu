@@ -1,0 +1,3 @@
+h1. nudoc
+
+h2. a Nu documentation generator

@@ -1,0 +1,3 @@
+The "Nu git repository":http://github.com/timburks/nu now contains all the source code and related build tools to build Nu for Linux and for the iPhone.  iPhone support is currently for the simulator only, and so far, I have only tested Linux support on Ubuntu 7.10 running in VMware Fusion.
+
+While there's a lot of interest in the iPhone, the Nu Linux support is what has me the most excited. 

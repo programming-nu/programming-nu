@@ -1,0 +1,2 @@
+<p>A question arose on the mailing list about loading nib files with Nu.  Since none of the Nu sample programs used nib files, it wasn't clear how to write Nu code to use them.  To help with that, I added a new example, another version of the RandomApp program from Aaron Hillegass' 
+<a href="http://www.rubycocoa.com/book_review/cocoa-programming-for-mac-os-x">Cocoa Programming for Mac <span class="caps">OS X</span></a>.</p>
