@@ -1,0 +1,102 @@
+h3. About nubake
+
+*nubake* can be used to "bake" Nu source files into compiled objects.  This can be useful for simplifying and adding tamper-resistance to Nu applications.
+
+*nubake* parses a Nu source file and writes an Objective-C function that, when called, returns the same parsed code structure that you would get by parsing the original source file.  You can then compile and link this into your Nu application and call the new Objective-C function instead of loading the original Nu source file.  You can either use *nubake* to generate a single function, or by adding the "-s" (standalone) option, you can generate a program that can be compiled into a standalone Nu-based binary.
+
+h3. Usage
+
+Invoke *nubake* with the name of a Nu source file.  It also accepts the following arguments:
+
+| -n | to specify the name of the C function that is created. |
+| -o | to specify the name of the C output file. |
+| -s | to also generate a *main()* function so that the C output can be compiled standalone. |
+	
+Here's an example; we'll say it is in a file named *ninetynine.nu*:
+
+<pre>
+(99 times:
+    (do (i)
+        (set count (- 99 i))
+        (puts <<-END
+#{count} bottles of Nu on the wall
+#{count} bottles of Nu
+Take one down, pass it around
+#{count} bottles of Nu on the wall
+END)))
+</pre>
+
+To bake it, use the following command:
+
+<pre>
+% nubake ninetynine.nu -s
+</pre>
+
+Then compile it with gcc:
+
+<pre>
+% gcc ninetynine.m -o ninetynine -framework Cocoa -framework Nu
+</pre>
+
+Now run it.
+<pre>
+% ninetynine 
+99 bottles of Nu on the wall
+99 bottles of Nu
+Take one down, pass it around
+99 bottles of Nu on the wall
+
+98 bottles of Nu on the wall
+98 bottles of Nu
+Take one down, pass it around
+98 bottles of Nu on the wall
+
+97 bottles of Nu on the wall
+97 bottles of Nu
+Take one down, pass it around
+97 bottles of Nu on the wall
+
+...
+</pre>
+
+With options and comments, *nubake* is a little over 100 lines of code.  Its core is a small Nu method:
+
+<pre>
+(+ (id) expandNuExpression:(id) node is
+   (set result "")
+   (cond ((eq node nil)
+          (result appendString:"_nunull()"))
+         ((node isKindOfClass:NuCell)
+          (result appendString:
+                  (+ "_nucell(" 
+                     (self expandNuExpression:(node car))
+                     ",\n"
+                     (self expandNuExpression:(node cdr)) 
+                     ")")))
+         ((node isKindOfClass:NuSymbol)
+          (result appendString:
+                  "_nusymbol(#{((node stringValue) characterArray)})"))
+         ((node isKindOfClass:NSString)
+          (result appendString:"_nustring(#{(node characterArray)})"))
+         ((node isKindOfClass:NSNumber)
+          (result appendString:"_nunumberd(#{node})"))
+         ((node isKindOfClass:NuRegex)
+          (result appendString:
+                  "_nuregex(#{((node pattern) characterArray)}, #{(node options)})"))        
+         (else (result appendString:"[ERROR]")))
+   result)
+</pre>
+
+That's sufficient to turn any parsed Nu code into a nested set of C function calls that produces an equivalent structure.   Then that structure can be evaluated with something as simple as <code>(eval my-expression)</code>, where <code>my-expression</code> is set to the result of a call to your function.  If you want to make that function call from Nu, just wrap it with an instance of *NuBridgedFunction*:
+
+<pre>
+(set ninetynine 
+     (NuBridgedFunction functionWithName:"ninetynine" signature:"@"))
+</pre>
+
+Then call *eval* with its results:
+
+<pre>
+(eval (ninetynine))
+</pre>
+

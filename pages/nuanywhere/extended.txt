@@ -10,6 +10,4 @@ The image above is of a screencast that shows *NuAnywhere* in action.  In the sc
 
 To see the full screencast, click on the image or "click here":/files/DeliciousFunWithNu.mov.
 
-Please note: on Mac OS 10.5, *NuAnywhere* only works with Nu-0.2.2 or later or when built from the latest Nu sources.
-
 "View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/NuAnywhere;hb=HEAD

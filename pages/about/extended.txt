@@ -1,6 +1,6 @@
 h2. What's Nu?
 
-Nu is an interpreted object-oriented language.  Its syntax comes from Lisp, but Nu is semantically closer to Ruby than Lisp.   Nu is written in Objective-C and is designed to take full advantange of the Objective-C runtime and the many mature class libraries written in Objective-C.  Nu code can fully interoperate with code written in Objective-C; messages can be sent to and from objects with no concern for whether those messages are implemented in Objective-C or Nu. 
+Nu is an interpreted object-oriented language.  Its syntax comes from Lisp, but Nu is semantically closer to Ruby than Lisp.   Nu is implemented in Objective-C and is designed to take full advantange of the Objective-C runtime and the many mature class libraries written in Objective-C.  Nu code can fully interoperate with code written in Objective-C; messages can be sent to and from objects with no concern for whether those messages are implemented in Objective-C or Nu. 
 
 h2. Why did I write Nu?
 

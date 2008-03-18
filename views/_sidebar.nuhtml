@@ -91,6 +91,8 @@
 <li><a href="/nutest">nutest, a testing tool</a></li>
 <li><a href="/nudoc">nudoc, a documentation generator</a></li>
 <li><a href="/nutemplate">nutemplate, a templating tool</a></li>
+<li><a href="/nubake">nubake, a code generation tool</a></li>
+
 </ul>
 </div>
 

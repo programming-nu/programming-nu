@@ -16,7 +16,7 @@ Here's an example from the Nu regressions:
 
 h3. Usage
 
-*nutest* is run with a list of filename patterns as arguments.  Currently, filename patterns should be regular expressions.  For example, to run the  Nu tests from the Nu root directory, the "nuke test" task executes the following command:
+*nutest* is run with a list of filename patterns as arguments.  For example, to run the  Nu tests from the Nu root directory, the "nuke test" task executes the following command:
 
 <pre>
 nutest test/test_*.nu
