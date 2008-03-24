@@ -1,0 +1,7 @@
+This small release mainly brings in changes added for the iPhone and Linux ports,
+but also contains a few bug fixes and enhancements. With these changes, it is now
+possible to run the Nunja web server with the binary installed Nu.
+
+Please see the 
+"commit logs":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=commit;h=c8247560c9b09cd2883e9e115396f7a1a0a567ca
+for details.  Available on the "downloads":/downloads page.

@@ -4,13 +4,13 @@ h2. <a name="binary">Binary</a>
 
 Here is a link to a binary installer for Nu.  It will install the Nu framework in <code>/Library/Frameworks</code>, the Nu shell and several utilities in <code>/usr/local/bin</code>, and examples and support files in <code>/usr/local/share</code>.
 
-The Nu binary installer: "Nu-0.3.0.dmg":/releases/Nu-0.3.0.dmg
+The Nu binary installer: "Nu-0.3.1.dmg":/releases/Nu-0.3.1.dmg
 
 h2. <a name="source">Source</a>
 
 Here is a link to the latest source release for Nu.  To build and install Nu, follow these "instructions":/installing.
 
-The Nu source release: "Nu-0.3.0.tgz":/releases/Nu-0.3.0.tgz
+The Nu source release: "Nu-0.3.1.tgz":/releases/Nu-0.3.1.tgz
 
 h2. <a name="git">Git</a>
 

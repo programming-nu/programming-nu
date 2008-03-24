@@ -10,7 +10,7 @@ I wanted to write software with a language as flexible and powerful as Lisp, but
 
 Unlike other Lisp-like languages, for Nu, a tight integration with C was a top priority.  That led me to build Nu on Objective-C and drove many other details in the implementation of Nu.  The need to play well with C is what makes Nu "C over lambda."
 
-h2. Why Objective-C?
+h2. Why build on Objective-C?
 
 It is easier to integrate with C when you have a disciplined way of structuring C code.  Popular scripting languages (Python, Ruby, Lua, etc.) make many implementation-dependent impositions on the C code that they call.  Their artifacts are often called "glue code" and are usually ugly, cumbersome, and unpleasant to generate.
 

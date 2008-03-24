@@ -6,7 +6,7 @@ Some of the projects that I've posted include:
 * The "NuPagePacker":http://github.com/timburks/nupagepacker example Cocoa application.
 * A "NuiPhone":http://github.com/timburks/nuiphone project containing an iPhone "Hello World" in Nu.
 * "NuTcl":http://github.com/timburks/nutcl, a wrapper for John Ousterhout's Tcl interpreter. You can use it to embed Tcl in a Nu/Objective-C application and create new Tcl commands with Nu. This has also been tested on both MacOS and Linux.
-* "NuMySQL":http://github.com/timburks/numysql and "NuPostgreSQL":http://github.com/timburks/nupostgresql, primitive but useable interfaces to the MySQL and PostgreSQL database systems.
+* "NuMySQL":http://github.com/timburks/numysql and "NuPostgreSQL":http://github.com/timburks/nupostgresql, primitive but usable interfaces to the MySQL and PostgreSQL database systems.
 * "NuYAML":http://github.com/timburks/nuyaml, Patrick Thomson's YAML-processing package.
 * "NuMarkdown":http://github.com/timburks/numarkdown, Grayson Hansard's Markdown package.
 

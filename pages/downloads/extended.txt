@@ -7,6 +7,15 @@ h2. Release History
 <th align="left" width="20%">source</th>
 <th align="left">notes</th>
 </tr>
+
+<tr>
+<td>22-Mar-2008</td>
+<td>"Nu-0.3.1.dmg":/releases/Nu-0.3.1.dmg</td>
+<td>"Nu-0.3.1.tgz":/releases/Nu-0.3.1.tgz</td>
+<td>Cross-platform (Linux and iPhone) support, Apache License v2.0, bug fixes.
+</td>
+</tr>
+
 <tr>
 <td>13-Feb-2008</td>
 <td>"Nu-0.3.0.dmg":/releases/Nu-0.3.0.dmg</td>
