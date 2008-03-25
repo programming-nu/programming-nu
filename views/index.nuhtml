@@ -21,7 +21,7 @@
 </p>
 <% (if (< index 10) %>
 <div class="content">
-<%= ((post "body") textileToHTML) %>    
+<%= (post bodyAsHTML) %>    
 <% (if (and (!= (post "extended") nil) (!= (post "extended") "")) %>
 <p style="margin-top:-10px">
 <a href="<%= (post "linkForDate") %>">

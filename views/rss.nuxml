@@ -12,7 +12,7 @@
       <item>
         <title><%= (post "title") %></title>
         <description>
-        	<%= ((post "body") textileToHTML) %>
+        	<%= (post bodyAsHTML) %>
         </description>
         <link><%= $siteAddress %><%= (post "linkForDate") %></link>
 <% (if (post "author") %>

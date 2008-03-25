@@ -8,12 +8,15 @@
 
 (load "YAML")
 (load "template")
+(load "NuMarkdown")
 
 (class NSObject (+ objectWithYAML:(id) yaml is (self fromYAML:yaml)))
 
 (class NSString
      
      (- lines is ((self componentsSeparatedByString:"\n") select:(do (x) (!= x ""))))
+     
+     (- (id) markdownToHTML is (NuMarkdown convert:self))
      
      ;; Convert a Textile-formatted string to HTML.
      ;; Currently this goes out to Ruby.
@@ -26,70 +29,86 @@
      ;; puts RedCloth.new(STDIN.read).to_html
      ;; </code>
      (- (id) textileToHTML is
-          (unless $textileCache (set $textileCache (dict)))
-          (unless (set results ($textileCache objectForKey:self))
-                  (set input (NSPipe pipe))
-                  (set output (NSPipe pipe))
-                  (set task ((NSTask alloc) init))
-                  (task set:(launchPath:"/usr/local/bin/redcloth"
-                             standardInput:input
-                             standardOutput:output))
-                  ((input fileHandleForWriting) writeData:
-                   (self dataUsingEncoding:NSUTF8StringEncoding))
-                  ((input fileHandleForWriting) closeFile)
-                  (task launch)
-                  (task waitUntilExit)
-                  (set results ((NSString alloc)
-                                initWithData:((output fileHandleForReading) readDataToEndOfFile)
-                                encoding:NSUTF8StringEncoding))
-                  ($textileCache setValue:results forKey:self))
-          results))
+        (unless $textileCache (set $textileCache (dict)))
+        (unless (set results ($textileCache objectForKey:self))
+                (set input (NSPipe pipe))
+                (set output (NSPipe pipe))
+                (set task ((NSTask alloc) init))
+                (task set:(launchPath:"/usr/local/bin/redcloth"
+                           standardInput:input
+                           standardOutput:output))
+                ((input fileHandleForWriting) writeData:
+                 (self dataUsingEncoding:NSUTF8StringEncoding))
+                ((input fileHandleForWriting) closeFile)
+                (task launch)
+                (task waitUntilExit)
+                (set results ((NSString alloc)
+                              initWithData:((output fileHandleForReading) readDataToEndOfFile)
+                              encoding:NSUTF8StringEncoding))
+                ($textileCache setValue:results forKey:self))
+        results))
+
+(class NSDictionary
+     
+     (- (id) bodyAsHTML is
+        (set body (self valueForKey:"body"))
+        (case (self valueForKey:"format")
+              ("textile" (body textileToHTML))
+              ("markdown" (body markdownToHTML))
+              (else body)))
+     
+     (- (id) extendedAsHTML is
+        (set extended (self valueForKey:"extended"))
+        (case (self valueForKey:"format")
+              ("textile" (extended textileToHTML))
+              ("markdown" (extended markdownToHTML))
+              (else extended))))     
 
 (class NSDate
      
      ;; Get a nice representation of a date for display.
      (- (id) descriptionForBlog is
-          (self descriptionWithCalendarFormat:"%A, %d %b %Y"))
+        (self descriptionWithCalendarFormat:"%A, %d %b %Y"))
      
      ;; Get a y-m-d representation of a date.
      (- (id) ymd is
-          (self descriptionWithCalendarFormat:"%Y-%m-%d"))
+        (self descriptionWithCalendarFormat:"%Y-%m-%d"))
      
      (- (id) monthAndYear is
-          (self descriptionWithCalendarFormat:"%B %Y"))
+        (self descriptionWithCalendarFormat:"%B %Y"))
      
      ;; Get an RFC822-compliant representation of a date.
      (- (id) rfc822 is
-          (set result ((NSMutableString alloc) init))
-          (result appendString:
-                  (self descriptionWithCalendarFormat:"%a, %d %b %Y %H:%M:%S "
-                        timeZone:(NSTimeZone localTimeZone) locale:nil))
-          (result appendString:((NSTimeZone localTimeZone) abbreviation))
-          result)
+        (set result ((NSMutableString alloc) init))
+        (result appendString:
+                (self descriptionWithCalendarFormat:"%a, %d %b %Y %H:%M:%S "
+                      timeZone:(NSTimeZone localTimeZone) locale:nil))
+        (result appendString:((NSTimeZone localTimeZone) abbreviation))
+        result)
      
      ;; Get an RFC1123-compliant representation of a date.
      (- (id) rfc1123 is
-          (set result ((NSMutableString alloc) init))
-          (result appendString:
-                  (self descriptionWithCalendarFormat:"%a, %d %b %Y %H:%M:%S "
-                        timeZone:(NSTimeZone timeZoneWithName:"GMT") locale:nil))
-          (result appendString:((NSTimeZone timeZoneWithName:"GMT") abbreviation))
-          result)
+        (set result ((NSMutableString alloc) init))
+        (result appendString:
+                (self descriptionWithCalendarFormat:"%a, %d %b %Y %H:%M:%S "
+                      timeZone:(NSTimeZone timeZoneWithName:"GMT") locale:nil))
+        (result appendString:((NSTimeZone timeZoneWithName:"GMT") abbreviation))
+        result)
      
      ;; Get an RFC3339-compliant representation of a date.
      (- (id) rfc3339 is
-          (set result ((NSMutableString alloc) init))
-          (result appendString:
-                  (self descriptionWithCalendarFormat:"%Y-%m-%dT%H:%M:%S"
-                        timeZone:(NSTimeZone localTimeZone) locale:nil))
-          (set offset (/ ((NSTimeZone localTimeZone) secondsFromGMT) 3600))
-          (cond ((< offset -9) (result appendString:"#{offset}:00"))
-                ((< offset 0) (result appendString:"-0#{(* -1 offset)}:00"))
-                (t (result appendString:"-0#{offset}:00")))
-          result)
+        (set result ((NSMutableString alloc) init))
+        (result appendString:
+                (self descriptionWithCalendarFormat:"%Y-%m-%dT%H:%M:%S"
+                      timeZone:(NSTimeZone localTimeZone) locale:nil))
+        (set offset (/ ((NSTimeZone localTimeZone) secondsFromGMT) 3600))
+        (cond ((< offset -9) (result appendString:"#{offset}:00"))
+              ((< offset 0) (result appendString:"-0#{(* -1 offset)}:00"))
+              (t (result appendString:"-0#{offset}:00")))
+        result)
      
      (- (id) path is
-          (self descriptionWithCalendarFormat:"%Y/%m/%d" timeZone:nil locale:nil)))
+        (self descriptionWithCalendarFormat:"%Y/%m/%d" timeZone:nil locale:nil)))
 
 (macro render-partial
      (try

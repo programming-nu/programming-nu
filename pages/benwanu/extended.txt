@@ -10,4 +10,4 @@ Benwanu also includes application help and a simple about box.  See the sources 
 
 Build and run it with "nuke run".  To get error messages logged to the console, run it with "nuke debug".  If you make a change that causes a crash, use "nuke gdb" to run the app in the debugger.
 
-"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Benwanu;hb=HEAD
+[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Benwanu;hb=HEAD)

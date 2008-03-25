@@ -1,3 +1,3 @@
-h1. Background
+# Background
 
 Here are some pages with background information about Nu.

@@ -22,7 +22,7 @@
 	<link href="<%= $siteAddress %><%= (post "linkForDate") %>" rel="alternate" type="text/html"/>
     <content type="xhtml">
 		<div xmlns="http://www.w3.org/1999/xhtml">
-        <%= ((post valueForKey:"body") textileToHTML) %>
+        <%= (post bodyAsHTML) %>
 		</div>	
 	</content>
   </entry>

@@ -23,12 +23,12 @@
 <% ) %>
 
 <div class="content" style="margin-bottom:10px">
-<%= ((post valueForKey:"body") textileToHTML) %> 
+<%= (post bodyAsHTML) %> 
 </div>
 
 <% (if (post valueForKey:"extended") %>
 <div class="extended">
-<%= ((post valueForKey:"extended") textileToHTML) %>
+<%= (post extendedAsHTML) %>
 </div>
 <% ) %>
 

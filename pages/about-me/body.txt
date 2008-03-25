@@ -1,4 +1,4 @@
-h1. About Me
+# About Me
 
 <div style="float:left; margin-right:20px; margin-bottom:10px">
 <img  src="/files/tim.jpg" height="100" alt="photo" class="photo"  style="padding:0"/>

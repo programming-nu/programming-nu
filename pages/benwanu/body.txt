@@ -1,5 +1,5 @@
 <img src="/files/benwanu-sample.jpg" alt="Mandelbrot Set"/>
 
-h1. Benwanu
+# Benwanu
 
-h2. Scripting Native Threads with Nu
+## Scripting Native Threads with Nu

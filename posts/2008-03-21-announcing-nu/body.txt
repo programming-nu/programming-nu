@@ -1,5 +1,5 @@
-Many thanks to "Jonathan Rentzsch":http://rentzsch.com/ for posting this video of my talk from last summer's C4 [1] conference! 
+Many thanks to [Jonathan Rentzsch](http://rentzsch.com/) for posting this video of my talk from last summer's C4[1] conference! 
 
-Watch it to see the world's first look at "Nu":http://programming.nu. ("more videos":http://rentzsch.com/c4/c41VideosAvailable)
+Watch it to see the world's first look at [Nu](http://programming.nu). ([more videos](http://rentzsch.com/c4/c41VideosAvailable))
 
 <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="437" height="370" id="viddler_rentzsch_13"><param name="movie" value="http://www.viddler.com/player/f15b6262/" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed src="http://www.viddler.com/player/f15b6262/" width="437" height="370" type="application/x-shockwave-flash" allowScriptAccess="always" allowFullScreen="true" name="viddler_rentzsch_13" ></embed></object>

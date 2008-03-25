@@ -1,6 +1,6 @@
 
-* "Lisp Links":/lisp-links
+* [Lisp Links](/lisp-links)
 
-* "Objective-C References":/objective-c
+* [Objective-C References](/objective-c)
 
-* "RubyCocoa and RubyObjC":/rubycocoa-and-rubyobjc
+* [RubyCocoa and RubyObjC](/rubycocoa-and-rubyobjc)

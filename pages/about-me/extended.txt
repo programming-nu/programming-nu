@@ -8,4 +8,4 @@ In 2004, I left Magma to spend more time focusing on software technology, especi
 
 I think that some of the biggest problems faced by the EDA and many other software industries are technical problems, and that they are the problems that people have when they lose - or never gain - control of the software that they are using. Nu is one step toward solving those problems.
 
-Want to know more?  Visit "blog.neontology.com":http://blog.neontology.com.
+Want to know more?  Visit [blog.neontology.com](http://blog.neontology.com).

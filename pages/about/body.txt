@@ -1,4 +1,4 @@
-h1. About Nu
+# About Nu
 
 Hello and welcome to Nu.
 
@@ -6,8 +6,10 @@ I created Nu because I believe that we can do better at writing software. <nobr>
 
 Writing software has gotten easy, but writing good software is still hard, especially when projects get large. Three things can make it easier to write better software:
 
-# *Reducing* the amount of code that we write. This is easier when we use more expressive languages.  <div style="background:#eee;margin-top:10px;padding:10px">But watch out, *reducing* is not *eliminating*.  When someone offers you a way to eliminate code, often they're just reshuffling your code into a different form, and it's often an opaque proprietary form that locks you into their opaque proprietary tools.</div>
-# *Reusing* components that we or others have already written. This is easier when our languages provide well-defined mechanisms for reflection and dynamic binding. <div style="background:#eee;margin-top:10px;padding:10px">Reflection and dynamic binding give power to people.  They give people who use software the ability to assemble their software systems at runtime, which means that they have the flexibility to replace and upgrade components.  People who build software benefit even more; they can use reflection and dynamic binding to create specification tools that ensure that the components they use do exactly what they want.</div>
-# *Recycling* code from past projects. This is easier when our languages allow us to write programs that treat code as data.<div style="background:#eee;margin-top:10px;padding:10px">There are many things that we can do when our code is data.   Automatic code formatting and automatic documentation extraction are two simple examples. Code generation and transformation tools go much further.</div>
+* **Reducing** the amount of code that we write. This is easier when we use more expressive languages. <div style="background:#eee;margin-top:10px;padding:10px">
+But watch out, **reducing** 
+is not **eliminating**.  When someone offers you a way to eliminate code, often they're just reshuffling your code into a different form, and it's often an opaque proprietary form that locks you into their opaque proprietary tools.</div>
+* **Reusing** components that we or others have already written. This is easier when our languages provide well-defined mechanisms for reflection and dynamic binding.<div style="background:#eee;margin-top:10px;padding:10px">Reflection and dynamic binding give power to people.  They give people who use software the ability to assemble their software systems at runtime, which means that they have the flexibility to replace and upgrade components.  People who build software benefit even more; they can use reflection and dynamic binding to create specification tools that ensure that the components they use do exactly what they want.</div>
+* **Recycling** code from past projects. This is easier when our languages allow us to write programs that treat code as data.<div style="background:#eee;margin-top:10px;padding:10px">There are many things that we can do when our code is data.   Automatic code formatting and automatic documentation extraction are two simple examples. Code generation and transformation tools go much further.</div>
 
 Nu directly addresses each of these three areas.
