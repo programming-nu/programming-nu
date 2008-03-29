@@ -1,36 +1,36 @@
-h1. Nu Syntax
+# Nu Syntax
 
 Nu has a very simple syntax.  On the surface, this may seem strict and conservative, but in many important ways it allows Nu to be liberal and permissive.  
 
-h2. Elements
+## Elements
 
 The basic elements of Nu are symbols, numbers, strings, characters, regular expressions, and punctuation.
 
-h3. Symbols
+### Symbols
 
-Symbols are sequences of characters that exclude punctuation and whitespace.  Symbols are used as names for values.  Names may be assigned values using the *set* operator.  
+Symbols are sequences of characters that exclude punctuation and whitespace.  Symbols are used as names for values.  Names may be assigned values using the **set** operator.  
 
 Anything that can be parsed as a number is not a symbol.  Numbers may not be assigned values; by definition, a number is its own value.
 
-Symbols may include the colon character (':'), but only as the last character of the symbol.  A symbol that ends with a colon is called a *label*. A colon forces the parser to end the current symbol and begin scanning something new.  This allows us to write <tt>label:value</tt> pairs without having to include a space between the label and its associated value.  
+Symbols may include the colon character (':'), but only as the last character of the symbol.  A symbol that ends with a colon is called a **label**. A colon forces the parser to end the current symbol and begin scanning something new.  This allows us to write <tt>label:value</tt> pairs without having to include a space between the label and its associated value.  
 
-h3. Numbers
+### Numbers
 
-Anything that looks like a number is a number.  If a token can be converted to a long with <code>strtol()</code>, it's an integer, and if it can be converted to a double with <code>strtod()</code> then it's a floating point number.  Both integer and floating point values are represented with instances of *NSNumber*.
+Anything that looks like a number is a number.  If a token can be converted to a long with <code>strtol()</code>, it's an integer, and if it can be converted to a double with <code>strtod()</code> then it's a floating point number.  Both integer and floating point values are represented with instances of **NSNumber**.
 
-h3. Strings
+### Strings
 
-Strings are represented with instances of *NSString*. They can be defined in two ways and have one special feature.
+Strings are represented with instances of **NSString**. They can be defined in two ways and have one special feature.
 
-h4. Double-quoted strings
+#### Double-quoted strings
 
-Sequences of characters enclosed in double quotes are treated as strings.   Double-quoted strings must be defined on a single line; these strings may not contain newlines.  These strings also may not contain double quotes.  Here is an example, which also illustrates the use of the *set* operator:
+Sequences of characters enclosed in double quotes are treated as strings.   Double-quoted strings must be defined on a single line; these strings may not contain newlines.  These strings also may not contain double quotes.  Here is an example, which also illustrates the use of the **set** operator:
 
 <pre>
 (set author "Isaac Asimov")
 </pre>
 
-h4. Here strings
+#### Here strings
 
 Multiline strings and strings containing double quotes can be created using Nu's "here string" notation.  A here string declaration begins with the three characters "<<-" or "<<+" immediately followed by an identifier that will be used to mark the end of the string.  This identifier ends at a newline, after which follows the definition of the string.  Here is an example.
 
@@ -43,7 +43,7 @@ but they're always in debt
 for their kids all attend Io U.END)
 </pre>
 
-h4. String Interpolation
+#### String Interpolation
 
 A string can contain embedded Nu code which is replaced with its evaluated results whenever the string itself is evaluated.  Here is an example.
 
@@ -53,7 +53,7 @@ A string can contain embedded Nu code which is replaced with its evaluated resul
 Asimov defined 3 laws of Robotics
 </pre>
 
-h4. Character Escape Sequences 
+#### Character Escape Sequences 
 
 Escape sequences are supported in both double-quoted and here strings.  Double-quoted strings are escaped by default.  For example, <code>"foo\nbar"</code> is parsed as a seven-character string with a newline in the middle.
 
@@ -93,7 +93,7 @@ These escape sequences are supported:
 | \unnnn | unicode character (16 bits) |
 | \x | character x |
 
-h3. Character Literals
+### Character Literals
 
 Character literals are single characters or escape sequences
 enclosed in pairs of single quotes (').  The same escape
@@ -103,7 +103,7 @@ with the appropriate unicode value.  This is the same value
 and type that is returned by the NSString characterAtIndex:
 method.
 
-h3. Regular Expression Literals
+### Regular Expression Literals
 
 Regular expressions may be specified with the following form:
 <pre>
@@ -114,18 +114,20 @@ Here "regex" is a regular expression and "options" is a string of lower-case alp
 
 The available options correspond to the options available for the NuRegex class:
 
-|  i  | case insensitive comparison |
-|  s  | dot metacharacter also matches newlines |
-|  x  | allow whitespaces and comments in pattern |
-|  l  | lazy quantifiers become greedy and vice versa |
-|  m  | caret and dollar anchors match at newlines |
+<table>
+<tr><td>  i  </td><td> case insensitive comparison </td></tr>
+<tr><td>  s  </td><td> dot metacharacter also matches newlines </td></tr>
+<tr><td>  x  </td><td> allow whitespaces and comments in pattern </td></tr>
+<tr><td>  l  </td><td> lazy quantifiers become greedy and vice versa </td></tr>
+<tr><td>  m  </td><td> caret and dollar anchors match at newlines </td></tr>
+</table>
 
 For example, <code>/^f(o+)$/i</code> matches strings "fo", "FOO",
 and "fooooOOOOO".  
 
 To include forward slashes in regular expressions, prefix each forward slash with a backslash.
 
-h3. Punctuation (Special Characters)
+### Punctuation (Special Characters)
 
 A small number of characters are reserved for punctuation.
 
@@ -137,7 +139,7 @@ A small number of characters are reserved for punctuation.
 <tr><td>semicolons and<br/>hash characters</td><td>begin comments</td></tr>
 </table> 
 
-h3. Comments
+### Comments
 
 Comments begin with a semicolon or hash character and span a single line.
 

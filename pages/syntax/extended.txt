@@ -1,4 +1,4 @@
-h2. Expressions
+## Expressions
 
 Expressions are the syntactic building blocks of Nu.  Expressions are written and represented internally as lists.  Expressions are sequences of symbols, numbers, and strings enclosed in parentheses.  Expressions frequently also contain other expressions.
 
@@ -9,11 +9,12 @@ Expressions are the syntactic building blocks of Nu.  Expressions are written an
           (and this can continue arbitrarily))))
 </pre>
 
-h3. Operators
+### Operators
 
 When an expression is evaluated, the first element of the expression is examined and evaluated.  Usually that first element is a symbol, and often when that symbol is evaluated, it corresponds to an operator.  When this occurs, the operator is evaluated with the rest of the expression as its arguments.  
 
-In general, an operator may or may not evaluate its arguments and sometimes may evaluate its arguments multiple times.  This allows Nu to implement common control structures such as *while* and *if* as operators.  
+In general, an operator may or may not evaluate its arguments and sometimes may evaluate its arguments multiple times.  This allows Nu to implement common control structures such as **while**
+and **if** as operators.  
 
 For a special class of operators, called functions, all of the arguments are evaluated before the function itself is evaluated.  The function is then evaluated with the evaluated arguments.  As a result, an expression like <nobr><code>(+ 2 (- 4 2))</code></nobr> 
 becomes 
@@ -21,9 +22,11 @@ becomes
 
 <p/>
 
-Operators can be defined in Nu code using the *function* and *do* operators, which both create functions, and the *macro* operator, which creates more general operators.  
+Operators can be defined in Nu code using the **function**
+and **do** operators, which both create functions, and the
+**macro** operator, which creates more general operators.  
 
-h3. Messages
+### Messages
 
 Everything in Nu is an object, and every object in Nu responds to messages.  
 Nu's messaging system is built on Objective-C, and Nu code can send messages to objects whether those messages were written in Nu or Objective-C.  Similarly, Objective-C code can send messages to objects with no regard for their implementation language.  Frequently classes will include methods written in both languages.
@@ -39,16 +42,21 @@ Messages that have a single argument look like this:
 (array objectAtIndex: 1)
 </pre>
 
-Here the second element of the list is a label that is also called the message *selector*.  Immediately following the label is the message's argument.
+Here the second element of the list is a label that is also called the message **selector**.  Immediately following the label is the message's argument.
 
 Messages with multiple arguments look like this:
 <pre>
 (array writeToFile:"myfile" atomically:NO)
 </pre>
 
-Here the *writeToFile:* and *atomically:* labels together form the message selector *writeToFile:atomically:*.  Each label is followed by an associated argument, in this case the string "myfile" and the symbol *NO* which is globally defined to zero.
+Here the **writeToFile:**
+and **atomically:** labels together form the message selector
+**writeToFile:atomically:**.
+Each label is followed by an associated argument,
+in this case the string "myfile" and the symbol **NO** which is globally defined to zero.
 
-In Nu, operator calls have a higher precedence than message sends.  But it is still possible to send messages to operators using the *send* operator.  Here is an example that uses the *send* operator to get the context of a block.
+In Nu, operator calls have a higher precedence than message sends.  But it is still possible to send messages to operators using the **send** operator.
+Here is an example that uses the **send** operator to get the context of a block.
 
 <pre>
 % (set y 32)
@@ -64,9 +72,9 @@ In Nu, operator calls have a higher precedence than message sends.  But it is st
 }
 </pre>
 
-h3. Quoted Lists
+### Quoted Lists
 
-Normally, Nu evaluates lists that are defined in Nu source text; these lists represent operator calls and message sends.  But sometimes lists are used to represent data.  In these cases, the *quote* operator can be used to prevent evaluation.
+Normally, Nu evaluates lists that are defined in Nu source text; these lists represent operator calls and message sends.  But sometimes lists are used to represent data.  In these cases, the **quote** operator can be used to prevent evaluation.
 
 <pre>
 (quote (1 2 3))
@@ -78,6 +86,4 @@ As a convenience, the single quote character can be used to equivalently quote o
 '(1 2 3)
 </pre>
 
-*quote* can also be used on objects besides lists; often it is used to refer to a symbol without evaluating it.
-
-
+**quote** can also be used on objects besides lists; often it is used to refer to a symbol without evaluating it.
