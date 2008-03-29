@@ -1,9 +1,14 @@
 
 First, build your application as usual with nuke.
 
-Then, inside your application's bundle, add a directory called *Frameworks* under the *Contents* directory. Then copy *Nu.framework* inside this directory.
+Then, inside your application's bundle, add a directory called **Frameworks**
+under the **Contents** directory. 
+Then copy **Nu.framework** inside this directory.
 
-Finally, you have to tell your compiled application code to look in its private *Frameworks* directory for *Nu.framework*.  Do this with a program called *install_name_tool* (see its man page for details). Here's how you'd do it for one of the Nu sample programs:
+Finally, you have to tell your compiled application code to look in its private **Frameworks**
+directory for **Nu.framework**.  
+Do this with a program called **install_name_tool** (see its man page for details). 
+Here's how you'd do it for one of the Nu sample programs:
 
 <pre>
 % install_name_tool -change "Nu.framework/Versions/A/Nu" 
@@ -11,7 +16,8 @@ Finally, you have to tell your compiled application code to look in its private 
 Benwanu.app/Contents/MacOS/Benwanu 
 </pre>
 
-To confirm your change, remove *Nu.framework* from */Library/Frameworks* and run your application.
+To confirm your change, remove **Nu.framework** 
+from **/Library/Frameworks** and run your application.
 
 You can also confirm your change by checking your application's 
 shared library dependencies with <code>otool -L</code>. 

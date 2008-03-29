@@ -1,12 +1,13 @@
 
-* "RandomApp":/randomapp
-* "RandomAppWithNibFile":/randomappwithnibfile
-* "CurrencyConverter":/currencyconverter
-* "Console":/console
-* "Growler":/growler
-* "Benwanu":/benwanu
-* "Screen Saver":/screensaver
-* "MailDemo":/maildemo
-* "NuAnywhere":/nuanywhere
+* [RandomApp](/randomapp)
+* [RandomAppWithNibFile](/randomappwithnibfile)
+* [CurrencyConverter](/currencyconverter)
+* [Console](/console)
+* [Growler](/growler)
+* [Benwanu](/benwanu)
+* [Screen Saver](/screensaver)
+* [MailDemo](/maildemo)
+* [NuAnywhere](/nuanywhere)
 
-Since the installed files and directories are owned by *root*, you'll need to copy them somewhere before you build or modify the examples.
+Since the installed files and directories are owned by **root**, 
+you'll need to copy them somewhere before you build or modify the examples.

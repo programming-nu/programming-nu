@@ -1,9 +1,9 @@
-h1. Debugging Nu Programs
+# Debugging Nu Programs
 
 Here are a few tips that can make it easier to find and fix problems in Nu programs.
 
 * First, it's a good idea when working with any dynamic language to write in small bits and test frequently.  
 * Use the embedded console to explore and interact with objects.  You can also use it to reload code into a running application.  This allows you to build and test your code incrementally.
-* Use *nush* from the terminal to explore.
-* Debug crashes with *gdb*.  From the gdb console, you can say things like <nobr><code>po [object stringValue]</code></nobr> to see a string representation of a Nu object.  You can use that to see the Nu code that is being evaluated.  You can also send other Objective-C messages from within gdb.  For example, to see the contents of an NSDictionary, use <nobr><code>po [dictionary description]</code></nobr>.
+* Use **nush** from the terminal to explore.
+* Debug crashes with **gdb**.  From the gdb console, you can say things like <nobr><code>po [object stringValue]</code></nobr> to see a string representation of a Nu object.  You can use that to see the Nu code that is being evaluated.  You can also send other Objective-C messages from within gdb.  For example, to see the contents of an NSDictionary, use <nobr><code>po [dictionary description]</code></nobr>.
 

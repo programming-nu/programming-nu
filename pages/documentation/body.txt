@@ -1,19 +1,15 @@
-h1. Documentation
+# Documentation
 
 Here is some documentation for Nu. 
 
-<ul>
-<li>"Installing Nu":/installing</li>
-<li>"Using Nu":/usage</li>
-<li>"Embedding Nu":/embedding</li>
-<li>"Nu Reference":/reference</li>
-<ul style="margin-top:0; margin-bottom:0">
-<li>"Syntax":/syntax</li>
-<li>"Operators":/operators</li>
-<li>"Types":/types</li>
-<li>"Class Reference":/doc</li>
-</ul>
-<li>"Getting and Providing Help":/help</li>
-<li>"Debugging Nu Programs":/debugging</li>
-<li>"A Bundle for TextMate Users":/textmate</li>
-</ul>
+* [Installing Nu](/installing)
+* [Using Nu](/usage)
+* [Embedding Nu](/embedding)
+* [Nu Reference](/reference)
+  * [Syntax](/syntax)
+  * [Operators](/operators)
+  * [Types](/types)
+  * [Class Reference](/doc)
+* [Getting and Providing Help](/help)
+* [Debugging Nu Programs](/debugging)
+* [A Bundle for TextMate Users](/textmate)

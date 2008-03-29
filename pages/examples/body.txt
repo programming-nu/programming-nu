@@ -1,4 +1,4 @@
-h1. Examples
+# Examples
 
 The best way to learn Nu is to see some examples. 
 

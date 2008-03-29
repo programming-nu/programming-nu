@@ -1,10 +1,9 @@
+## Build the prerequisites
 
-h2. Build the prerequisites
-
-
-1. Nu requires *PCRE*, the Perl-Compatible Regular Expression Library.
-Before building Nu, download and install *PCRE*, enabling UTF-8.
-Look for it at "www.pcre.org":http://www.pcre.org.  
+**1.**
+Nu requires **PCRE**, the Perl-Compatible Regular Expression Library.
+Before building Nu, download and install **PCRE**, enabling UTF-8.
+Look for it at [www.pcre.org](http://www.pcre.org).  
 To build a universal binary with UTF-8 support, use the following command:
 
 <pre>
@@ -14,19 +13,24 @@ To build a universal binary with UTF-8 support, use the following command:
       ./configure --disable-dependency-tracking --enable-utf8
 </pre>
 
-Don't forget to build *PCRE* with UTF-8 support.  That's essential.  Subsequent build steps will fail if you don't do this.  The *-isysroot* specifications seem to only be necessary on PowerPC systems building universal binaries.
+Don't forget to build **PCRE** with UTF-8 support.  That's essential.  
+Subsequent build steps will fail if you don't do this.  
+The **-isysroot** specifications seem to only be necessary on PowerPC systems building universal binaries.
 
-When you install *PCRE*, it's best to put it in /usr/local (the default).
+When you install **PCRE**, it's best to put it in /usr/local (the default).
 If you put it anywhere else, you'll have to modify the Rakefile and Nukefile used to build Nu.
 
-
-2. Nu requires *libffi*.  On Mac OS 10.5, libffi is included as a shared library, so 10.5 users can skip this step.   But on Mac OS 10.4 and other systems, you may need to build your own libffi library.  A version has been provided in the libffi directory.  To build it, use the Ruby *rake* build tool and the included Rakefile.
+**2.**
+Nu requires **libffi**.  On Mac OS 10.5, libffi is included as a shared library, so 10.5 users can skip this step.  
+But on Mac OS 10.4 and other systems, you may need to build your own libffi library.  
+A version has been provided in the libffi directory.  
+To build it, use the Ruby **rake** build tool and the included Rakefile.
 
 <pre>
 % cd libffi; rake; cd ..
 </pre>
 
-If you don't have *rake* on your system, get it with <nobr><code>gem install rake</code></nobr> or download it from "rake.rubyforge.org":http://rake.rubyforge.org.
+If you don't have **rake** on your system, get it with <nobr><code>gem install rake</code></nobr> or download it from [rake.rubyforge.org](http://rake.rubyforge.org).
 
 Also, you may see some warning messages from libtool when you build libffi.  It seems that they can be safely ignored.  Here's what I see when I build libffi on my development systems:
 
@@ -49,32 +53,43 @@ libtool: warning for architecture: ppc same member name (ffi_darwin.o) in output
 ranlib libffi.a
 </pre>
 
-h2. Build Nu
+## Build Nu
 
-3. Use *rake* to build *mininush*, a minimal version of the Nu shell.
+**3.**
+Use **rake** to build 
+**mininush**, a minimal version of the Nu shell.
 
 <pre>
 % rake
 </pre>
 
-4. Now use *mininush* to run nuke to complete the Nu build process.
-This builds *Nu.framework*, the Nu framework, and *nush*, the Nu shell.
+**4.**
+Now use **mininush** to run nuke to complete the Nu build process.
+This builds **Nu.framework**, the Nu framework, 
+and **nush**, the Nu shell.
 
 <pre> 
 % ./mininush tools/nuke
 </pre>
 
-h2. Install and Test Nu
+## Install and Test Nu
 
-5. Use *mininush* again to install *Nu.framework*, *nush*, and the Nu tools.
+**5.**
+Use **mininush** again to install 
+**Nu.framework**, 
+**nush**, and the Nu tools.
 
 <pre>
 % ./mininush tools/nuke install
 </pre>
 
-Since the copying step uses *sudo*, you will be prompted for your password.  The framework goes in */Library/Frameworks*, executables go in */usr/local/bin*, and some support files go to */usr/local/share*.
+Since the copying step uses **sudo**, you will be prompted for your password.  
+The framework goes in **/Library/Frameworks**, 
+executables go in **/usr/local/bin**, 
+and some support files go to **/usr/local/share**.
 
-6. Test your installation with <code>nuke test</code>.  You should see results like these:
+**6.**
+Test your installation with <code>nuke test</code>.  You should see results like these:
 
 <pre>
 [neon:~/Desktop/Nu] tim% nuke test
@@ -157,7 +172,8 @@ All: completed 45 tests/133 assertions/0 failures
 SUCCESS (0 failures)
 </pre>
 
-From now on, you can use the installed *nush* to run *nuke*. To see for yourself, rebuild everything from scratch:
+From now on, you can use the installed **nush** to run 
+**nuke**. To see for yourself, rebuild everything from scratch:
 
 <pre>
 % nuke clobber

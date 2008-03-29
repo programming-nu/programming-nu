@@ -1,5 +1,0 @@
-h1. FigLeaf
-
-h2. Blogging Nu
-
-It's not yet part of the Nu distribution, but on a few occasions I've demonstrated a small Nu application that can be run as a blog server.  I'm currently using it to run this site and my blog, and like many bloggers, I use it to cover my important personal stuff.  So it seemed appropriate to name this program "FigLeaf".
