@@ -1,6 +1,10 @@
-h3. About nutest
+### About nutest
 
-*nutest* is a test harness and a top-level class that is used to define unit tests.   New groups of tests are created by writing subclasses of the NuTestCase class; individual tests are instance methods of these subclasses.  A few common assertions are defined as macros and more can be easily added.  Tests may be run individually or in groups.
+**nutest** is a test harness and a top-level class that is used to define unit tests.
+New groups of tests are created by writing subclasses of the **NuTestCase** class;
+individual tests are instance methods of these subclasses.
+A few common assertions are defined as macros and more can be easily added.
+Tests may be run individually or in groups.
 
 Here's an example from the Nu regressions:
 
@@ -14,9 +18,9 @@ Here's an example from the Nu regressions:
           (assert_equal "three" (a 2))))           
 </pre>
 
-h3. Usage
+### Usage
 
-*nutest* is run with a list of filename patterns as arguments.  For example, to run the  Nu tests from the Nu root directory, the "nuke test" task executes the following command:
+**nutest** is run with a list of filename patterns as arguments.  For example, to run the  Nu tests from the Nu root directory, the "nuke test" task executes the following command:
 
 <pre>
 nutest test/test_*.nu

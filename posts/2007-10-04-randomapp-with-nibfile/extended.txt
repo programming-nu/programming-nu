@@ -2,13 +2,13 @@
 If you already have Nu installed, you can download <a href="/files/RandomAppWithNibFile.tgz">RandomAppWithNibFile.tgz</a>.</p>
 
 
-	<p><img src="/files/randomapp.png" alt="screen shot" /></p>
+<p><img src="/files/randomapp.png" alt="screen shot" /></p>
 
 
-	<p>From inside the example directory, build and run the example with <code>nuke run</code>.  It will load a nib file containing a window definition; that definition includes the two buttons and text field that make the RandomApp interface.  The button actions are set in the nib file to the <strong>seed:</strong> and <strong>generate:</strong> methods, which are implemented in the Nu source, and the text field is connected to the textField outlet, which is declared in the Nu source as an instance variable (ivar) of the RandomAppWindowController class.</p>
+<p>From inside the example directory, build and run the example with <code>nuke run</code>.  It will load a nib file containing a window definition; that definition includes the two buttons and text field that make the RandomApp interface.  The button actions are set in the nib file to the <strong>seed:</strong> and <strong>generate:</strong> methods, which are implemented in the Nu source, and the text field is connected to the textField outlet, which is declared in the Nu source as an instance variable (ivar) of the RandomAppWindowController class.</p>
 
 
-	<p>All the Nu code for the application fits in one file.</p>
+<p>All the Nu code for the application fits in one file.</p>
 
 
 <pre>

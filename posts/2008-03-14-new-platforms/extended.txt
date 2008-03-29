@@ -1,22 +1,22 @@
-h3. Nu on Linux
+### Nu on Linux
 
-Since Nu is built on Objective-C and the Foundation library, Nu on Linux requires a cross platform Objective-C compiler (which we have in GCC), an Objective-C runtime (I'm currently using GNU libobjc), and a Foundation library.  To get a quick and easy start, I've released "NuFound":http://github.com/timburks/nufound, a repackaging of libFoundation that can be easily built on Linux and that contains a few fixes and changes that make it a more compatible substitute for Apple's Foundation classes.  But I'm glad to keep an open mind about other Foundation libraries - if anyone wants to port Nu to a comparably easy-to-build-and-install version of GNUstep or Cocotron, I'll merge in the necessary changes. 
+Since Nu is built on Objective-C and the Foundation library, Nu on Linux requires a cross platform Objective-C compiler (which we have in GCC), an Objective-C runtime (I'm currently using GNU libobjc), and a Foundation library.  To get a quick and easy start, I've released [NuFound](http://github.com/timburks/nufound), a repackaging of libFoundation that can be easily built on Linux and that contains a few fixes and changes that make it a more compatible substitute for Apple's Foundation classes.  But I'm glad to keep an open mind about other Foundation libraries - if anyone wants to port Nu to a comparably easy-to-build-and-install version of GNUstep or Cocotron, I'll merge in the necessary changes. 
 
 While there may be a future for Nu/Linux in desktop applications, to me there are two much more interesting platforms that it now puts within reach:
 
-* *Cloud computing.* Nu and Objective-C can now be used in Linux-based virtual machines that can be run on generic hardware.  So we can begin writing and gluing together Objective-C components to build software services on a completely free and open source software stack.
+* **Cloud computing.** Nu and Objective-C can now be used in Linux-based virtual machines that can be run on generic hardware.  So we can begin writing and gluing together Objective-C components to build software services on a completely free and open source software stack.
 
-* *Embedded computing.* Systems from large customized application accelerators down to cell phones and camera controllers run Linux using code compiled with GCC. That's now all that it takes to use Objective-C and Nu to build reusable and dynamically bindable components for use on those systems.
+* **Embedded computing.** Systems from large customized application accelerators down to cell phones and camera controllers run Linux using code compiled with GCC. That's now all that it takes to use Objective-C and Nu to build reusable and dynamically bindable components for use on those systems.
 
-As a demonstration, I've released "Nunja":http://github.com/timburks/nunja, a lightweight web server that I built in a day by first writing an Objective-C wrapper for "libevent":http://www.monkey.org/~provos/libevent/ which I then customized with an application layer written in Nu.  Nunja builds and runs on both OS X and Linux, and I hope will be a small piece in a rich library of cross-platform Objective-C components.
+As a demonstration, I've released [Nunja](http://github.com/timburks/nunja), a lightweight web server that I built in a day by first writing an Objective-C wrapper for [libevent](http://www.monkey.org/~provos/libevent/) which I then customized with an application layer written in Nu.  Nunja builds and runs on both OS X and Linux, and I hope will be a small piece in a rich library of cross-platform Objective-C components.
 
-Instructions for building NuFound are in the "NuFound README file":http://github.com/timburks/nufound/tree/master/README. Instructions for building Nu on Linux are in "this commit log":http://github.com/timburks/nu/commit/b46ed8403aba281d47619f71dd46fefa08e5c809. Instructions for building and running Nunja are in the "Nunja README":http://github.com/timburks/nunja/tree/master/README.
+Instructions for building NuFound are in the [NuFound README file](http://github.com/timburks/nufound/tree/master/README). Instructions for building Nu on Linux are in [this commit log](http://github.com/timburks/nu/commit/b46ed8403aba281d47619f71dd46fefa08e5c809). Instructions for building and running Nunja are in the [Nunja README](http://github.com/timburks/nunja/tree/master/README).
 
-h3. Nu on the iPhone
+### Nu on the iPhone
 
 When the iPhone SDK was released last week, I couldn't resist the temptation to pause my Linux-related work to see if Nu could be built for the iPhone.  Thanks to the iPhone's solid Unix and Objective-C underpinnings, a basic port took less than a day.  To build the necessary files to use Nu on the iPhone, use the Nukefile in the iphone directory in the Nu source distribution.
 
-h3. Jump in!
+## Jump in!
 
 The best way to get involved with any of these projects is to get a github account, fork a repository on github, and put your contributions there.  Then I and others can easily pull your changes into our repositories and keep things moving. 
 

@@ -1,6 +1,6 @@
 First, this release contains changes that allow us to write
 methods that return objects by reference.  To do so, use the new <code>(id *)</code> argument type in method declarations.  The corresponding arguments will then be bridged as instances of the NuReference class.  
-See "Adam Thorsen's blog":http://loglibrarian.blogspot.com/2007/12/nu-binding-example-fixed.html for a great example of this; it uses Nu reference arguments to write a CoreData validation method.
+See [Adam Thorsen's blog"](http://loglibrarian.blogspot.com/2007/12/nu-binding-example-fixed.html) for a great example of this; it uses Nu reference arguments to write a CoreData validation method.
 
 This release also contains preliminary support for the BridgeSupport
 files that Apple included in OS 10.5.  To use it, first load

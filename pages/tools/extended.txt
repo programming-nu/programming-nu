@@ -1,7 +1,7 @@
-* "nuke":/nuke, a make utility
-* "nubile":/nubile, a code formatter
-* "nutest":/nutest, a testing tool
-* "nudoc":/nudoc, documentation generation
-* "nutemplate":/nutemplate, a templating tool
-* "nubake":/nubake, a code generation tool
+* [nuke](/nuke), a make utility
+* [nubile](/nubile), a code formatter
+* [nutest](/nutest), a testing tool
+* [nudoc](/nudoc), documentation generation
+* [nutemplate](/nutemplate), a templating tool
+* [nubake](/nubake), a code generation tool
 

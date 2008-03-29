@@ -1,4 +1,4 @@
-h1. Lisp Links
+# Lisp Links
 
 There's a lot of material about Lisp online, especially covering major dialects like Common Lisp and Scheme.   Since Nu isn't based on either, we have to go back to the roots of Lisp for inspiration.
 

@@ -1,6 +1,6 @@
 
 <img src="/files/nurocks.png" alt="game screenshot" height="300" />
 
-h1. NuRocks
+# NuRocks
 
-h2. This again?
+## This again?

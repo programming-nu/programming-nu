@@ -1,16 +1,16 @@
-Along with the "Nu git repository":http://github.com/timburks/nu, there is a growing number of Nu-related projects on "github":http://github.com.
+Along with the [Nu git repository](http://github.com/timburks/nu), there is a growing number of Nu-related projects on [github](http://github.com).
 
 Some of the projects that I've posted include:
 
-* "Nunja":http://github.com/timburks/nunja, a libevent-based web server that I've tested on MacOS and Linux. 
-* The "NuPagePacker":http://github.com/timburks/nupagepacker example Cocoa application.
-* A "NuiPhone":http://github.com/timburks/nuiphone project containing an iPhone "Hello World" in Nu.
-* "NuTcl":http://github.com/timburks/nutcl, a wrapper for John Ousterhout's Tcl interpreter. You can use it to embed Tcl in a Nu/Objective-C application and create new Tcl commands with Nu. This has also been tested on both MacOS and Linux.
-* "NuMySQL":http://github.com/timburks/numysql and "NuPostgreSQL":http://github.com/timburks/nupostgresql, primitive but usable interfaces to the MySQL and PostgreSQL database systems.
-* "NuYAML":http://github.com/timburks/nuyaml, Patrick Thomson's YAML-processing package.
-* "NuMarkdown":http://github.com/timburks/numarkdown, Grayson Hansard's Markdown package.
+* [Nunja](http://github.com/timburks/nunja), a libevent-based web server that I've tested on MacOS and Linux. 
+* The [NuPagePacker](http://github.com/timburks/nupagepacker) example Cocoa application.
+* A [NuiPhone](http://github.com/timburks/nuiphone) project containing an iPhone "Hello World" in Nu.
+* [NuTcl](http://github.com/timburks/nutcl), a wrapper for John Ousterhout's Tcl interpreter. You can use it to embed Tcl in a Nu/Objective-C application and create new Tcl commands with Nu. This has also been tested on both MacOS and Linux.
+* [NuMySQL](http://github.com/timburks/numysql) and [NuPostgreSQL](http://github.com/timburks/nupostgresql), primitive but usable interfaces to the MySQL and PostgreSQL database systems.
+* [NuYAML](http://github.com/timburks/nuyaml), Patrick Thomson's YAML-processing package.
+* [NuMarkdown](http://github.com/timburks/numarkdown), Grayson Hansard's Markdown package.
 
-Patrick has also posted "Nuki":http://github.com/patrickt/nuki, early work to build a wiki with Nu,
-and Grayson recently posted "NuSmartyPants":http://github.com/grayson/nusmartypants, another text formatting package.
+Patrick has also posted [Nuki](http://github.com/patrickt/nuki), early work to build a wiki with Nu,
+and Grayson recently posted [NuSmartyPants](http://github.com/grayson/nusmartypants), another text formatting package.
 
 github is proving itself to be a great way to collaborate. Come join us!

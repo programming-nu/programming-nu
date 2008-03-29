@@ -1,7 +1,7 @@
-Kudos to Grayson Hansard for his release today of a port of John Gruber's "Markdown":http://daringfireball.net/projects/markdown to Nu!
+Kudos to Grayson Hansard for his release today of a port of John Gruber's [Markdown](http://daringfireball.net/projects/markdown) to Nu!
 
-For more, see "Grayson's blog":http://www.fromconcentratesoftware.com/2007/10/02/nupants-smartypants-in-nu
- and our discussion on "Programming Nu":http://groups.google.com/group/programming-nu/browse_thread/thread/399d415fe9e1a1ee/ac255b7e34d495ba#ac255b7e34d495ba.
+For more, see [Grayson's blog](http://www.fromconcentratesoftware.com/2007/10/02/nupants-smartypants-in-nu)
+ and our discussion on [Programming Nu](http://groups.google.com/group/programming-nu/browse_thread/thread/399d415fe9e1a1ee/ac255b7e34d495ba#ac255b7e34d495ba).
 
 Thanks, Grayson!
 

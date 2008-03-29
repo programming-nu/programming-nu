@@ -1,15 +1,19 @@
 
-h2. The Nu core
+## The Nu core
 
 * A way to call Objective-C methods that have non-object pointer arguments. (done, see the NuPointer class)
 
-* A way to call Objective-C methods and C functions with variadic arguments.  But I must say that I dislike them, because one of the fastest ways to crash a C program is to pass the wrong number of arguments to a variadic function, and sometimes the only way to compute the correct number of arguments is to reimplement the function itself.  NSLog, for example, is a very dangerous function to call from Nu.  If you use it to print arbitrary strings, your program will crash when your strings include "format specifiers":http://developer.apple.com/documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html#//apple_ref/doc/uid/20000943-DontLinkElementID_18.
+* A way to call Objective-C methods and C functions with variadic arguments.  But I must say that I dislike them, because one of the fastest ways to crash a C program is to pass the wrong number of arguments to a variadic function, and sometimes the only way to compute the correct number of arguments is to reimplement the function itself.  NSLog, for example, is a very dangerous function to call from Nu.  If you use it to print arbitrary strings, your program will crash when your strings include [format specifiers](http://developer.apple.com/documentation/Cocoa/Conceptual/Strings/Articles/FormatStrings.html#//apple_ref/doc/uid/20000943-DontLinkElementID_18).
 
 * DTrace hooks for deeper introspection of Nu programs.
 
 * A profiler for Nu.
 
-* better Distributed Objects support: the ability to include *oneway*, *in*, *out*, *inout*, and *bycopy* type modifiers in method declarations and to create protocols at runtime. (done)
+* better Distributed Objects support: the ability to include **oneway**,
+**in**,
+**out**,
+**inout**,
+and **bycopy** type modifiers in method declarations and to create protocols at runtime. (done)
 
 * Class variables (using the "@@" sigil).
 
@@ -18,7 +22,7 @@ h2. The Nu core
 * More error checking, especially in individual operators. Currently Nu operators do no validation of their arguments. (Be careful!)
 
 
-h2. Components
+## Components
 
 * CoreData convenience methods and migration scripts written in Nu.  (done, now let's move on to an open-source database. PostgreSQL?)
 
@@ -34,7 +38,7 @@ h2. Components
 
 * A JSON importer and exporter. (Jonathan Wight's TouchJSON looks pretty good to me).
 
-* A Textile processor. (But honestly, now that Grayson Hansard has "ported Markdown to Nu":/posts/2007/10/10/markdown-in-nu, that's good enough for me.) 
+* A Textile processor. (But honestly, now that Grayson Hansard has [ported Markdown to Nu](/posts/2007/10/10/markdown-in-nu), that's good enough for me.) 
 
 * Class browsers.
 
@@ -43,7 +47,7 @@ h2. Components
 * A parser for command-line input.
 
 
-h2. Examples
+## Examples
 
 * Ports of Apple and other Objective-C sample code to Nu.
 

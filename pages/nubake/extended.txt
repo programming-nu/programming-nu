@@ -1,18 +1,21 @@
-h3. About nubake
+### About nubake
 
-*nubake* can be used to "bake" Nu source files into compiled objects.  This can be useful for simplifying and adding tamper-resistance to Nu applications.
+**nubake** can be used to "bake" Nu source files into compiled objects.  This can be useful for simplifying and adding tamper-resistance to Nu applications.
 
-*nubake* parses a Nu source file and writes an Objective-C function that, when called, returns the same parsed code structure that you would get by parsing the original source file.  You can then compile and link this into your Nu application and call the new Objective-C function instead of loading the original Nu source file.  You can either use *nubake* to generate a single function, or by adding the "-s" (standalone) option, you can generate a program that can be compiled into a standalone Nu-based binary.
+**nubake** parses a Nu source file and writes an Objective-C function that, when called, returns the same parsed code structure that you would get by parsing the original source file.  
+You can then compile and link this into your Nu application and call the new Objective-C function instead of loading the original Nu source file.  You can either use **nubake** to generate a single function, or by adding the "-s" (standalone) option, you can generate a program that can be compiled into a standalone Nu-based binary.
 
-h3. Usage
+### Usage
 
-Invoke *nubake* with the name of a Nu source file.  It also accepts the following arguments:
+Invoke **nubake** with the name of a Nu source file.  It also accepts the following arguments:
 
-| -n | to specify the name of the C function that is created. |
-| -o | to specify the name of the C output file. |
-| -s | to also generate a *main()* function so that the C output can be compiled standalone. |
-	
-Here's an example; we'll say it is in a file named *ninetynine.nu*:
+<table>
+<tr><td width="5%"> -n </td><td>to specify the name of the C function that is created.</td></tr>
+<tr><td> -o </td><td>to specify the name of the C output file.</td></tr>
+<tr><td> -s </td><td>to also generate a <strong>main()</strong> function so that the C output can be compiled standalone.</td></tr>
+</table>
+
+Here's an example; we'll say it is in a file named **ninetynine.nu**:
 
 <pre>
 (99 times:
@@ -59,7 +62,7 @@ Take one down, pass it around
 ...
 </pre>
 
-With options and comments, *nubake* is a little over 100 lines of code.  Its core is a small Nu method:
+With options and comments, **nubake** is a little over 100 lines of code.  Its core is a small Nu method:
 
 <pre>
 (+ (id) expandNuExpression:(id) node is
@@ -87,14 +90,14 @@ With options and comments, *nubake* is a little over 100 lines of code.  Its cor
    result)
 </pre>
 
-That's sufficient to turn any parsed Nu code into a nested set of C function calls that produces an equivalent structure.   Then that structure can be evaluated with something as simple as <code>(eval my-expression)</code>, where <code>my-expression</code> is set to the result of a call to your function.  If you want to make that function call from Nu, just wrap it with an instance of *NuBridgedFunction*:
+That's sufficient to turn any parsed Nu code into a nested set of C function calls that produces an equivalent structure.   Then that structure can be evaluated with something as simple as <code>(eval my-expression)</code>, where <code>my-expression</code> is set to the result of a call to your function.  If you want to make that function call from Nu, just wrap it with an instance of **NuBridgedFunction**:
 
 <pre>
 (set ninetynine 
      (NuBridgedFunction functionWithName:"ninetynine" signature:"@"))
 </pre>
 
-Then call *eval* with its results:
+Then call **eval** with its results:
 
 <pre>
 (eval (ninetynine))

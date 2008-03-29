@@ -1,4 +1,4 @@
-h1. Wish List
+# Wish List
 
 There's lots of work still to be done on Nu.  
 

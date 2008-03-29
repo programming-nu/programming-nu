@@ -1,5 +1,5 @@
 <img src="/files/maildemo.png" alt="screen shot" width="550px" />
 
-h1. MailDemo
+# MailDemo
 
-h2. A Cocoa Bindings example in Nu
+## A Cocoa Bindings example in Nu

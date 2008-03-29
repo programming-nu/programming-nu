@@ -1,7 +1,5 @@
-
-
 <img src="/files/randomapp.png" alt="screen shot" />
 
-h1. RandomApp
+# RandomApp
 
-h2. Aaron Hillegass' RandomApp example in 100% Nu
+## Aaron Hillegass' RandomApp example in 100% Nu

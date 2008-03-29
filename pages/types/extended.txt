@@ -1,17 +1,23 @@
-h2. Numbers
+## Numbers
 
-Numbers in Nu are always represented by *NSNumber* instances.
-Objective-C methods and functions that return numeric values will return *NSNumber* objects to their callers when they are called from Nu.  Method and function arguments that expect numeric values should be passed NSNumber objects from Nu, but this is handled automatically by Nu.
+Numbers in Nu are always represented by **NSNumber** instances.
+Objective-C methods and functions that return numeric values will return **NSNumber**
+objects to their callers when they are called from Nu.
+Method and function arguments that expect numeric values should be passed **NSNumber**
+objects from Nu, but this is handled automatically by Nu.
 
-h2. Strings
+## Strings
 
-Strings in Nu are always represented by *NSString* instances.
-Objective-C methods and functions that return C strings will return *NSString* objects to their callers when they are called from Nu.
-Method and function arguments that expect C strings should be passed *NSString* objects from Nu, but this should not be a concern because it is handled automatically by Nu.  Do not expect to pass mutable strings this way.  Functions that expect mutable strings should only be called from Objective-C.
+Strings in Nu are always represented by **NSString** instances.
+Objective-C methods and functions that return C strings will return **NSString**
+objects to their callers when they are called from Nu.
+Method and function arguments that expect C strings should be passed **NSString**
+objects from Nu, but this should not be a concern because it is handled automatically by Nu.  Do not expect to pass mutable strings this way.  Functions that expect mutable strings should only be called from Objective-C.
 
-h2. Selectors
+## Selectors
 
-Method selectors are not objects in Objective-C.   They are instances of an opaque type called *SEL*, and in Nu code they are represented by their names, represented as strings.  Objective-C methods and functions that return selectors will return strings when they are called from Nu.  Method and function arguments that expect selectors should be passed strings from Nu that correspond to the selector names.
+Method selectors are not objects in Objective-C.   They are instances of an opaque type called **SEL**,
+and in Nu code they are represented by their names, represented as strings.  Objective-C methods and functions that return selectors will return strings when they are called from Nu.  Method and function arguments that expect selectors should be passed strings from Nu that correspond to the selector names.
 
 Here's an example that sets a button action with Nu:
 
@@ -19,11 +25,15 @@ Here's an example that sets a button action with Nu:
 (button setAction:"seed:")
 </pre>
 
-h2. Special Structures
+## Special Structures
 
-The Cocoa structures *NSRect*, *NSPoint*, *NSSize*, and *NSRange* are all represented as lists in Nu.  Methods and functions that return these types will return lists to their Nu callers.  Method and function arguments that expect these types should be passed Nu lists.
+The Cocoa structures **NSRect**,
+**NSPoint**,
+**NSSize**,
+and **NSRange** are all represented as lists in Nu.  Methods and functions that return these types will return lists to their Nu callers.  Method and function arguments that expect these types should be passed Nu lists.
 
-Here's an example that passes an *NSRect* to a view's *initWithFrame:* method:
+Here's an example that passes an **NSRect**
+to a view's **initWithFrame:** method:
 
 <pre>
  (view initWithFrame:'(0 0 100 100))
@@ -38,9 +48,9 @@ The ordering of elements within the lists follows Cocoa conventions. For each ty
 <tr><td>NSRange</td><td>start, length</td></tr>
 </table>
 
-h2. Type Signatures
+## Type Signatures
 
 The Objective-C runtime uses a special encoding to represent type signatures for methods, functions, and variables.  
 
-"Here is a definitive list of type codes":http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Articles/chapter_13_section_9.html
-on Apple's "Developer Connection":http://developer.apple.com site.
+[Here is a definitive list of type codes](http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/Articles/chapter_13_section_9.html)
+on Apple's [Developer Connection](http://developer.apple.com) site.

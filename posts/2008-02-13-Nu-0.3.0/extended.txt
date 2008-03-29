@@ -1,4 +1,4 @@
-h3. Changes
+### Changes
 
 Several improvements were made to Nu's interaction with NSProxy objects; these changes fixed problems with CoreAnimation and Distributed Objects, which both may now be used directly from Nu code.
 
@@ -24,10 +24,11 @@ The ternary operator is deprecated. It turned out to be a bad idea, because sinc
 
 There are a couple of dtrace probes that can be used to trace expression evaluations, but this needs more work.
 
-There is a new tool called *nubake* that bakes Nu source code into Objective-C.  nubake is a surprisingly simple script that reads a Nu source file and generates an Objective-C source file. This source file contains a function that, when called, returns the same parsed code structure that is created when the original file is parsed. This allows Nu source code to be "baked into" compiled Objective-C programs and libraries.
+There is a new tool called **nubake** that bakes Nu source code into Objective-C.  nubake is a surprisingly simple script that reads a Nu source file and generates an Objective-C source file. This source file contains a function that, when called, returns the same parsed code structure that is created when the original file is parsed. This allows Nu source code to be "baked into" compiled Objective-C programs and libraries.
 
-For consistency, the *enu* tool has been renamed to *nutemplate*.
+For consistency, the **enu** tool 
+has been renamed to **nutemplate**.
 
-Nu now builds and runs on Linux! The necessary changes haven't been merged into the main sources yet, but there has been some cleanup to prepare for that. See "my blog":http://blog.neontology.com for more news on Nu for Linux.
+Nu now builds and runs on Linux! The necessary changes haven't been merged into the main sources yet, but there has been some cleanup to prepare for that. See [my blog](http://blog.neontology.com) for more news on Nu for Linux.
 
 Besides these, see the git logs for details of many more small changes and improvements.

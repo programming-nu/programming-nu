@@ -1,25 +1,25 @@
-h2. Essentials
+## Essentials
 
-* Paul Graham on "What Makes Lisp Different":http://www.paulgraham.com/diff.html.  Nu probably has too much C in it for Paul's tastes, but by his definition, it's still a dialect of Lisp.  With the exception of garbage collection, Nu has every feature on his list.
+* Paul Graham on [What Makes Lisp Different](http://www.paulgraham.com/diff.html).  Nu probably has too much C in it for Paul's tastes, but by his definition, it's still a dialect of Lisp.  With the exception of garbage collection, Nu has every feature on his list.
 
-* One of my first goals in bootstrapping Nu was to get it to run a Lisp interpreter as Paul described it in his "Roots of Lisp":http://www.paulgraham.com/rootsoflisp.html article.
+* One of my first goals in bootstrapping Nu was to get it to run a Lisp interpreter as Paul described it in his [Roots of Lisp](http://www.paulgraham.com/rootsoflisp.html) article.
 
-* John McCarthy's "History of Lisp":http://www-formal.stanford.edu/jmc/history/lisp/lisp.html is informative and inspiring.  Considering the resources available in Lisp's early days vs. now, McCarthy's achievement is both brilliant and compelling.  
+* John McCarthy's [History of Lisp](http://www-formal.stanford.edu/jmc/history/lisp/lisp.html) is informative and inspiring.  Considering the resources available in Lisp's early days vs. now, McCarthy's achievement is both brilliant and compelling.  
 
-h2. Notable Dialects
+## Notable Dialects
 
-* Of all the dialects I've encountered, Alexander Burger's "Pico Lisp":http://software-lab.de/faq.html is the most inspiring to me, because he took McCarthy's implicit challenge and built his own personal Lisp, which he has used successfully for nearly 20 years.  Pico Lisp is also much like Nu in its pragmatic orientation towards C.
+* Of all the dialects I've encountered, Alexander Burger's [Pico Lisp](http://software-lab.de/faq.html) is the most inspiring to me, because he took McCarthy's implicit challenge and built his own personal Lisp, which he has used successfully for nearly 20 years.  Pico Lisp is also much like Nu in its pragmatic orientation towards C.
 
-* Last August, Perry Metzger announced another new Lisp dialect that he calls "Otter":http://www.otterlang.org.  He described it at the 
-"New York City Lisp Users Group":http://lispnyc.org/wiki.clp?page=past-meetings. No release is available yet. From what I've seen, it's a lot different from Nu, but he looks like a fun neighbor.
+* Last August, Perry Metzger announced another new Lisp dialect that he calls [Otter](http://www.otterlang.org).  He described it at the 
+[New York City Lisp Users Group](http://lispnyc.org/wiki.clp?page=past-meetings). No release is available yet. From what I've seen, it's a lot different from Nu, but he looks like a fun neighbor.
 
-* Along with Alexander Burger, another winner in the "at least he released it" category is Lutz Mueller's "newLISP":http://newlisp.org. I've only looked at it a little, but it looks like it's been around a while and has grown quite stable.  Lisp purists don't seem to like it, but they probably won't like Nu either. newLISP has a lot of useful libraries: PCRE for regular expressions, networking, XML parsing, and database support.  That's really cool, but I think recycling is better: I got all of that for free by building Nu on Objective-C. 
+* Along with Alexander Burger, another winner in the "at least he released it" category is Lutz Mueller's [newLISP](http://newlisp.org). I've only looked at it a little, but it looks like it's been around a while and has grown quite stable.  Lisp purists don't seem to like it, but they probably won't like Nu either. newLISP has a lot of useful libraries: PCRE for regular expressions, networking, XML parsing, and database support.  That's really cool, but I think recycling is better: I got all of that for free by building Nu on Objective-C. 
 
-* Paul Graham has a high-profile dialect called "Arc":http://www.paulgraham.com/arc.html. A preliminary version was released in early 2008. It appears to be aimed at web applications and language aesthetes. Although a foreign function interface is in the works for Arc, its use seems to be an "option of last resort":http://arclanguage.org/item?id=4579. That won't be a problem as soon as enough operating systems, databases, application frameworks, device drivers, network interfaces, and graphics libraries are rewritten in Arc. Until then, I think that a good FFI should be a top priority (are you getting tired of "C over lambda"?).
+* Paul Graham has a high-profile dialect called [Arc](http://www.paulgraham.com/arc.html). A preliminary version was released in early 2008. It appears to be aimed at web applications and language aesthetes. Although a foreign function interface is in the works for Arc, its use seems to be an [option of last resort](http://arclanguage.org/item?id=4579). That won't be a problem as soon as enough operating systems, databases, application frameworks, device drivers, network interfaces, and graphics libraries are rewritten in Arc. Until then, I think that a good FFI should be a top priority (are you getting tired of "C over lambda"?).
 
-* Here is another "lightweight Lisp interpreter in Objective-C":http://turbozen.com/sourceCode/TinyLisp by David Phillip Oster.  His implementation is very clear and light; in several ways, it looks a lot like early versions of Nu.
+* Here is another [lightweight Lisp interpreter in Objective-C](http://turbozen.com/sourceCode/TinyLisp) by David Phillip Oster.  His implementation is very clear and light; in several ways, it looks a lot like early versions of Nu.
 
-* "Clojure":http://clojure.sourceforge.net is a Lisp written on the JVM by Rich Hickey.  Like Nu, Clojure combines the high-level power of Lisp with the low-level practicality of a system programming language.  Clojure is dynamically compiled to JVM bytecode and as Rich explains:
+* [Clojure](http://clojure.sourceforge.net) is a Lisp written on the JVM by Rich Hickey.  Like Nu, Clojure combines the high-level power of Lisp with the low-level practicality of a system programming language.  Clojure is dynamically compiled to JVM bytecode and as Rich explains:
 
   bq. Clojure is well integrated with Java. Clojure functions can be called from Java, with f.invoke(args), just like any Java code. All Clojure data types are defined in terms of Java interfaces, and implement the corresponding standard Java interface where available, i.e. Clojure collections implement java.util.Collection, and thus can be passed directly to Java methods without conversion. You can implement Java interfaces from Clojure.  
 
@@ -27,10 +27,10 @@ h2. Notable Dialects
 
   But Clojure comes with a lot of other interesting features: a sophisticated macro system, optional static typing, and special constructs for multithreaded evaluation.  There's always more to learn, and besides being a great tool for JVM users, Clojure is a rich (Rich?) source of ideas for improvements to Nu.
 
-h2. Why Lisp? Why Nu?
+## Why Lisp? Why Nu?
 
-* A friend recently pointed me to Carl de Marcken's notes about "the use of Lisp to run Orbitz":http://www.paulgraham.com/carl.html.  They give an interesting picture of a pragmatic mixture of Lisp and C++ that builds on the strengths of both.  Notably, this advanced use of Lisp eschews many advanced Lisp features.  Instead, the Orbitz software was built on a simple and easily characterizable subset that integrated well with C++ and that could be easily controlled by the Orbitz developers.  Here are two key quotes.  First, "We disassemble most every Lisp function looking for inefficiencies and have had both CMUCL and Franz enhanced to compile our code better." In other words, a serious use of Lisp requires a detailed control of what that Lisp is doing.  Second, on the same topic:
+* A friend recently pointed me to Carl de Marcken's notes about [the use of Lisp to run Orbitz](http://www.paulgraham.com/carl.html).  They give an interesting picture of a pragmatic mixture of Lisp and C++ that builds on the strengths of both.  Notably, this advanced use of Lisp eschews many advanced Lisp features.  Instead, the Orbitz software was built on a simple and easily characterizable subset that integrated well with C++ and that could be easily controlled by the Orbitz developers.  Here are two key quotes.  First, "We disassemble most every Lisp function looking for inefficiencies and have had both CMUCL and Franz enhanced to compile our code better." In other words, a serious use of Lisp requires a detailed control of what that Lisp is doing.  Second, on the same topic:
 
-  bq. We've had very little trouble getting non-Lisp programmers to read and understand and extend our Lisp code. The only real problem is that the training most programmers have in Lisp has taught them to code very inefficiently, without paying any attention to the compiler. Of course, with things like STL and Java, I think programmers of other languages are also becoming pretty ignorant.
+> We've had very little trouble getting non-Lisp programmers to read and understand and extend our Lisp code. The only real problem is that the training most programmers have in Lisp has taught them to code very inefficiently, without paying any attention to the compiler. Of course, with things like STL and Java, I think programmers of other languages are also becoming pretty ignorant.
 
 

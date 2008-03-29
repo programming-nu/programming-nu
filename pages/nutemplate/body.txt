@@ -1,3 +1,3 @@
-h1. nutemplate
+# nutemplate
 
-h2. a Nu templating tool
+## a Nu templating tool

@@ -1,18 +1,18 @@
-h2. "Operators":/operators
+## [Operators](/operators)
 
 Nu includes many useful built-in operators; here is a list of them.
 
-"More...":/operators
+[More...](/operators)
 
-h2. "Types":/types
+## [Types](/types)
 
 Here are some notes on the handling of special types in Nu.
 
-"More...":/types
+[More...](/types)
 
-h2. "Class Reference":/doc
+## [Class Reference](/doc)
 
-This "Nu Class Reference":/doc 
-was obtained by running *nudoc* on the Nu sources.
+This [Nu Class Reference](/doc)
+was obtained by running **nudoc** on the Nu sources.
 
 

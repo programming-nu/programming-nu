@@ -1,11 +1,11 @@
-h3. About nubile
+### About nubile
 
-*nubile* is a code beautification tool that automatically indents Nu code.  It can be used standalone or called from a programmer's text editor such as TextMate.
+**nubile** is a code beautification tool that automatically indents Nu code.  It can be used standalone or called from a programmer's text editor such as TextMate.
 
-With the Nu TextMate bundle, *nubile* can be run directly from within TextMate using the Command-I key shortcut.  
+With the Nu TextMate bundle, **nubile** can be run directly from within TextMate using the Command-I key shortcut.  
 
-*nubile* uses hooks in the Nu parser to correctly handle comments and embedded here strings. 
+**nubile** uses hooks in the Nu parser to correctly handle comments and embedded here strings. 
 
-h3. Usage
+### Usage
 
-*nubile* expects Nu source code on standard input and produces formatted Nu source code on standard output.  It currently accepts no options.
+**nubile** expects Nu source code on standard input and produces formatted Nu source code on standard output.  It currently accepts no options.

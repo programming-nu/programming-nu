@@ -2,4 +2,4 @@
 <img src="/files/nupp.png">
 </div>
 
-"PagePacker":http://weblog.bignerdranch.com/?p=23 is an impressive little Cocoa application that Aaron Hillegass wrote to assemble PDFs and other documents into small printable booklets.  Last month Aaron released the "Objective-C source code to PagePacker":http://weblog.bignerdranch.com/?p=41, and today I'm releasing an equivalent implementation of PagePacker in Nu.
+[PagePacker](http://weblog.bignerdranch.com/?p=23) is an impressive little Cocoa application that Aaron Hillegass wrote to assemble PDFs and other documents into small printable booklets.  Last month Aaron released the [Objective-C source code to PagePacker](http://weblog.bignerdranch.com/?p=41), and today I'm releasing an equivalent implementation of PagePacker in Nu.

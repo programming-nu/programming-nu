@@ -1,5 +1,5 @@
 
-h2. Regular Expression Literals
+## Regular Expression Literals
 
 The Nu parser now allows regular expressions to be specified with the following form:
 <pre>
@@ -10,18 +10,20 @@ Here "regex" is a regular expression and "options" is a string of lower-case alp
 
 The available options correspond to the options available for the NuRegex class:
 
-|  i  | case insensitive comparison |
-|  s  | dot metacharacter also matches newlines |
-|  x  | allow whitespaces and comments in pattern |
-|  l  | lazy quantifiers become greedy and vice versa |
-|  m  | caret and dollar anchors match at newlines |
+<table>
+<tr><td>  i  </td><td> case insensitive comparison </td></tr>
+<tr><td>  s  </td><td> dot metacharacter also matches newlines </td></tr>
+<tr><td>  x  </td><td> allow whitespaces and comments in pattern </td></tr>
+<tr><td>  l  </td><td> lazy quantifiers become greedy and vice versa </td></tr>
+<tr><td>  m  </td><td> caret and dollar anchors match at newlines </td></tr>
+</table>
 
 For example, <code>/^f(o+)$/i</code> matches strings "fo", "FOO",
 and "fooooOOOOO".  
 
 To include forward slashes in regular expressions, prefix each forward slash with a backslash.
 
-h2. Character Literals
+## Character Literals
 
 Character literals are single characters or escape sequences
 enclosed in pairs of single quotes (').  The same escape

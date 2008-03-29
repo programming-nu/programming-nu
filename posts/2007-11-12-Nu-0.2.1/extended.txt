@@ -1,10 +1,10 @@
-h3. Improvements
+### Improvements
 
 * Syntax highlighting in the TextMate bundle is much improved.  
 
-* Grayson's Hansard's NuMarkdown processor now correctly passes all of the tests in John Gruber's Markdown test suite.  This is an exact character-for-character match.  To help with this, I added a new method to NSArray, *eachInReverse:*, which iterates over the array elements from the last to the first.  
+* Grayson's Hansard's NuMarkdown processor now correctly passes all of the tests in John Gruber's Markdown test suite.  This is an exact character-for-character match.  To help with this, I added a new method to NSArray, **eachInReverse:**, which iterates over the array elements from the last to the first.  
 
-* Brian Chapados' *sortedArrayUsingBlock:* method has been added to NSArray.
+* Brian Chapados' **sortedArrayUsingBlock:** method has been added to NSArray.
 
 * Blocks and functions can now be defined to accept variable numbers of arguments.  To do this, the last parameter in the parameter list should begin with an asterisk; this name (including the asterisk) will be bound to a list of remaining arguments when the block is evaluated.  That list can be nil if no additional arguments are specified.  For example, the following function returns a list constructed from its variably numbered arguments:
 
@@ -21,7 +21,7 @@ h3. Improvements
 
 * There's a new '%' operator for the integer mod function.
 
-h3. Remaining problems
+### Remaining problems
 
 * The NuAnywhere program is broken on Leopard.
 
@@ -29,9 +29,9 @@ h3. Remaining problems
 
 * The arithmetic operators are underpowered.  Currently they coerce their operands to doubles and don't do anything reasonable for strings.  An improvement is in the works.
 
-For even more detail, see the git logs at "code.neontology.com":http://code.neontology.com.
+For even more detail, see the git logs at [code.neontology.com](http://code.neontology.com).
 
-h3. OS 10.4 support
+### OS 10.4 support
 
 This release was built on Mac OS 10.4 and was tested on both Mac OS X Tiger (10.4) and Leopard (10.5).  While future versions may still be buildable on Tiger, this is likely to be the last binary release that supports Tiger.  
 

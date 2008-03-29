@@ -1,10 +1,16 @@
-h3. About nutemplate
+### About nutemplate
 
-*nutemplate* evaluates Nu code embedded in text files.  Much like Ruby's *erb*, *nutemplate* is a standalone version of a general-purpose templating capability that can be embedded in Nu programs.  Special markup allows code to be included for evaluation only or for evaluation with inclusion of the evaluation results.  
+**nutemplate** evaluates Nu code embedded in text files.  
+Much like Ruby's **erb**, 
+**nutemplate** is a standalone version of a general-purpose templating capability that can be embedded in Nu programs.
+Special markup allows code to be included for evaluation only or for evaluation with inclusion of the evaluation results.  
 
-*nutemplate* is a simple wrapper around the *NuTemplate* class, which is designed to be easily used from Nu or Objective-C code.  
-NuTemplates have been used to generate HTML, CSS, XML, and Objective-C source code.  NuTemplates are used to publish this web site and to generate documentation in NuDoc. For more details see the "NuTemplate class documentation":/doc/classes/NuTemplate.html.
+**nutemplate** is a simple wrapper around the
+**NuTemplate** class, which is designed to be easily used from Nu or Objective-C code.
+NuTemplates have been used to generate HTML, CSS, XML, and Objective-C source code.
+NuTemplates are used to publish this web site and to generate documentation in NuDoc.
+For more details see the [NuTemplate class documentation](/doc/classes/NuTemplate.html).
 
-h3. Usage
+### Usage
 
-*nutemplate* expects a template on standard input and generates the template expansion on standard output.
+**nutemplate** expects a template on standard input and generates the template expansion on standard output.

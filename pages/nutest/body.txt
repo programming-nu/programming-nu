@@ -1,3 +1,3 @@
-h1. nutest
+# nutest
 
-h2. a Nu testing tool
+## a Nu testing tool

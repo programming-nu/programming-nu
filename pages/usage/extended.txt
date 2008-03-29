@@ -1,14 +1,13 @@
-
-h2.  Scripting and interacting with nush, the Nu shell
+##  Scripting and interacting with nush, the Nu shell
 
 A simple way to use Nu is to write programs that run in nush, the Nu shell.
 
-*nush command-line options*
+**nush command-line options**
 
 <table style="background:#eee">
 <tr>
 <td width="40%">
--f _framework_
+-f <em>framework</em>
 </td>
 <td>
 Loads the named framework. This option may be specified multiple times.
@@ -16,7 +15,7 @@ Loads the named framework. This option may be specified multiple times.
 </tr>
 <tr>
 <td>				
--e _expression_
+-e <em>expression</em>
 </td>
 <td>
 Evaluates the specified Nu expression.
@@ -35,7 +34,7 @@ as an argument.
 </tr>
 <tr>
 <td>					
-_filename_
+<em>filename</em>
 </td>
 <td>
 Loads and evaluates the named file.
@@ -54,16 +53,21 @@ You can write executable scripts in Nu if you begin them with a
 (puts "Everything old is Nu again.")
 </pre>
 
-h2. Building Cocoa Applications
+## Building Cocoa Applications
 
 Another way to use Nu is to use it to write Cocoa applications.
 
-h3. Option 1: No compilation needed
+### Option 1: No compilation needed
 
 If you don't need to compile any Objective-C code into your application
 then you can build a Cocoa application by simply copying nush into the 
-<code>Contents/MacOS</code> directory of your application bundle and renaming it to your application's name.  Upon startup, the resulting application will load and evaluate a file named *main.nu* from its <code>Contents/Resource</code> directory.  
-To see examples of this, see the "RandomApp":/randomapp, "Currency Converter":/currencyconverter, and "NuRocks":/nurocks example applications.  Each example contains a Nukefile that lets you use nuke to do all the work.  In each example directory, just type "nuke run" and nuke will build and run the example.
+<code>Contents/MacOS</code> directory of your application bundle and renaming it to your application's name.  Upon startup, the resulting application will load and evaluate a file named **main.nu**
+from its <code>Contents/Resource</code> directory.  
+To see examples of this, see the [RandomApp](/randomapp), 
+[Currency Converter](/currencyconverter),
+and [NuRocks](/nurocks) example applications.
+Each example contains a Nukefile that lets you use nuke to do all the work.
+In each example directory, just type "nuke run" and nuke will build and run the example.
 
 Here is a simple main.nu, taken from the RandomApp example:
 <pre>
@@ -99,7 +103,7 @@ Here is a simple main.nu, taken from the RandomApp example:
 If you have Objective-C code to compile into your application, you could
 compile it into a framework and load it from Nu, making it unnecessary to ever use anything but nush as the main program of your application.
 
-h3. Option 2: Compile and use the Nu main function
+### Option 2: Compile and use the Nu main function
 
 If you want to compile your Objective-C code directly into your application, you can make your application start with Nu by having it use the following <code>main()</code> function:
 
@@ -112,10 +116,11 @@ int main(int argc, const char *argv[])
 }
 </pre>
 
-This also will look for a *main.nu* file in your application's <code>Contents/Resource</code> directory upon
-startup.  See the "Benwanu":/benwanu sample program for an example that compiles Objective-C code and the *NuMain()* function directly into an application.
+This also will look for a **main.nu** file in your application's <code>Contents/Resource</code> directory upon
+startup.  
+See the [Benwanu](/benwanu) sample program for an example that compiles Objective-C code and the **NuMain()** function directly into an application.
 
-h3. Option 3: Load and use the Nu parser at runtime
+### Option 3: Load and use the Nu parser at runtime
 
 If you don't want to modify your <code>main()</code> function, you can also use Nu
 by loading the Nu framework into your application and using the Nu 
@@ -137,7 +142,7 @@ In this case, the result of the evaluation will be an NSNumber with
 an integer value of 4.
 
 
-h2. Building Cocoa Frameworks
+## Building Cocoa Frameworks
 
 A third way to use Nu is to use it in a Cocoa framework that you write.
 There are nuke tasks to help you with this; they require that you compile

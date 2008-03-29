@@ -64,4 +64,4 @@ All the Nu code for the application fits in one file and is listed below.
 
 </pre>
 
-"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/RandomAppWithNibFile;hb=HEAD
+[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/RandomAppWithNibFile;hb=HEAD)

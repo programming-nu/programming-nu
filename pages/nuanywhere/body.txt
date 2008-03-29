@@ -3,7 +3,7 @@
 <img src="/files/DeliciousFunWithNu.png"  />
 </a>
 
-h1. NuAnywhere
+# NuAnywhere
 
-h2. Add a Nu console to any running Cocoa application
+## Add a Nu console to any running Cocoa application
 

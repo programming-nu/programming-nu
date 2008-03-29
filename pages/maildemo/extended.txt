@@ -1,10 +1,10 @@
 
 This example is a Nu version of Scott Stevenson's 
 MailDemo tutorial.  You can find Scott's tutorial online at
-"Cocoa Dev Central":http://cocoadevcentral.com/articles/000080.php.
+[Cocoa Dev Central](http://cocoadevcentral.com/articles/000080.php).
 
 If you've installed Nu from the binary installer, you'll find this example in /usr/local/share/nu/examples/MailDemo.
 
 This version does nearly everything in Nu.  The interface is still built in Interface Builder, but instead of hooking up the controllers in IB, we expose the interface elements and then hook everything up in Nu.  I think that makes the bindings a lot more clear, because everything can then be described in just a few lines of Nu that I can easily scan through and verify at once.  You can judge for yourself, and if you prefer to make your bindings in IB, just delete the call to <code>(self makeBindings)</code> in <code>(MailController init)</code>.
 
-"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/MailDemo;hb=HEAD
+[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/MailDemo;hb=HEAD)

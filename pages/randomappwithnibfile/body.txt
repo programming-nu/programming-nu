@@ -1,9 +1,9 @@
 
 <img src="/files/randomapp.png" alt="screen shot" />
 
-h1. RandomAppWithNibFile
+# RandomAppWithNibFile
 
-h2. Aaron Hillegass' RandomApp using a Nib File
+## Aaron Hillegass' RandomApp using a Nib File
 
 
 

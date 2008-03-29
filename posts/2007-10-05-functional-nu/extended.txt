@@ -1,6 +1,6 @@
-h3. Currying
+### Currying
 
-"Currying":http://en.wikipedia.org/wiki/Currying is a common functional programming technique for converting a function of a list of parameters into a function of a shorter list of parameters.
+[Currying](http://en.wikipedia.org/wiki/Currying) is a common functional programming technique for converting a function of a list of parameters into a function of a shorter list of parameters.
 
 After a brief discussion of currying on the mailing list, the following example emerged to illustrate currying with Nu:
 <pre>
@@ -29,13 +29,13 @@ After a brief discussion of currying on the mailing list, the following example 
 (puts (twelve))
 </pre>
 
-Currently in Nu, this example only works for functions, because only functions are able to respond to the "<code>parameters</code>":http://programming.nu/doc/classes/NuBlock.html#parameters message.
+Currently in Nu, this example only works for functions, because only functions are able to respond to the [<code>parameters</code>](http://programming.nu/doc/classes/NuBlock.html#parameters) message.
 
 Operators such as <code>+</code>, <code>-</code>, etc. must be handled differently because they accept a variable number of arguments and have no well-defined parameter list.  
 
 This also raises the issue that there is no way yet to define functions accepting a variable number of arguments in Nu, but I'll gladly adopt something from existing Lisp or Scheme conventions.
 
-h3. Variable Scope
+### Variable Scope
 
 The other discussion was on the subject of variable scope:
 
@@ -61,7 +61,7 @@ Grayson Hansard
        (puts (l list)) ; Outputs "(1 2 3 4 5)";  Works as expected.
 </pre>
 
-Grayson's observations about blocks were spot on (the documentation he quoted is "here":http://localhost:3000/operators#functionsandmacros). What he described is a result of Nu's block scoping rules.  In his example, <code>x</code> and <code>l</code> are
+Grayson's observations about blocks were spot on (the documentation he quoted is [here](http://localhost:3000/operators#functionsandmacros)). What he described is a result of Nu's block scoping rules.  In his example, <code>x</code> and <code>l</code> are
 names that are defined in a context that exists outside the block
 definitions.  When the blocks are created with <code>do</code>, these names and their assigned values are kept with the blocks for use when the blocks are evaluated.
 
@@ -79,7 +79,7 @@ feasible to write parallelizing methods such as this:
 
 But if you really must have the other behavior, there's a way to get it.  It's illustrated in the example below.  For
 more detail, please look at the class documentation for the
-"NuReference":http://programming.nu/doc/classes/NuReference.html class.
+[NuReference](http://programming.nu/doc/classes/NuReference.html) class.
 
 <pre>
 (set y ((NuReference alloc) init))
@@ -91,11 +91,10 @@ more detail, please look at the class documentation for the
 As you'll see in the class documentation, this isn't the reason that I
 created the NuReference class, but as I heard Jim Coplien say at a C++ conference many years ago:
 
-bq. All interesting problems in computer science reduce to what's in a name, and can be solved by one more level of indirection.
+> All interesting problems in computer science reduce to what's in a name, and can be solved by one more level of indirection.
 
-h3. Update
+### Update
 
 This question of variable scope is now resolved.  Enough people argued convincingly for the other interpretation that beginning in Nu-0.2.0, closures are now made on variable bindings rather than values.
 
-More details are in this post, titled "Closures in Nu":http://programming.nu/posts/2007/10/17/closures-in-nu.
-
+More details are in this post, titled [Closures in Nu](http://programming.nu/posts/2007/10/17/closures-in-nu).

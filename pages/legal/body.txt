@@ -1,10 +1,10 @@
 
-h2. Legal Details
+## Legal Details
 
-Nu(TM) is open-source software that is copyrighted by Neon Design Technology, Inc.  It is released under the Apache License, v. 2.0. 
+Nu&#8482; is open-source software that is copyrighted by Neon Design Technology, Inc.  It is released under the Apache License, v. 2.0. 
 
 Except for attributed quotations, the text of this website is copyrighted by Neon Design Technology, Inc. and may not be reproduced without express permission.  Permission is hereby granted for attributed quotes and excerpts containing up to 25% of an article.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a><br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 United States License</a>.
 
-Nu(TM) and Programming Nu(TM) are trademarks of Neon Design Technology, Inc.
+Nu&#8482; and Programming Nu&#8482; are trademarks of Neon Design Technology, Inc.

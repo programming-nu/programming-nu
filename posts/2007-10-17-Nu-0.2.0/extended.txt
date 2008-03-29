@@ -4,6 +4,6 @@
 
 * There's a new literal form for characters.
 
-* Nu closures now close on variable bindings rather than values.  My original preference was to close on values, but popular opinion and Lisp precendent disagreed.  Now it is possible to use Nu closures to implement object systems (although I prefer Objective-C's, thank you) and to do language pony tricks like Paul Graham's famous make-accumulator example.
+* Nu closures now close on variable bindings rather than values.  My original preference was to close on values, but popular opinion and Lisp precendent disagreed.  Now it is possible to use Nu closures to implement object systems (although I prefer Objective-C's) and to do language pony tricks like Paul Graham's famous make-accumulator example.
 
 * There's a new sample program, NuAnywhere, that uses mach injection to inject the Nu console into any running Cocoa application.  That's right: Safari, iCal, Pages, they're all yours now.

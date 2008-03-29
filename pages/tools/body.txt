@@ -1,6 +1,6 @@
-h1. Tools
+# Tools
 
-h2. The Nu World Order
+## The Nu World Order
 
 The Nu distribution includes some essential software development tools.
 

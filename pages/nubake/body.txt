@@ -1,5 +1,5 @@
 <img src="/files/nubake.png" alt="nubake"/>
 
-h1. nubake
+# nubake
 
-h2. "Bake" Nu code into compiled object files
+# "Bake" Nu code into compiled object files

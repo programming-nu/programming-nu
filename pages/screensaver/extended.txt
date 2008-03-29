@@ -1,3 +1,4 @@
-This example shows how Nu can be used to create screen savers and other plug-in bundles.  It requires the *nuke* *bundle-tasks* macro, which is available in releases 0.1.4 and later.
+This example shows how Nu can be used to create screen savers and other plug-in bundles.  It requires the **nuke**
+**bundle-tasks** macro, which is available in releases 0.1.4 and later.
 
-"View the source in the git archives.":http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/ScreenSaver;hb=HEAD
+[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/ScreenSaver;hb=HEAD)

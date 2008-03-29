@@ -1,20 +1,22 @@
 
-h2. Supported sequences
+## Supported sequences
 
 These escape sequences are supported:
-| \n | newline (0x0a) |
-| \r | carriage return (0x0d) |
-| \f | formfeed (0x0c) |
-| \b | backspace (0x08) |
-| \a | bell (0x07) |
-| \e | escape (0x1b) |
-| \s | space (0x20) |
-| \nnn | octal byte |
-| \xnn | hexadecimal byte |
-| \unnnn | unicode character (16 bits) |
-| \x | character x |
+<table>
+<tr><td> \n </td><td> newline (0x0a) </td></tr>
+<tr><td> \r </td><td> carriage return (0x0d) </td></tr>
+<tr><td> \f </td><td> formfeed (0x0c) </td></tr>
+<tr><td> \b </td><td> backspace (0x08) </td></tr>
+<tr><td> \a </td><td> bell (0x07) </td></tr>
+<tr><td> \e </td><td> escape (0x1b) </td></tr>
+<tr><td> \s </td><td> space (0x20) </td></tr>
+<tr><td> \nnn </td><td> octal byte </td></tr>
+<tr><td> \xnn </td><td> hexadecimal byte </td></tr>
+<tr><td> \unnnn </td><td> unicode character (16 bits) </td></tr>
+<tr><td> \x </td><td> character x </td></tr>
+</table>
 
-h2. Controlling escaping
+## Controlling escaping
 
 Escape sequences are supported in both double-quoted and here strings.  Double-quoted strings are escaped by default.  For example, <code>"foo\nbar"</code> is parsed as a seven-character string with a newline in the middle.
 
@@ -44,9 +46,11 @@ foo\nbarEND)
 
 There is no ambiguous form for here strings.
 
-h2. Unsupported sequences
+## Unsupported sequences
 
 These sequences were considered but are currently not supported:
-| \cx, \C-x | control-x |
-| \M-x | meta-x (c + 0x80) |
-| \M-\C-x | Meta-Control-x |
+<table>
+<tr><td> \cx, \C-x </td><td> control-x </td></tr>
+<tr><td> \M-x </td><td> meta-x (c + 0x80) </td></tr>
+<tr><td> \M-\C-x </td><td> Meta-Control-x </td></tr>
+</table>
