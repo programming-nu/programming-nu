@@ -197,6 +197,8 @@
            ((render-page "show") writeToFile:(+ path "/" (post "permalink")) atomically:NO)))
 
 ;; render feeds
+(set feedposts (posts subarrayWithRange:'(0 7)))
+
 (let (path "site/public/xml/rss20")
      (system (+ "mkdir -p " path))
      ((render-xml "rss") writeToFile:(+ path "/feed.xml") atomically:NO))

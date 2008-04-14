@@ -6,8 +6,8 @@
   <generator uri="http://programming.nu" version="4.0">Nu</generator>
   <link href="<%= $siteAddress %>/xml/atom10/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="<%= $siteAddress %>/" rel="alternate" type="text/html"/>
-  <updated><%= (((posts 0) "creationDate") rfc3339) %></updated>
-<% (posts each: (do (post) %>
+  <updated><%= (((feedposts 0) "creationDate") rfc3339) %></updated>
+<% (feedposts each: (do (post) %>
   <entry>
 <% (if (post "author") %>
     <author>
