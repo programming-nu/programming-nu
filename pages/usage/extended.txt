@@ -154,44 +154,25 @@ function.  This function will load the equivalent of "main.nu" for your
 framework.  Here's an example:
 
 <pre>
-void ProspectInit()
+void NunjaInit()
 {
     static initialized = 0;
     if (!initialized) {
         initialized = 1;
-        load_nu_files(@"com.neontology.prospect", @"prospect");
+        [Nu loadNuFile:@"nunja" fromBundleWithIdentifier:@"nu.programming.nunja" withContext:nil];
     }
 }
 </pre>
 
 The function that it calls loads a Nu file (in this case, named 
-"prospect.nu") from a named bundle.  That Nu file should load any
+"nunja.nu") from a named bundle.  That Nu file should load any
 other needed Nu files from the bundle using the "load" operator.
-
-<pre>
-static int load_nu_files(NSString *bundleIdentifier, NSString *mainFile)
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSBundle *bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
-    NSString *main_path = [bundle pathForResource:mainFile ofType:@"nu"];
-    if (main_path) {
-        NSString *main = [NSString stringWithContentsOfFile:main_path];
-        if (main) {
-            id parser = [Nu parser];
-            id script = [parser parse: main];
-            [parser eval:script];
-        }
-    }
-    [pool release];
-    return 0;
-}
-</pre>
 
 Note that it is important to correctly specify the framework identifier.
 You can do this in a Nukefile with the following line:
 
 <pre>
-(set @framework_identifier "com.neontology.prospect")
+(set @framework_identifier "nu.programming.nunja")
 </pre>
 
 You also need to specify the name of your framework initialization 
@@ -200,6 +181,32 @@ function.  You can also do this in a Nukefile:
 <pre>
 (set @framework_initializer "ProspectInit")
 </pre>
+
+<div style="border:medium solid gray; padding:1em; margin:1em">
+
+<strong>Update:</strong> 
+Setting the framework initializer as shown above replaces
+the shared library's default initialization function
+with a new one that is called when the framework's
+shared library is loaded.  
+But for systems using the GNU Objective-C
+runtime (mainly Linux), the default 
+initializer must be called to register a library's classes
+with the runtime. For simplicity, it seems better
+to instead call custom initializers from a class <tt>+load</tt>
+method, as illustrated below:
+
+<pre>
+@implementation Nunja
+
++ (void) load
+{
+    NunjaInit();
+}
+...
+</pre>
+If you do this, you should not set the <tt>@framework_initializer</tt> in your Nukefile.
+</div>
 
 The appropriate build tasks are created when your Nukefile includes the 
 following command:
