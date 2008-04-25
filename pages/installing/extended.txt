@@ -7,21 +7,26 @@ Look for it at [www.pcre.org](http://www.pcre.org).
 To build a universal binary with UTF-8 support, use the following command:
 
 <pre>
-% env CXXFLAGS="-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk" \
-      CFLAGS="-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk" \
-      LDFLAGS="-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk" \
+% env CXXFLAGS="-arch i386 -arch ppc" \
+      CFLAGS="-arch i386 -arch ppc" \
+      LDFLAGS="-arch i386 -arch ppc" \
       ./configure --disable-dependency-tracking --enable-utf8
 </pre>
 
 Don't forget to build **PCRE** with UTF-8 support.  That's essential.  
 Subsequent build steps will fail if you don't do this.  
-The **-isysroot** specifications seem to only be necessary on PowerPC systems building universal binaries.
+
+If you are using a 10.4 PowerPC system to build universal binaries,
+you will also need to add the following flags to CXXFLAGS, CFLAGS, and LDFLAGS:
+ "-isysroot /Developer/SDKs/MacOSX10.4u.sdk"
+
 
 When you install **PCRE**, it's best to put it in /usr/local (the default).
 If you put it anywhere else, you'll have to modify the Rakefile and Nukefile used to build Nu.
 
 **2.**
-Nu requires **libffi**.  On Mac OS 10.5, libffi is included as a shared library, so 10.5 users can skip this step.  
+**Important: Leopard (10.5) users should skip this step.**
+Nu requires **libffi**.  On Mac OS 10.5, libffi is included as a shared library, so 10.5 users should skip this step.  
 But on Mac OS 10.4 and other systems, you may need to build your own libffi library.  
 A version has been provided in the libffi directory.  
 To build it, use the Ruby **rake** build tool and the included Rakefile.
@@ -56,11 +61,11 @@ ranlib libffi.a
 ## Build Nu
 
 **3.**
-Use **rake** to build 
+Use **make** to build 
 **mininush**, a minimal version of the Nu shell.
 
 <pre>
-% rake
+% make
 </pre>
 
 **4.**
