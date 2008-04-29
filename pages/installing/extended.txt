@@ -18,7 +18,9 @@ Subsequent build steps will fail if you don't do this.
 
 If you are using a 10.4 PowerPC system to build universal binaries,
 you will also need to add the following flags to CXXFLAGS, CFLAGS, and LDFLAGS:
- "-isysroot /Developer/SDKs/MacOSX10.4u.sdk"
+<pre>
+"-isysroot /Developer/SDKs/MacOSX10.4u.sdk"
+</pre>
 
 
 When you install **PCRE**, it's best to put it in /usr/local (the default).
@@ -26,10 +28,8 @@ If you put it anywhere else, you'll have to modify the Rakefile and Nukefile use
 
 **2.**
 **Important: Leopard (10.5) users should skip this step.**
-Nu requires **libffi**.  On Mac OS 10.5, libffi is included as a shared library, so 10.5 users should skip this step.  
-But on Mac OS 10.4 and other systems, you may need to build your own libffi library.  
-A version has been provided in the libffi directory.  
-To build it, use the Ruby **rake** build tool and the included Rakefile.
+Nu requires **libffi**.
+On Mac OS 10.5, libffi is included as a shared library, so 10.5 users should skip this step.  But on Mac OS 10.4 and other systems, you may need to build your own libffi library.  A version has been provided in the libffi directory.  To build it, use the Ruby **rake** build tool and the included Rakefile.
 
 <pre>
 % cd libffi; rake; cd ..
