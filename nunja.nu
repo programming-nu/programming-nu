@@ -14,6 +14,6 @@
 ;;   See the License for the specific language governing permissions and
 ;;   limitations under the License.
 
-(get "/" (self redirectResponse:request toLocation:"/index"))
+(get "/" (Nunja redirectResponse:REQUEST toLocation:"/index"))
 
 ;; everything else falls through to static files

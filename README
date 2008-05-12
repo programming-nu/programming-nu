@@ -5,9 +5,16 @@ It includes the text of the site and build scripts.
 
 All contents copyright 2007-2008, Neon Design Technology, Inc.
 
-Build scripts are released under the Apache Public License, v. 2.0.
+Build scripts are released under the Apache License, v. 2.0.
 See the LICENSE file for details.
 
 Text is released under the Creative Commons 
 Attribution-Noncommercial-No Derivative Works 3.0 United States License.
 
+==
+
+To build the site, just run "nuke". Building requires NuMarkdown 
+and NuYAML. Both are available on github.
+
+To preview the site, run "nuke preview". This requires Nunja, which
+is also available on github.

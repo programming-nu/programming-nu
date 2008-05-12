@@ -1,12 +1,15 @@
 
-
 (task "build" is
       (SH "nush builder.nu"))
 
-(task "publish" is
-      (SH "rsync -ave ssh site/public/ helium:/Sites/programming.nu/public/"))
+(task "preview" is 
+      (SH "nunjad -s site"))
 
-(task "default" => "build")
+(task "publish" is 	;; requires a password
+      (SH "rsync -ave ssh site/public/ programming.nu:/Sites/programming.nu/public/"))
 
 (task "clean" is
       (SH "rm -rf site"))
+
+(task "default" => "build")
+

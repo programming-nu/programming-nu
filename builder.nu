@@ -14,8 +14,6 @@
 
 (class NSString
      
-     (- lines is ((self componentsSeparatedByString:"\n") select:(do (x) (!= x ""))))
-     
      (- (id) markdownToHTML is (NuMarkdown convert:self))
      
      ;; Convert a Textile-formatted string to HTML.
@@ -28,7 +26,7 @@
      ;; require 'RedCloth'                       <br/>
      ;; puts RedCloth.new(STDIN.read).to_html
      ;; </code>
-     (- (id) textileToHTML is
+     (- (id) _UNUSED_textileToHTML is
         (unless $textileCache (set $textileCache (dict)))
         (unless (set results ($textileCache objectForKey:self))
                 (set input (NSPipe pipe))
