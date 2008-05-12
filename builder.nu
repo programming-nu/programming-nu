@@ -14,51 +14,19 @@
 
 (class NSString
      
-     (- (id) markdownToHTML is (NuMarkdown convert:self))
+     (- (id) markdownToHTML is (NuMarkdown convert:self)))
      
-     ;; Convert a Textile-formatted string to HTML.
-     ;; Currently this goes out to Ruby.
-     ;; It assumes that <code>/usr/local/bin/redcloth</code> contains:
-     ;;
-     ;; <code>
-     ;; #!/usr/bin/ruby                          <br/>
-     ;; require 'rubygems'                       <br/>
-     ;; require 'RedCloth'                       <br/>
-     ;; puts RedCloth.new(STDIN.read).to_html
-     ;; </code>
-     (- (id) _UNUSED_textileToHTML is
-        (unless $textileCache (set $textileCache (dict)))
-        (unless (set results ($textileCache objectForKey:self))
-                (set input (NSPipe pipe))
-                (set output (NSPipe pipe))
-                (set task ((NSTask alloc) init))
-                (task set:(launchPath:"/usr/local/bin/redcloth"
-                           standardInput:input
-                           standardOutput:output))
-                ((input fileHandleForWriting) writeData:
-                 (self dataUsingEncoding:NSUTF8StringEncoding))
-                ((input fileHandleForWriting) closeFile)
-                (task launch)
-                (task waitUntilExit)
-                (set results ((NSString alloc)
-                              initWithData:((output fileHandleForReading) readDataToEndOfFile)
-                              encoding:NSUTF8StringEncoding))
-                ($textileCache setValue:results forKey:self))
-        results))
-
 (class NSDictionary
      
      (- (id) bodyAsHTML is
         (set body (self valueForKey:"body"))
         (case (self valueForKey:"format")
-              ("textile" (body textileToHTML))
               ("markdown" (body markdownToHTML))
               (else body)))
      
      (- (id) extendedAsHTML is
         (set extended (self valueForKey:"extended"))
         (case (self valueForKey:"format")
-              ("textile" (extended textileToHTML))
               ("markdown" (extended markdownToHTML))
               (else extended))))     
 
