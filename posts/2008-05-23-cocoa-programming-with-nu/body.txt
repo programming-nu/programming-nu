@@ -1,0 +1,8 @@
+To mark the release of the third edition of Aaron Hillegass's 
+[Cocoa Programming For Mac OS X](http://www.amazon.com/gp/product/0321503619/ref=neontologycom-20),
+there is a new git repository on [github](http://github.com) to contain translated examples.
+To get started, I've posted an example from one of my favorite chapters, Chapter 28 (Web Services),
+and will add more over time. If you'd like to help, please do! Just fork the github repository,
+add your conversions, and send me a pull request. Let's see how quickly we can get this covered!
+
+Here's the repository: [Cocoa Programming With Nu](http://github.com/timburks/cocoa-programming-with-nu).
