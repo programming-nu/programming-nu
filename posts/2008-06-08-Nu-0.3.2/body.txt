@@ -1,0 +1,7 @@
+Here's a quick update that makes it easier for newcomers to get the latest Nu.
+With this version, all of the examples in the
+[Cocoa Programming with Nu](http://github.com/timburks/cocoa-programming-with-nu)
+repository should work, plus there are many other small enhancements
+detailed in the [commit logs](http://github.com/timburks/nu/commits).
+
+Available on the [downloads](/downloads) page.
