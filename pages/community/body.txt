@@ -2,12 +2,23 @@
 
 Thanks to everyone who has contributed to Nu so far!
 
+The Nu source code is hosted on [github](http://github.com/timburks/nu) and so is the [source material for this web site](http://github.com/timburks/programmingnu).
+
+Along with that, there are several other Nu-related projects on github. Just [search github for "nu"](http://github.com/search?q=nu) to see them.
+
 Here are some blogs and posts that discuss Nu.
 
-* [blog.neontology.com](http://blog.neontology.com): Tim's blog.
+* Tim Burks: [Tim's blog](http://blog.neontology.com).
 
-* [ImportantShock](http://importantshock.wordpress.com/category/nu): Patrick Thomson's blog, with many posts about Nu.
+* Patrick Thomson: [ImportantShock](http://importantshock.wordpress.com/category/nu), Patrick's blog with many posts about Nu.
 	
-* [Web 3d.0](http://web3d0.com/): Stephen White's blog. 
+* Grayson Hansard: [Grayson's blog posts about software development](http://www.fromconcentratesoftware.com/category/developer)
+and [Grayson's Nu projects](http://www.fromconcentratesoftware.com/Nu).
+
+* Stephen White: [Web 3d.0](http://web3d0.com), Steve's blog. 
 	
+
+
 Have more? Email them to tim at neontology dot com.
+
+
