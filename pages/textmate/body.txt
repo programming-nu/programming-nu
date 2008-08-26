@@ -2,13 +2,6 @@
 
 # A Bundle for TextMate Users
 
-The Nu source distribution includes a TextMate bundle that contains several useful commands and enhancements.  To install it, drag  **Nu.tmbundle** from the <code>shared</code> directory and drop it on the TextMate application icon.  
+You can get the Nu TextMate bundle via the **nutmbundle** command line tool which should have been installed when you installed Nu. Running this command will fetch the bundle and install it. Using this tool assumes that you have [Git](http://git.or.cz/) installed.
 
-### News!
-
-Thanks to Jason Sallis, the Nu TextMate bundle is now in the "for review" section of the [TextMate bundle repository](http://macromates.com/svn/Bundles/trunk/Review/Bundles).
-From there, the bundle will be reviewed by other bundle contributors and community members, and then hopefully it will move to the main TextMate Bundles directory.  
-
-Jason has kindly taken over ownership and maintenance of the bundle, so please work with him to make any improvements or corrections there that you would like. You can contact Jason through the [programming-nu Google group](http://groups.google.com/group/programming-nu).
-
-
+Optionally, if you're the do-it-yourself type, visit [Github](http://github.com/jsallis/nu-tmbundle) for instructions on installing the bundle manually.

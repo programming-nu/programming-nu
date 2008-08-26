@@ -1,15 +1,28 @@
 
-## Automatically indent your code with a command key
+## Make your Nu code more readable with syntax highlighting
 
-The most important addition in the bundle is Command-I, which runs **nubile** to automatically indent your Nu code.  You can also use Command-I on C and Objective-C code;
-the Nu TextMate bundle includes a prebuilt executable for **bcpp** that will automatically indent your C and Objective-C code. 
+Syntax highlighting is available for your Nu source code, making your development experience a little easier to manage. Easily scan your code for method declarations, Nuke tasks, and more!
 
-## Run your code with a command key
+## Run your code without leaving TextMate
 
-Another useful command key is Command-R, which will evaluate the Nu code in the current window using **nush**, the Nu shell.
-The results are placed in a new document.
-This is a great way to incrementally build and test components and **nush** scripts.
+The Command-R command will cause TextMate to evaluate the Nu code in the current window using **nush**, the Nu shell and display the results in a new window. This is a great way to incrementally build and test components and **nush** scripts.
 
-## and more
+Additionally, you can use the Shift-Command-R command to run the Nu test case in the current window via **nutest**.
 
-You can use TextMate's Bundle Editor to see what other Nu tricks you can now do in your favorite text editor.  The bundle includes some preliminary syntax highlighting and as-you-type automatic formatting, but both of these could use some improvement.  TextMate hackers, please dig in!
+## Automatically reformat your code
+
+Another useful command included in the bundle is Ctrl-Shift-H, which runs **nubile** to automatically reformat and indent your Nu code.
+
+## Insert code via snippets
+
+Snippets are included to make inserting commonly used code much easier. Snippets are included to insert:
+
+* Flow of control statements such as `if`, `case`, and `cond`
+* Commonly used commands such as `load` and `parse`
+* Class and method declarations
+* Nukefile tasks
+* And many more!
+
+## A community effort
+
+Additions to the bundle are always welcome. Check out the [Github guides](http://github.com/guides/home) for instructions on getting your own copy of the TextMate bundle code and submitting your changes back to the official repository.
