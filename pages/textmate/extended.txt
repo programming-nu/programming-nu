@@ -1,11 +1,12 @@
 
-## Make your Nu code more readable with syntax highlighting
+## See your Nu code more easily with syntax highlighting
 
 Syntax highlighting is available for your Nu source code, making your development experience a little easier to manage. Easily scan your code for method declarations, Nuke tasks, and more!
 
 ## Run your code without leaving TextMate
 
-The Command-R command will cause TextMate to evaluate the Nu code in the current window using **nush**, the Nu shell and display the results in a new window. This is a great way to incrementally build and test components and **nush** scripts.
+The Command-R command will cause TextMate to evaluate the Nu code in the current window using **nush**, 
+the Nu shell and display the results in a new window. This is a great way to incrementally build and test components and **nush** scripts.
 
 Additionally, you can use the Shift-Command-R command to run the Nu test case in the current window via **nutest**.
 
