@@ -6,7 +6,7 @@
       (SH "nunjad -s site"))
 
 (task "publish" is 	;; requires a password
-      (SH "rsync -ave ssh site/public/ programming.nu:/Sites/programming.nu/public/"))
+      (SH "rsync -ave ssh site/public/ programming.nu:/projects/sites/programming.nu/public/"))
 
 (task "clean" is
       (SH "rm -rf site"))

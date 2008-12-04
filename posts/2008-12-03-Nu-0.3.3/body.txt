@@ -1,0 +1,9 @@
+See the [downloads](/downloads) page for this update to Nu.
+
+This version mainly adds community-contributed updates:
+
+* math-related enhancements from Brian Chapados and Issac Trotts.
+* an OCaml-style pattern matching macro from Issac Trotts.
+* nuke improvements from Jason Sallis.
+* behind-the-scenes cleanup by Elizabeth Kellner to support Apple's Objective-C Garbage Collector. Garbage collection is not supported in the release build, but is available with a small change in the Nukefile in Nu builds from source. 
+
