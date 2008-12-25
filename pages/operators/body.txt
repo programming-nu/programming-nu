@@ -7,7 +7,8 @@ Nu includes many useful built-in operators; here is a list of them.
 * [List Processing](/operators#listprocessing)
 * [Evaluation](/operators#evaluation)
 * [Control Flow](/operators#controlflow)
-* [Functions and Macros](/operators#functionsandmacros)
+* [Functions](/operators#functions)
+* [Macros](/operators#macros)
 * [Classes and Methods](/operators#classesandmethods)
 * [Exception Handling](/operators#exceptionhandling)
 * [Thread Control](/operators#threadcontrol)
@@ -254,7 +255,7 @@ list syntax for message sending is treated as a
 call.  This operator was added to allow messages 
 to be sent to these objects.
 
-## <a name="functionsandmacros">Functions and Macros</a>
+## <a name="functions">Functions</a>
 
 **function** creates a named function in the current evaluation
 context. It expects three arguments: the function name,
@@ -275,33 +276,307 @@ block that returns the sum of its two arguments:
 	(+ x y))
 </pre>
 
-A block is represented by a list of argument names, an execution context (saved when the block is created), and the parsed code to be evaluated.  The **do** operator can be used to explicitly create blocks; several other operators create blocks implicitly.
+A block is represented by a list of argument names, an execution context 
+(saved when the block is created), and the parsed code to be evaluated.  
+The **do** operator can be used to explicitly create blocks; several other
+operators create blocks implicitly.
 
-Blocks and functions can now defined to accept variable numbers of arguments. To do this, the last parameter in the parameter list should begin with an asterisk; this name (including the asterisk) will be bound to a list of remaining arguments when the block is evaluated. That list can be nil if no additional arguments are specified. For example, the following function returns a list constructed from its variably numbered arguments:
-<pre>
-(function my-list (*args) *args)
-</pre>
-
-When a block is created with the **function** operator or called anonymously, all of its arguments are evaluated in the calling context before the block is evaluated. Most of the time, the evaluation of  code in a block takes place in the context that was saved when the block was created.  
-But when a block is created with the **macro** operator, things are handled differently.  
-
-**macro** creates a named macro  in the current evaluation 
-context. It expects two arguments: the macro name, followed by
-the body of the macro.  Inside the macro, its arguments may be accessed by referring to the **margs** special variable.
-
-When a block is created with the **macro** operator, no context is kept.  Instead, when the macro is evaluated, all block evaluation takes place in the caller's context.
-To access the macro's arguments, a special symbol **margs** is pushed into that context (and if there's an existing value, that's saved until the macro finishes).
-The **margs** symbol is just the list of unevaluated arguments to the macro; the macro itself determines when and how they are evaluated.  Next, any names in the block that begin with a double underscore are replaced with generated symbols, and then the block is evaluated.  Here's a simple example:
+Blocks and functions can now be defined to accept variable numbers of 
+arguments. To do this, the last parameter in the parameter list should 
+begin with an asterisk; this name (including the asterisk) will be bound 
+to a list of remaining arguments when the block is evaluated. That list 
+can be nil if no additional arguments are specified.
 
 <pre>
-(macro factorial	
-     (set __x (eval (car margs)))
-     (if (== __x 0) 
-         (then 1)
-         (else (* (factorial (- __x 1)) __x)))) 
+% (function my-apply (operator *operands)
+	(eval (cons operator *operands)))
+	
+% (my-apply + 1 2 3)
+6
 </pre>
 
-In practice, you'd never compute factorials like this, but it illustrates an important problem that can occur with macros.  Since macros are evaluated in the caller's context, each recursive evaluation of **factorial** potentially sets our 
-double-underscored <strong>x</strong> to a new value.  
-That would be bad, so each time we evaluate this macro in Nu, the double-underscored <strong>x</strong> is replaced with a new automatically-generated name that is guaranteed to be unique.
+When you define a block or function, an implicit variable named *\*args* 
+is available in the body of the function. *\*args* contains a list of all 
+arguments that are passed into the block or function.
+
+<pre>
+% (function f (a b)
+	(puts "Arg1 = #{a}, all args = #{*args}"))
+	
+% (f 1 2)
+Arg1 = 1, all args = (1 2)
+</pre>
+
+You should avoid using a parameter named *\*args* in your function or 
+block definition.  However, if you do define a variable named *\*args* 
+in your function's argument list, it will override the implicit variable.
+
+When a block is created with the **function** operator or called 
+anonymously, all of its arguments are evaluated in the calling context 
+before the block is evaluated. Most of the time, the evaluation of code 
+in a block takes place in the context that was saved when the block was 
+created.
+
+There are times, however, when you might want to write a function that
+does *not* evaluate all of its arguments before invoking the function
+block code (think of writing your own version of **if**).  There is no
+way to achieve this with a function or block.  However, you can still 
+write such an operator in Nu.  But to do this, you don't use functions;
+you use *macros*.
+
+## <a name="macros">Macros</a>
+
+> Note: the functionality of <strong>macro</strong> has changed in Nu 0.4.0.
+Macro definitions now require argument lists just like functions and blocks, 
+and there is no longer an implicit quote applied to the body of the macro.
+The old style macro operator is still available, but has been renamed 
+[<strong>macro-0</strong>](/macro-0).
+
+Macros are similar to functions, although they provide two additional 
+features that are not available when defining a function or block:
+
+1.  Macros execute in the evaluation context of the calling block.
+2.  The body of a macro can control how its arguments are evaluated.
+
+
+**macro** creates a named macro in the current evaluation context.
+It expects three arguments: the macro name, the argument list, and the 
+body of the macro.
+
+A macro is executed in two phases.  The first phase is *macro-expansion*.
+During macro-expansion, the body of the macro is executed using the values 
+passed into the macro via its argument list.  Any symbols in the calling 
+context that have the same name as the macro arguments are temporarily 
+masked until the expansion is complete.
+
+Once the macro-expansion phase is complete, the execution phase takes place, 
+where the macro-expanded code is executed in the caller's context.
+
+Here's a simple example of a macro that increments a variable in-place:
+
+<pre>
+(macro inc! (n)
+	`(set ,n (+ ,n 1)))
+</pre>
+
+
+During the macro-expansion phase, Nu generates code using the calling 
+context and the argument list variables.  Calling the above macro
+passing in a variable *a* expands to this:
+
+<pre>
+;; the macro-expansion phase for the call (inc! a):
+(set a (+ a 1))
+</pre>
+
+Normally, macro-expansion is followed immediately by execution so
+you don't see the intermediary code above.  You just see the results
+of the macro call:
+
+<pre>
+% (set a 1)
+1
+% (inc! a)
+2
+% a
+2
+</pre>
+
+
+### Gensyms
+
+There are often times when you need to use local variables in the body
+of a macro.  However, unlike a function, the macro is executed in the 
+context of the caller, and you need a way to avoid having the names of 
+the local variables conflict with the names of variables in the calling 
+context.
+
+An example of how macro variables can conflict with the calling context:
+
+<pre>
+(macro badmacro (x y)
+	`(progn
+		;; a and b hold temp values
+		(set a (* ,x ,x))
+		(set b (* ,y ,y))
+		(+ a b)))
+</pre>
+
+The macro computes the sum of the squares of x and y (you don't need a 
+macro for this, but it illustrates an important point).  Let's try it 
+out in nush with some variables that conflict with the *a* and *b* 
+temporary variables in the body of the macro:
+
+<pre>
+% ;; nush is the calling context
+% (set a 3)
+3
+% (set b 2)
+2
+% (badmacro a b)
+13
+% a
+9
+% b
+4
+</pre>
+
+The macro changed the values of *a* and *b* in nush.  Clearly, not what 
+we were expecting.
+
+You could make up unusual variable names that are unlikely to be used 
+by the caller:
+
+<pre>
+(macro not-as-bad-macro (x y)  ;; but still a danger
+	`(progn
+		;; unusual-name-a and unusual-name-b hold temp values
+		(set unusual-name-a (* ,x ,x))
+		(set unusual-name-b (* ,y ,y))
+		(+ unusual-name-a unusual-name b)))
+</pre>
+
+
+Clearly better, but there is still no way to guarantee that the caller 
+is not using the same unusual variable names.
+
+There is a solution:  you can ask Nu to generate variable names that 
+are guaranteed to be unique at runtime.  These generated variables are 
+known as *gensyms* (a name that originated with Lisp and is short 
+for *generated symbol*).
+
+The way to declare a gensym variable in a Nu macro is to begin the 
+variable name with a double underscore.  When the macro is expanded, 
+all gensym variables are replaced with unique variable names.
+
+<pre>
+(macro goodmacro (x y)
+	`(progn
+		;; __a and __b will be replaced with unique names
+		(set __a (* ,x ,x))
+		(set __b (* ,y ,y))
+		(+ __a __b)))
+</pre>
+
+The above macro has two gensyms variables.  At macro-expansion time, 
+the gensyms will be replaced by variables that are guaranteed to be 
+unique and there will no longer be a chance of conflicting with 
+variables in the calling context.
+
+For the curious, the macro-expansion for the above call to *goodmacro* 
+looks like this:
+
+<pre>
+(progn 
+	(set g1025202362__a (* a a)) 
+	(set g1025202362__b (* b b)) 
+	(+ g1025202362__a g1025202362__b))
+</pre>
+
+Not the prettiest thing to read, but you don't normally need to read
+macro-expanded code.
+
+
+### Destructuring Argument Lists
+
+Nu macros also support *destructuring* argument lists.  This saves you
+from writing extra parsing code to manually pick apart a nested argument 
+list inside the body of the macro.
+
+For example, here is a way to implement a simple for-loop operator 
+with **macro**.  Note how the *var*, *start* and *stop* arguments are 
+grouped into a sublist in the macro parameter list: 
+
+<pre>
+% (macro myfor ((var start stop) *body)
+	`(let ((,var ,start) 
+		(__gstop ,stop))   ;; only evaluate 'stop' once 
+		(while (<= ,var __gstop) 
+			,@*body 
+			(set ,var (+ ,var 1))))) 
+</pre>
+
+
+The above macro looks more natural from the caller's
+perspective as well:
+
+<pre>
+% (set n 0) 
+0 
+% ;; Sum up the first 10 natural integers 
+% (myfor (i 1 10) 
+	(set n (+ n i))) 
+% n 
+55
+</pre>
+
+The above for-loop macro also demonstrates another common idiom when
+writing macros: using a final argument name that starts 
+with an asterisk to capture the remaining unmatched arguments passed 
+to the macro call.  In many macros, including the example above, 
+the "remaining unmatched arguments" will be a body of code.
+
+The **quasiquote-splice** (*,@*) operator conveniently "splices" the
+body of code into the body of the macro.
+
+**macro** can destructure arbitrarily complex argument lists:
+
+<pre>
+% (macro add-diagonal (((x1 x2 x3)
+                          (y1 y2 y3)
+                          (z1 z2 z3))) 
+	`(+ ,x1 ,y2 ,z3)) 
+% (add-diagonal ((1 2 3) (4 5 6) (7 8 9))) 
+15
+</pre>
+
+
+### The Implicit \*args Variable
+
+There is an implicit variable 
+named <em>*args</em> available in the body of a macro definition.
+<em>*args*</em> contains the entire list of arguments passed into the 
+macro.  You can use this however you wish, or ignore it altogether.
+
+You should avoid using <em>*args</em> in your formal argument lists, 
+since it will shadow the implicit <em>*args</em> variable.
+If you happen to do this, Nu will issue a warning and bind <em>*args</em>
+to the usage in the parameter list, so no existing code should break.
+
+Here's a simple example of using <em>*args</em> to print out all of the
+arguments passed into a macro:
+
+<pre>
+% (macro mymacro (operator *operands)
+	`(progn
+		(puts "Arg list: #{*args}")
+		;; do something useful
+		))
+
+% (mymacro + 1 2 3) 
+Arg list: (+ 1 2 3)
+</pre>
+
+
+### Macro Expansion 
+
+When writing or debugging a macro, you can see what code your macro is 
+generating by using the <strong>macrox</strong> operator.
+<strong>macrox</strong> doesn't evaluate the body of generated code -
+it just runs the macro expansion phase and returns the generated form.
+
+<pre>
+% (macrox 
+        (myfor (i 1 10) 
+            (set n (+ n i)))) 
+(let ((i 1) 
+      (g1350490027__gstop 10)) 
+  (while (<= i g1350490027__gstop) 
+    (set n (+ n i)) 
+    (set i (+ i 1))))
+</pre>
+ 
+You can generally <strong>eval</strong> what <strong>macrox</strong> 
+returns, which should have the same effect as just calling the macro
+directly.
 

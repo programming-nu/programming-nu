@@ -1,0 +1,24 @@
+# macro-0
+
+> Note: <strong>macro-0</strong> is the new name for the original Nu macro operator.  The new [<strong>macro</strong>](/operators#macros) operator requires an argument list declaration and therefore is not backward-compatible with the original macro operator.  <strong>macro-0</strong> is still available in Nu, so if you do not want to rewrite your old macros using the new macro format, you can just rename your existing <strong>macro</strong> calls to <strong>macro-0</strong> and everything should still work as before.
+
+
+**macro-0** creates a named macro  in the current evaluation 
+context. It expects two arguments: the macro name, followed by
+the body of the macro.  Inside the macro, its arguments may be accessed by referring to the **margs** special variable.
+
+When a block is created with the **macro-0** operator, no context is kept.  Instead, when the macro is evaluated, all block evaluation takes place in the caller's context.
+To access the macro's arguments, a special symbol **margs** is pushed into that context (and if there's an existing value, that's saved until the macro finishes).
+The **margs** symbol is just the list of unevaluated arguments to the macro; the macro itself determines when and how they are evaluated.  Next, any names in the block that begin with a double underscore are replaced with generated symbols, and then the block is evaluated.  Here's a simple example:
+
+<pre>
+(macro-0 factorial	
+     (set __x (eval (car margs)))
+     (if (== __x 0) 
+         (then 1)
+         (else (* (factorial (- __x 1)) __x)))) 
+</pre>
+
+In practice, you'd never compute factorials like this, but it illustrates an important problem that can occur with macros.  Since macros are evaluated in the caller's context, each recursive evaluation of **factorial** potentially sets our 
+double-underscored <strong>x</strong> to a new value.
+That would be bad, so each time we evaluate this macro in Nu, the double-underscored <strong>x</strong> is replaced with a new automatically-generated name that is guaranteed to be unique.
