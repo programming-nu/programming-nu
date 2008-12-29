@@ -344,12 +344,12 @@ It expects three arguments: the macro name, the argument list, and the
 body of the macro.
 
 A macro is executed in two phases.  The first phase is *macro-expansion*.
-During macro-expansion, the body of the macro is executed using the values 
+During macro-expansion, the body of the macro is evaluated using the values 
 passed into the macro via its argument list.  Any symbols in the calling 
 context that have the same name as the macro arguments are temporarily 
 masked until the expansion is complete.
 
-Once the macro-expansion phase is complete, the execution phase takes place, 
+Once the macro-expansion phase is complete, the *execution* phase takes place, 
 where the macro-expanded code is executed in the caller's context.
 
 Here's a simple example of a macro that increments a variable in-place:
