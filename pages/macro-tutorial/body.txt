@@ -1,0 +1,302 @@
+# Tutorial - Writing Nu Macros
+
+Nu's **macro** facility gives you a lot of power to create your own
+extensions to the core Nu language.  Some extensions 
+reduce the amount of boilerplate code you would otherwise have to 
+write.  Other extensions create new language features that raise the
+level of abstraction in your application, making the code shorter and 
+more expressive.
+
+
+## Simple macros in Nu
+
+The simplest type of macros in Nu are "template" macros,
+where the body of the macro looks like a fill-in-the-blanks form.
+
+A simple example of a template macro is an increment
+operator that updates the value of the passed-in argument
+variable by adding 1 to it:
+
+<pre>
+(macro inc! (n)
+	`(set ,n (+ ,n 1)))
+</pre>
+
+It's easy to read the above macro and visualize what code the
+macro is generating:
+
+<pre>
+; macro expansion of "(inc! a)":
+(set a (+ a 1))
+</pre>
+
+
+In the above example, we use the backquote character 
+(shorthand for the **quasiquote** operator) to generate 
+a **set** statement.
+
+Quasiquote works just like **quote**, except that 
+**quasiquote** allows you to selectively evaluate
+any expresssion inside the quasiquote that starts with
+a comma (shorthand for **quasiquote-eval**).
+
+If we left out the comma in front of the *n* symbols
+inside the body of our macro, the macro-expansion would 
+just echo the **set** statement as-is, no matter what
+value we passed in for the macro argument *n*.
+
+<pre>
+; forgetting to evaluate n's:
+(macro bad-inc! (n)
+	`(set n (+ n 1)))
+
+; macro expansion of "(bad-inc! a)":
+(set n (+ n 1))
+</pre>
+
+
+Note that we don't have to use quasiquoting in order to
+generate a macro body.  We could write a macro that's 
+equivalent to *inc!* using just normal Nu quoting and
+the **list** operator:
+
+<pre>
+; writing inc! without quasiquoting:
+(macro verbose-inc! (n)
+	(list 'set n (list '+ n '1)))
+
+; macro expansion of "(verbose-inc! a)":
+(set a (+ a 1))
+</pre>
+
+
+Although the two macro-expansions are equivalent,
+it's easy to see that Nu's quasiquoting features generally
+make macro code shorter, easier to read, and less error-prone
+than building up expression structures using **list**.
+
+
+The *inc!* macro example is about the
+simplest class of macro that we can define - we're merely 
+substituting a variable name in the body of the generated code.
+
+There are many useful macros that we can create using
+this simple template substitution pattern.  However, these 
+types of macros don't come close to using the full capabilities 
+of Nu's macro features.
+
+
+## Doing more with macros
+
+We're now going to take a look at a different class of macro.
+This macro is an example of building a simple, but powerful
+language feature using the code transformational power of Nu macros.
+
+### let == do
+
+Let's start off by looking at Nu's **let** operator.
+Here's a short example of using **let**:
+
+<pre>
+% (let ((x 1) (y 2))
+      (+ x y))
+3 
+</pre>
+
+The **let** operator establishes a list of variable bindings and 
+evaluates a series of expressions using those bindings along with
+the rest of the calling context.
+
+We can achieve the same effect of **let** by using an anonymous 
+function (a **do** expression).  In fact, this is essentially 
+how Nu implements **let** in Objective-C.
+
+We can write an equivalent <strong>do</strong> version of our 
+above **let** statement like this:
+
+<pre>
+% ((do (x y)
+      (+ x y)) 1 2)
+3
+</pre>
+
+Now, let's pretend that Nu didn't have a built-in **let** operator.
+We'll write our own version of **let** that will transform a 
+Nu-compliant <strong>let</strong> statement into its 
+equivalent **do** block.
+
+### Sketching out the prototype
+
+Since we're transforming code and establishing bindings, a macro
+is our best bet.  Our **let** macro is going to take two arguments:
+
+  1.  a list of bindings
+  1.  a list of expressions to evaluate
+
+Here's our first version:
+
+<pre>
+(macro our-let (bindings *body)
+	;; Needs more work here)
+</pre>
+
+It doesn't do anything yet except establish an argument list
+which is compliant with Nu's built-in **let** operator.
+
+The *bindings* argument is going to hold the list of 
+variable/value pairs:
+
+<pre>
+;; bindings will hold a list like this:
+((x 1) (y 2))
+</pre>
+
+The <em>\*body</em> argument will contain a list of the expressions
+to execute in the body of the **let** block.
+
+To get started writing the macro, we can sketch out what 
+the structure of generated code should look like:
+
+<pre>
+(macro our-let (bindings *body)
+	`((do ([generate variable names list])
+			[insert passed-in body of code])
+		[generate variable values])
+</pre>
+
+We need to separate the bindings list into a list of binding 
+variable names and a list of binding variable values.
+The list of binding variable names will become the generated 
+argument list for our **do** block.
+The list of binding variable values will become the values 
+we pass to the **do** block.
+
+### Building the pieces
+
+We'll do some interactive work in **nush** to get some
+pieces of our macro working.
+
+First, we can get the list of binding variable names by 
+selecting the first element of each binding in the list:
+
+<pre>
+;; set our test values
+% (set testbindings '((x 1) (y 2)))
+((x 1) (y 2))
+
+% (testbindings map: (do (x) (first x)))
+(x y)
+</pre>
+
+Similarly, we can get the list of binding variable values,
+which are the second element of each binding in the list:
+
+<pre>
+% (testbindings map: (do (x) (second x)))
+(1 2)
+</pre>
+
+### Putting it all together
+
+Now we're ready to write our macro using the pieces we
+prototyped above:
+
+<pre>
+(macro-1 our-let (bindings *body)
+	`((do ,(bindings map: (do (x) (first x)))
+			,@*body)
+		,@(bindings map: (do (x) (second x)))))
+</pre>
+
+We start the body of the macro with a quasiquote, so
+any form that's not evaluated by either "," or ",@"
+will be copied as-is to the generated code at 
+macro-expansion time.
+
+We leave the first two parentheses and the "do" 
+keyword unevaluated, since it will become a literal 
+part of the final generated code.
+
+The first evaluated expression within the quasiquote 
+is the code we built in nush that parses out the variable 
+names from the list of bindings.  This will become the 
+argument list for our do block definition.  Since the 
+**map:** function returns its results in a list, we'll 
+have exactly what we need to generate the argument list.
+
+The ",@*body" expression splices the statements that 
+will be the body of code that the our-let call evaluates.
+Note that we used ",@" and not just ",".  ",@" splices 
+the list of statements into the calling expression.
+If we had used "," instead, we would have ended up with 
+an extra set of parentheses surrounding the contents 
+of <em>\*body</em>.
+
+The closing parenthesis after 
+",@\*body" closes the **do** expression.
+
+The final evaluated expression extracts the binding 
+variable values from the *bindings* parameter.  Again, 
+",@" is used to splice the values into the calling 
+expression to avoid erroneously wrapping the arguments
+to the **do** expression in a list.
+
+### Trying it out
+
+It's a good idea to see what code is being generated
+at macro-expansion time.  The **macrox** operator
+runs the macro-expansion phase and returns the 
+macro-expanded code.
+
+<pre>
+% (macrox
+	(our-let ((x 1) (y 2))
+		(+ x y)))
+		
+((do (x y) (+ x y)) 1 2)
+</pre>
+
+That looks just like what we want.  Let's try the
+example we used at the beginning of the tutorial:
+
+<pre>
+% (our-let ((x 1) (y 2))
+	(+ x y))
+3
+</pre>
+
+That looks good too.
+
+### It takes time
+
+Writing good macros takes a bit of practice.  When
+writing a new macro, it often helps to start off by 
+writing down an example of how the macro would be called, 
+and then writing down the code that you would want generated
+from that example macro call.  We did that in this tutorial,
+and it broke the body of the macro down into a few relatively
+simple pieces.
+
+Also, use **macrox** early and often.  Seeing what code 
+your macro is generating is a huge help during development.
+And remember that since **macrox** isn't actually evaluating
+the generated code, you can use it even when you are generating
+partial code that wouldn't otherwise be valid to evaluate.
+
+### For more information
+
+If you have the Nu source code distribution, there are several 
+examples of macro usage in the *test* subdirectory.  Look in the
+following files:
+
+*  test/test_macrox.nu
+*  test/test_onlisp.nu
+
+Also, Paul Graham's excellent book "On Lisp" devotes several chapters 
+to discussing how to write good macros.  Nu's macro facility 
+has most of the features of Lisp's **defmacro** operator,
+so many of the examples will translate with minor changes.
+In fact, the our-let macro developed here was based on an example
+in chapter 11 of Graham's book.  Graham's book is available
+online in PDF format [here](http://www.paulgraham.com/onlisptext.html).
+
