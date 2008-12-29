@@ -87,3 +87,81 @@ As a convenience, the single quote character can be used to equivalently quote o
 </pre>
 
 **quote** can also be used on objects besides lists; often it is used to refer to a symbol without evaluating it.
+
+
+### Quasiquote
+
+
+The <strong>quasiquote</strong> operator is similar to Nu's **quote** operator,
+except that <strong>quasiquote</strong> allows evaluation of selected subforms within the
+quasiquoted form by using <strong>quasiquote-eval</strong> or 
+<strong>quasiquote-splice</strong>.
+Each of the quasiquote operators has a convenient abbreviation that 
+is commonly used in place of the spelled-out operator name:
+
+<table width="100%">
+<tr><th align="left" width="50%">Operator</th>
+<th align="left" width="50%">Abbreviation</th></tr>
+<tr><td>quasiquote</td><td>`</td></tr>
+<tr><td>quasiquote-eval</td><td>,</td></tr>
+<tr><td>quasiquote-splice</td><td>,@</td></tr>
+</table>
+
+  
+By itself, <strong>quasiquote</strong> works just like <strong>quote</strong>:
+
+<pre>
+% `(a b c)
+(a b c)
+</pre>
+
+<strong>quasiquote-eval</strong> can be used to turn on evaluation for
+selected subforms:
+
+<pre>
+% (set a 1)
+1
+% (set b 2)
+2
+
+% ; turn on evaluation for b
+% `(a ,b c)
+(a 2 c)
+</pre>
+
+A more complex evaluation:
+
+<pre>
+% `(x y z ,a ,b ,(+ a b))
+(x y z 1 2 3)
+</pre>
+
+<strong>quasiquote-splice</strong> also evaluates its form, but it differs from 
+<strong>quasiquote-eval</strong> in how the result is returned.
+With <strong>quasiquote-splice</strong>, the evaluation must return a list.
+This list is then "spliced" in-line within the surrounding form of the caller
+by inserting the contents of the list (not the list itself) into the caller's
+list:
+
+<pre>
+% ; Using quasiquote-eval:
+% `(1 ,(list 2 3))
+(1 (2 3))
+
+% ; Using quasiquote-splice:
+% `(1 ,@(list 2 3))
+(1 2 3)
+</pre>
+
+Neither <strong>quasiquote-eval</strong> nor <strong>quasiquote-splice</strong>
+can be used outside of a <strong>quasiquote</strong> form.
+
+<pre>
+% (list 1 ,a)
+NuQuasiquoteEvalOutsideQuasiquote: Comma must be inside a backquote
+</pre>
+
+The quasiquote operators are particularly useful when writing 
+[macros](/operators#macros), as the code in the macro body ends up looking 
+much closer to the code that the macro-expansion phase generates.
+
