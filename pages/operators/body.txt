@@ -295,9 +295,9 @@ can be nil if no additional arguments are specified.
 6
 </pre>
 
-When you define a block or function, an implicit variable named *\*args* 
-is available in the body of the function. *\*args* contains a list of all 
-arguments that are passed into the block or function.
+An implicit variable named *\*args* is available in the body of a block
+or function. *\*args* contains a list of all arguments that are passed
+into the block or function.
 
 <pre>
 % (function f (a b)
@@ -307,9 +307,10 @@ arguments that are passed into the block or function.
 Arg1 = 1, all args = (1 2)
 </pre>
 
-You should avoid using a parameter named *\*args* in your function or 
-block definition.  However, if you do define a variable named *\*args* 
-in your function's argument list, it will override the implicit variable.
+It's a good idea to not use function or block argument parameters
+named *\*args* so that there is no conflict with the implicit variable.
+However, if a parameter named *\*args* appears in a block or function's
+argument list, it will override the implicit variable.
 
 When a block is created with the **function** operator or called 
 anonymously, all of its arguments are evaluated in the calling context 
@@ -317,12 +318,6 @@ before the block is evaluated. Most of the time, the evaluation of code
 in a block takes place in the context that was saved when the block was 
 created.
 
-There are times, however, when you might want to write a function that
-does *not* evaluate all of its arguments before invoking the function
-block code (think of writing your own version of **if**).  There is no
-way to achieve this with a function or block.  However, you can still 
-write such an operator in Nu.  But to do this, you don't use functions;
-you use *macros*.
 
 ## <a name="macros">Macros</a>
 
@@ -341,7 +336,7 @@ features that are not available when defining a function or block:
 
 **macro** creates a named macro in the current evaluation context.
 It expects three arguments: the macro name, the argument list, and the 
-body of the macro.
+body of the macro.  The body of a macro consists of one or more expressions.
 
 A macro is executed in two phases.  The first phase is *macro-expansion*.
 During macro-expansion, the body of the macro is executed using the values 
@@ -361,8 +356,8 @@ Here's a simple example of a macro that increments a variable in-place:
 
 
 During the macro-expansion phase, Nu generates code using the calling 
-context and the argument list variables.  Calling the above macro
-passing in a variable *a* expands to this:
+context and the argument list variables.  Calling the *inc!* macro 
+with an argument of *a* expands to this:
 
 <pre>
 ;; the macro-expansion phase for the call (inc! a):
@@ -370,8 +365,7 @@ passing in a variable *a* expands to this:
 </pre>
 
 Normally, macro-expansion is followed immediately by execution so
-you don't see the intermediary code above.  You just see the results
-of the macro call:
+the above intermediate macro-expansion code is not seen:
 
 <pre>
 % (set a 1)
@@ -385,11 +379,11 @@ of the macro call:
 
 ### Gensyms
 
-There are often times when you need to use local variables in the body
-of a macro.  However, unlike a function, the macro is executed in the 
-context of the caller, and you need a way to avoid having the names of 
-the local variables conflict with the names of variables in the calling 
-context.
+There are often times when local variables are needed in the body of 
+a macro.  Since a macro is executed in the context of the caller, there
+is a chance that the name of a local variable in the macro definition 
+might conflict with a name of a variable that is already defined
+in the calling context.
 
 An example of how macro variables can conflict with the calling context:
 
@@ -402,10 +396,11 @@ An example of how macro variables can conflict with the calling context:
 		(+ a b)))
 </pre>
 
-The macro computes the sum of the squares of x and y (you don't need a 
-macro for this, but it illustrates an important point).  Let's try it 
-out in nush with some variables that conflict with the *a* and *b* 
-temporary variables in the body of the macro:
+The above macro computes the sum of the squares of x and y (a macro
+isn't needed for this, but it illustrates an important point). 
+If a variable named *a* or *b*  is already defined in the calling
+context, the body of *badmacro* will overwrite the calling context's
+values:
 
 <pre>
 % ;; nush is the calling context
@@ -421,11 +416,9 @@ temporary variables in the body of the macro:
 4
 </pre>
 
-The macro changed the values of *a* and *b* in nush.  Clearly, not what 
-we were expecting.
 
-You could make up unusual variable names that are unlikely to be used 
-by the caller:
+Unusual variable names could be employed in the body of the macro
+to reduce the chances of a conflict in variable names:
 
 <pre>
 (macro not-as-bad-macro (x y)  ;; but still a danger
@@ -437,10 +430,10 @@ by the caller:
 </pre>
 
 
-Clearly better, but there is still no way to guarantee that the caller 
-is not using the same unusual variable names.
+This is clearly safer, but there is still no way to guarantee that 
+the caller is not using the same unusual variable names.
 
-There is a solution:  you can ask Nu to generate variable names that 
+There is a solution:  Nu can generate variable names that 
 are guaranteed to be unique at runtime.  These generated variables are 
 known as *gensyms* (a name that originated with Lisp and is short 
 for *generated symbol*).
@@ -458,7 +451,7 @@ all gensym variables are replaced with unique variable names.
 		(+ __a __b)))
 </pre>
 
-The above macro has two gensyms variables.  At macro-expansion time, 
+The above macro has two gensym variables.  At macro-expansion time, 
 the gensyms will be replaced by variables that are guaranteed to be 
 unique and there will no longer be a chance of conflicting with 
 variables in the calling context.
@@ -473,19 +466,17 @@ looks like this:
 	(+ g1025202362__a g1025202362__b))
 </pre>
 
-Not the prettiest thing to read, but you don't normally need to read
-macro-expanded code.
 
 
 ### Destructuring Argument Lists
 
-Nu macros also support *destructuring* argument lists.  This saves you
-from writing extra parsing code to manually pick apart a nested argument 
-list inside the body of the macro.
+Nu macros also support *destructuring* argument lists.  Destructuring 
+takes the place of writing extra parsing code to manually pick apart 
+a nested argument list inside the body of a macro.
 
 For example, here is a way to implement a simple for-loop operator 
-with **macro**.  Note how the *var*, *start* and *stop* arguments are 
-grouped into a sublist in the macro parameter list: 
+with **macro**.  The *var*, *start* and *stop* arguments are 
+grouped into a sublist within the macro parameter list: 
 
 <pre>
 % (macro myfor ((var start stop) *body)
@@ -516,8 +507,8 @@ with an asterisk to capture the remaining unmatched arguments passed
 to the macro call.  In many macros, including the example above, 
 the "remaining unmatched arguments" will be a body of code.
 
-The **quasiquote-splice** (*,@*) operator conveniently "splices" the
-body of code into the body of the macro.
+The <strong>,@</strong> operator (shorthand for **quasiquote-splice**) conveniently
+"splices" the body of code into the body of the macro.
 
 **macro** can destructure arbitrarily complex argument lists:
 
@@ -533,15 +524,15 @@ body of code into the body of the macro.
 
 ### The Implicit \*args Variable
 
-There is an implicit variable 
-named <em>*args</em> available in the body of a macro definition.
-<em>*args*</em> contains the entire list of arguments passed into the 
-macro.  You can use this however you wish, or ignore it altogether.
+As in functions and blocks, there is an implicit variable named 
+<em>*args</em> available in the body of a macro definition.
+<em>*args</em> contains the entire list of arguments passed into the 
+macro.
 
-You should avoid using <em>*args</em> in your formal argument lists, 
-since it will shadow the implicit <em>*args</em> variable.
-If you happen to do this, Nu will issue a warning and bind <em>*args</em>
-to the usage in the parameter list, so no existing code should break.
+It's a good idea to not declare a macro argument parameter
+named *\*args* so that there is no conflict with the implicit variable.
+However, if a parameter named *\*args* appears in a macro's
+argument list, it will override the implicit variable.
 
 Here's a simple example of using <em>*args</em> to print out all of the
 arguments passed into a macro:
@@ -560,23 +551,29 @@ Arg list: (+ 1 2 3)
 
 ### Macro Expansion 
 
-When writing or debugging a macro, you can see what code your macro is 
-generating by using the <strong>macrox</strong> operator.
-<strong>macrox</strong> doesn't evaluate the body of generated code -
-it just runs the macro expansion phase and returns the generated form.
+When writing or debugging a macro, it is sometimes helpful to see 
+what code the macro-expansion phase is generating without actually
+evaluating the macro form.  **macrox** does exactly this.
 
 <pre>
 % (macrox 
         (myfor (i 1 10) 
-            (set n (+ n i)))) 
+            (set n (+ n i))))
+
 (let ((i 1) 
       (g1350490027__gstop 10)) 
-  (while (<= i g1350490027__gstop) 
+  (while (\<= i g1350490027__gstop) 
     (set n (+ n i)) 
     (set i (+ i 1))))
 </pre>
  
-You can generally <strong>eval</strong> what <strong>macrox</strong> 
-returns, which should have the same effect as just calling the macro
-directly.
+The macro-expanded code that is returned by **macrox** can
+generally be evaluated directly by **eval**, which should have 
+the same effect as just calling the macro directly.
+
+
+### More about macros
+
+A short tutorial on writing Nu macros can be found [here](/macro-tutorial).
+
 
