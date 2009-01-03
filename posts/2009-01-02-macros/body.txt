@@ -1,0 +1,11 @@
+Thanks to Jeff Buck and Issac Trotts, we have some nice changes coming to Nu macros.
+
+The changes are modeled on the description of macros in Paul Graham's 
+[On Lisp](http://www.paulgraham.com/onlisptext.html),
+so our new macro facility should feel familiar to experienced Lisp programmers.
+
+Currently the changes are in my (Tim's) [git repository](http://github.com/timburks/nu),
+and they'll be included in the next release of Nu (0.4.0).
+
+For more detail, see [Jeff's excellent tutorial](http://programming.nu/macro-tutorial).
+
