@@ -4,17 +4,14 @@
 
 Here is a link to a binary installer for Nu.  It will install the Nu framework in <code>/Library/Frameworks</code>, the Nu shell and several utilities in <code>/usr/local/bin</code>, and examples and support files in <code>/usr/local/share</code>.
 
-The Nu binary installer: [Nu-0.3.3.dmg](/releases/Nu-0.3.3.dmg)
+The Nu binary installer: [Nu-0.4.0.dmg](/releases/Nu-0.4.0.dmg)
 
 ## <a name="source">Source</a>
 
 Here is a link to the latest source release for Nu.  To build and install Nu, follow these [instructions](/installing).
 
-The Nu source release: [Nu-0.3.3.tgz](/releases/Nu-0.3.3.tgz)
+The Nu source release: [Nu-0.4.0.tgz](/releases/Nu-0.4.0.tgz)
 
 ## <a name="git">Git</a>
 
-The Nu source code is managed with [git](http://git.or.cz). You can browse the Nu repository at [code.neontology.com](http://code.neontology.com). To get a local copy of the Nu repository, use the following command:
-<pre>
-git clone git://code.neontology.com/Nu.git
-</pre>
+The Nu source code is managed with [git](http://git.or.cz). You can browse and download the Nu repository at [github.com/timburks/nu](http://github.com/timburks/nu). 

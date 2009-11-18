@@ -76,7 +76,7 @@
      (- (id) path is
         (self descriptionWithCalendarFormat:"%Y/%m/%d" timeZone:nil locale:nil)))
 
-(macro render-partial
+(macro-0 render-partial
      (try
          (set __name (eval (car margs)))
          (set __result (eval (NuTemplate codeForString:(NSString stringWithContentsOfFile:"views/_#{__name}.nuhtml"))))
@@ -89,7 +89,7 @@
                 (puts "error in template _#{__name}.nuhtml (#{(__exception name)} #{(__exception reason)})")
                 "")))
 
-(macro render-page
+(macro-0 render-page
      (try
          (set __name (eval (car margs)))
          (eval (NuTemplate codeForString:(NSString stringWithContentsOfFile:"views/#{__name}.nuhtml")))
@@ -97,7 +97,7 @@
                 (puts "error in template #{__name}.nuhtml (#{(__exception name)} #{(__exception reason)})")
                 "")))
 
-(macro render-xml
+(macro-0 render-xml
      (try
          (set __name (eval (car margs)))
          (eval (NuTemplate codeForString:(NSString stringWithContentsOfFile:"views/#{__name}.nuxml")))

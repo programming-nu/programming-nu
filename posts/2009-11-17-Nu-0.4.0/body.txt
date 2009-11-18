@@ -1,0 +1,15 @@
+
+See the [downloads](/downloads) page for this long-overdue update to Nu.
+
+The most visible change in this release is that the **macro** operator 
+has been switched to refer to **macro-1** 
+instead of **macro-0** (the original
+Nu macro facility). That is deprecated but kept for compatibility. 
+
+We've also been making good progress running Nu on Linux-based systems.
+Currently a few small sites (including Tim's [blog](http://neontology.com) 
+are running with Nu on Rackspace Cloud Servers. See notes/DEBIANINSTALL in the
+Nu source distribution for details about building for Debian.
+
+
+

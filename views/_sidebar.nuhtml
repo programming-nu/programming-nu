@@ -2,16 +2,6 @@
 
 <div class="sidebar-node">
 <h2><a href="/about">About Nu&#8482;</a></h2>
-<h2><a href="/about-me">About Me</a></h2>
-<ul>
-<li><a href="http://twitter.com/timburks">twitter.com/timburks</a></li>
-<li><a href="http://del.icio.us/timburks">del.icio.us/timburks</a></li>
-<li><a href="http://blog.neontology.com">blog.neontology.com</a></li>
-<li><a href="http://tootsweet.com">tootsweet software</a></li>
-</ul>
-
-<a href="http://tootsweet.com/masyu"><img src="/files/masyu-solved.png" style="margin-top:10px" /></a>
-
 <h2><a href="http://www.ohloh.net/projects/11589?p=Nu">
 <img src="/files/ohloh_profile.png" alt="ohloh profile"/>
 </a> </h2>
@@ -19,6 +9,14 @@
 
 <div class="sidebar-node">
 <h2><a href="/community">Community</a></h2>
+<ul>
+<li><a href="http://twitter.com/timburks">twitter.com/timburks</a></li>
+<li><a href="http://twitter.com/itfrombit">twitter.com/itfrombit</a></li>
+<li><a href="http://twitter.com/grayson">twitter.com/grayson</a></li>
+<li><a href="http://twitter.com/jsallis">twitter.com/jsallis</a></li>
+<li><a href="http://twitter.com/importantshock">twitter.com/importantshock</a></li>
+<li><a href="mailto:tim@neontology.com">...who have we missed?</a></li>
+</ul>
 </div>
 
 <div class="sidebar-node">
@@ -36,8 +34,8 @@
 <div class="sidebar-node">
 <h2>Git Repositories</h2>
 <ul>
-<li><a href="http://github.com/timburks">github.com/timburks</a></li>
-<li><a href="http://code.neontology.com">code.neontology.com</a></li>
+<li><a href="http://github.com/timburks/nu">github.com/timburks/nu</a></li>
+<li><a href="http://github.com/timburks/programmingnu">github.com/timburks/programmingnu</a></li>
 </ul>
 </div>
 
