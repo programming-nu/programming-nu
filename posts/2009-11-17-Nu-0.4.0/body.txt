@@ -6,6 +6,8 @@ has been switched to refer to **macro-1**
 instead of **macro-0** (the original
 Nu macro facility). That is deprecated but kept for compatibility. 
 
+Support for garbage collection is now compiled in by default (Mac OS only).
+
 We've also been making good progress running Nu on Linux-based systems.
 Currently a few small sites (including Tim's blog)
 are running with Nu on Rackspace Cloud Servers. See notes/DEBIANINSTALL in the

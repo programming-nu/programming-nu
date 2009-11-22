@@ -1,0 +1,32 @@
+I'm collecting some tips for using the vim code editor with Nu.
+
+* To reformat the contents of your buffer with nubile, use the following command:
+
+<pre><code>:1,$ !nubile
+</code></pre>
+
+* Syntax highlight is available with a few edits to the basic vim installation.
+On my Snow Leopard system, the relevant files are in /usr/share/vim/vim72.
+First, to associate Nu with the .nu file type, edit the filetype.vim file.
+I added the following two lines to mine:
+
+<pre><code>" Nu
+au BufNewFile,BufRead *.nu,*.nujson             setf nu
+</code></pre>
+
+You'll also need a syntax/nu.vim file. I used syntax/scheme.vim
+as a starting point and will post mine as it develops.
+
+To enable syntax highlighting, run:
+
+<pre><code>:syntax enable
+</code></pre>
+
+And you can selectively turn it off and on with the following:
+
+<pre><code>:syntax on
+:syntax off
+</code></pre>
+
+
+
