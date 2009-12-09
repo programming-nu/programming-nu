@@ -1,0 +1,6 @@
+
+I've been nagging Tim to say something about the stability of recent releases of Nu, so he asked me to write this.  
+
+Nu is a new language (no pun intended — see below for the etymology of the name Nu).  It hasn't yet formed the basis of an impressive suite of stable software, and you'd think hard before using it to write anything mission-critical.
+
+Despite that, it is actually rather stable.  Let me say more about why.
