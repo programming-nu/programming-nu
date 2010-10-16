@@ -8,13 +8,16 @@
 
 (load "YAML")
 (load "template")
-(load "NuMarkdown")
+;(load "NuMarkdown")
 
 (class NSObject (+ objectWithYAML:(id) yaml is (self fromYAML:yaml)))
 
 (class NSString
-     
-     (- (id) markdownToHTML is (NuMarkdown convert:self)))
+     (- (id) markdownToHTML is
+        (set x (NSString stringWithShellCommand:"markdown" standardInput:(self dataUsingEncoding:NSUTF8StringEncoding)))
+	x))
+
+ ;    (- (id) markdownToHTML is self)) ;; (NuMarkdown convert:self)))
      
 (class NSDictionary
      
@@ -32,9 +35,15 @@
 
 (class NSDate
      
+     (- descriptionWithCalendarFormat:format is
+	(self descriptionWithCalendarFormat:format timeZone:(NSTimeZone timeZoneWithName:"America/Los_Angeles") locale:nil))
+
      ;; Get a nice representation of a date for display.
-     (- (id) descriptionForBlog is
-        (self descriptionWithCalendarFormat:"%A, %d %b %Y"))
+     (- descriptionForBlog is
+        (set s (self descriptionWithCalendarFormat:"%A %B %e, %Y" timeZone:(NSTimeZone timeZoneWithName:"America/Los_Angeles") locale:nil))
+        (s stringByReplacingOccurrencesOfString:" 0" withString:" "))
+
+     ;;(- (id) descriptionForBlog is (self descriptionWithCalendarFormat:"%A, %d %b %Y"))
      
      ;; Get a y-m-d representation of a date.
      (- (id) ymd is
@@ -117,7 +126,9 @@
          (set extended (NSString stringWithContentsOfFile:(+ "pages/" pageFile "/extended.txt")))
          (info setObject:body forKey:"body")
          (info setObject:extended forKey:"extended")
-         (info setObject:(NSDate dateWithNaturalLanguageString:(info "creationDate")) forKey:"creationDate")
+(info creationDate:((info creationDate:) stringByReplacingOccurrencesOfString:"-0800" withString:"-08:00"))
+(info creationDate:((info creationDate:) stringByReplacingOccurrencesOfString:"-0700" withString:"-07:00"))
+         (info setObject:(NSDate dateWithString:(info "creationDate")) forKey:"creationDate")
          (info setObject:YES forKey:"permanent")
          (pages << info)))
 
@@ -131,7 +142,9 @@
          (set extended (NSString stringWithContentsOfFile:(+ "posts/" postFile "/extended.txt")))
          (info setObject:body forKey:"body")
          (info setObject:extended forKey:"extended")
-         (info setObject:(NSDate dateWithNaturalLanguageString:(info "creationDate")) forKey:"creationDate")
+(info creationDate:((info creationDate:) stringByReplacingOccurrencesOfString:"-0800" withString:"-08:00"))
+(info creationDate:((info creationDate:) stringByReplacingOccurrencesOfString:"-0700" withString:"-07:00"))
+         (info setObject:(NSDate dateWithString:(info "creationDate")) forKey:"creationDate")
          (info setObject:(+ "/posts/" ((info "creationDate") path) "/" (info "permalink")) forKey:"linkForDate")
          (posts << info)))
 
