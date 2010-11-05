@@ -1,0 +1,19 @@
+
+NuKit is a collection of frameworks that support the development of web sites and services with Nu and Objective-C.
+
+NuKit installs Nu and the following additional frameworks.
+
+- Kurt, a single-threaded scriptable web server.
+- NuHTTPHelpers, class extensions to support HTTP services.
+- NuJSON, SBJSON (aka simple-json) repackaged for use with Nu.
+- NuMongoDB, an Objective-C interface to MongoDB.
+- NuMarkup, Nu operators for generating HTML and XML markup.
+- NuUUID, a simple wrapper around libuuid.
+
+All frameworks are installed in /Library/Frameworks.
+
+nush, the Nu shell, is installed in /usr/local/bin and a few other files are stored under /usr/local.
+
+Get the latest NuKit here: 
+[NuKit-1.0.0.dmg](/releases/NuKit-1.0.0.dmg)
+

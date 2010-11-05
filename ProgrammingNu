@@ -1,0 +1,6 @@
+#!/usr/local/bin/nush
+(load "Kurt")
+
+(get "/" (REQUEST redirectResponseToLocation:"/index"))
+
+(Kurt run)

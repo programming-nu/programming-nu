@@ -2,9 +2,10 @@
 
 <div class="sidebar-node">
 <h2><a href="/about">About Nu&#8482;</a></h2>
-<h2><a href="http://www.ohloh.net/projects/11589?p=Nu">
-<img src="/files/ohloh_profile.png" alt="ohloh profile"/>
-</a> </h2>
+</div>
+
+<div class="sidebar-node">
+<h2><a href="/nukit">Want it now?<br/>Get NuKit</a></h2>
 </div>
 
 <div class="sidebar-node">
