@@ -6,7 +6,7 @@
 (set $siteDescription "The Nu Language Website")
 (set $siteAddress "http://programming.nu")
 
-(load "YAML")
+(load "NuYAML")
 (load "template")
 ;(load "NuMarkdown")
 

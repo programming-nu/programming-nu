@@ -1,0 +1,11 @@
+
+One of my favorite uses of Nu is for building web apps and APIs for
+mobile apps. To support that, I've evolved a set of frameworks that
+support serving and making HTTP requests, generating markup, 
+data serialization and database access. To keep things flexible,
+each framework can be built separately and is in a separate git
+repository. But to make them simple to use, I've created a binary
+installer that installs everything from a single package.
+
+To get it, visit the [NuKit](/nukit) page.
+

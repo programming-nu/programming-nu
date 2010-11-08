@@ -8,12 +8,17 @@ NuKit installs Nu and the following additional frameworks.
 - NuJSON, SBJSON (aka simple-json) repackaged for use with Nu.
 - NuMongoDB, an Objective-C interface to MongoDB.
 - NuMarkup, Nu operators for generating HTML and XML markup.
+- NuCURL, a simple wrapper around libcurl.
 - NuUUID, a simple wrapper around libuuid.
 
 All frameworks are installed in /Library/Frameworks.
 
 nush, the Nu shell, is installed in /usr/local/bin and a few other files are stored under /usr/local.
 
+Source code for all frameworks is available on github.
+
 Get the latest NuKit here: 
 [NuKit-1.0.0.dmg](/releases/NuKit-1.0.0.dmg)
+
+NuKit requires Mac OS 10.6 and is a 64-bit binary.
 
