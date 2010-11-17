@@ -42,7 +42,7 @@ Except for attributed quotations, the text of this website is copyrighted by Neo
 
 Nu&#8482; and Programming Nu&#8482; are trademarks of [Neon Design Technology, Inc.](http://www.neontology.com)
 
-<div class="vcard" style="float:left; width:350px; padding:0; background:#ddd; border:2px solid #ddd; margin-right:2em; margin-bottom:10px">
+<div class="vcard" style="float:left; width:400px; padding:0; background:#ddd; border:2px solid #ddd; margin-right:2em; margin-bottom:10px">
 <div style="float:left; margin:0; padding:5px 5px 1px 5px;">
 <a href="/about-me">
 <img  src="/files/tim.jpg" height="120" alt="photo" class="photo"  style="padding:0"/></a>
