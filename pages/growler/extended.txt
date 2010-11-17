@@ -2,4 +2,4 @@ This small example uses the console to send messages to Growl.  You'll need Grow
 
 Build and run it with "nuke run".
 
-[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Growler;hb=HEAD)
+[View the source in the git archives.](http://github.com/timburks/nu/tree/master/examples/Growler)

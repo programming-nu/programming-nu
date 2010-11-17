@@ -29,7 +29,7 @@
 
 * The arithmetic operators are underpowered.  Currently they coerce their operands to doubles and don't do anything reasonable for strings.  An improvement is in the works.
 
-For even more detail, see the git logs at [code.neontology.com](http://code.neontology.com).
+For even more detail, see the git logs at [github.com/timburks/nu](http://github.com/timburks/nu).
 
 ### OS 10.4 support
 

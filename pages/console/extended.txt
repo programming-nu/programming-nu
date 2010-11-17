@@ -2,4 +2,4 @@ Since every developer wants a Nu console in his or her app (to know it is to lov
 
 Build and run it with "nuke run".
 
-[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/Console;hb=HEAD)
+[View the source in the git archives.](http://github.com/timburks/nu/tree/master/examples/Console)

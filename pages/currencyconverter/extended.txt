@@ -2,4 +2,4 @@ This is a Nu version of another classic example.  It was created as a transforma
 
 Build and run it with "nuke run".
 
-[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/CurrencyConverter;hb=HEAD)
+[View the source in the git archives.](http://github.com/timburks/nu/tree/master/examples/CurrencyConverter)

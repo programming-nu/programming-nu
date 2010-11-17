@@ -2,4 +2,4 @@ RandomApp is a complete Nu implementation of a classic example from Aaron Hilleg
 
 To build it, just type "nuke" in the project directory.  Then you can run the application by double-clicking on it, or you can build and run in a single step by typing "nuke run".
 
-[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/RandomApp;hb=HEAD)
+[View the source in the git archives.](http://github.com/timburks/nu/tree/master/examples/RandomApp)

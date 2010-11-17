@@ -1,2 +1,0 @@
-[NuHTTP](/posts/2007/11/28/nuhttp) includes a simple example that shows how you might use it to build a web application with Nu.  Here's another, and this one includes CoreData.  It's very preliminary, the roughest code that I've posted so far, but it's also something that I hope will get a lot of use.
-

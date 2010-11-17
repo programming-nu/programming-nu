@@ -51,10 +51,10 @@ Nu&#8482; and Programming Nu&#8482; are trademarks of [Neon Design Technology, I
 <a href="/about-me" style="font-size:200%; font-weight:bold; color:#101010; text-decoration:none">Tim Burks</a>
 <div class="org" style="margin-top:10px;">Neon Design Technology, Inc.</div>
 <div class="adr">
-<div class="street-address">180 Second Street, Suite B-2</div>
-<span class="locality">Los Altos</span>, 
+<div class="street-address">220 South California Avenue, Suite 250</div>
+<span class="locality">Palo Alto</span>, 
 <span class="region">CA</span>
-<span class="postal-code">94022</span>
+<span class="postal-code">94306</span>
 </div>
 
 <div style="margin-top:10px">tim at neontology dot com</div>

@@ -1,3 +1,2 @@
 I keep saying "this is the last 10.4 release", but this set of changes wasn't quite big enough to call 0.3.0, and I wanted to get it out so that I could share a few more things that I'll post soon.  Nu-0.2.3 is available on the downloads page.  It is a universal binary that was built on 10.4(Intel) and tested on 10.4(Intel) and 10.5(Intel).  
 
-For details, see the [commit log.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=commit;h=7300afb306ba422612f9f25b3b4a4f11a2a545f9)

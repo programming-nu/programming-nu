@@ -17,4 +17,4 @@ We briefly explore some internal details of Delicious Library, then load a scrip
 
 To see the full screencast, click on the image or [click here](/files/DeliciousFunWithNu.mov).
 
-[View the source in the git archives.](http://code.neontology.com/gitweb.cgi?p=Nu.git;a=tree;f=examples/NuAnywhere;hb=HEAD)
+[View the source in the git archives.](http://github.com/timburks/nu/tree/master/examples/NuAnywhere)
