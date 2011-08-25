@@ -9,6 +9,14 @@
 </tr>
 
 <tr>
+<td>25-Aug-2011</td>
+<td><a href="/releases/Nu-2.0.0.dmg">Nu-2.0.0.dmg</a></td>
+<td><a href="/releases/Nu-2.0.0.tgz">Nu-2.0.0.tgz</a></td>
+<td>Simplifications and improvements for Mac OS 10.7 (Lion).
+</td>
+</tr>
+
+<tr>
 <td>17-Nov-2009</td>
 <td><a href="/releases/Nu-0.4.0.dmg">Nu-0.4.0.dmg</a></td>
 <td><a href="/releases/Nu-0.4.0.tgz">Nu-0.4.0.tgz</a></td>

@@ -1,0 +1,23 @@
+Nu 2.0 is now available through a binary installer. 
+
+See the [downloads](/downloads) page for this update to Nu.
+
+Nu 2.0 is a simpler, smaller version that uses new
+features in iOS 4.3 and Mac OS 10.7 to eliminate external dependencies
+and a few internal components.
+
+* NSRegularExpression replaces PCRE.
+* imp_implementationWithBlock() is used to generate method implementations.
+  Previously we used libFFI for this on MacOS and a precompiled pool of
+  method handlers on iOS. Now this pool is no longer needed.
+* The NuSymbolTable is now just an NSMutableDictionary.
+
+To make it easier to add Nu as a drop-in component of iOS and Mac apps,
+the source code has been combined into two files, Nu.h and Nu.m. These
+are currently available in the "amalgamated" branch in the git repository,
+and will likely be the primary source for Nu going forward.
+
+Nu 2.0 is intended for systems running Mac OS 10.7 or iOS 4.3 and 
+their successors. For conciseness and simplicity, support for all 
+other platforms is dropped.
+
