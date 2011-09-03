@@ -9,6 +9,14 @@
 </tr>
 
 <tr>
+<td>02-Sep-2011</td>
+<td><a href="/releases/Nu-2.0.1.dmg">Nu-2.0.1.dmg</a></td>
+<td><a href="/releases/Nu-2.0.1.tgz">Nu-2.0.1.tgz</a></td>
+<td>Better init handling and parsing.
+</td>
+</tr>
+
+<tr>
 <td>25-Aug-2011</td>
 <td><a href="/releases/Nu-2.0.0.dmg">Nu-2.0.0.dmg</a></td>
 <td><a href="/releases/Nu-2.0.0.tgz">Nu-2.0.0.tgz</a></td>
