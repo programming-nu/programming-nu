@@ -40,7 +40,3 @@ Except for attributed quotations, the text of this website is copyrighted by Rad
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="http://creativecommons.org/images/public/somerights20.png"/></a><br/>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/us/">Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 United States License</a>.
 
-<div style="margin-top:10px">tim at neontology dot com</div>
-</div>
-</div>
-<br style="clear:both" />

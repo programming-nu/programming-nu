@@ -3,7 +3,7 @@
 <img src="/files/recycle-s.png" height="50" alt="recycling symbol" />
 </div>
 <div style="float:left">
-<h1><a href="/"><%= $siteTitle %></h1>
+<h1><a href="/"><%= $siteTitle %></a></h1>
 <h3><%= $siteSubtitle %></h3>
 </div>
 </div>

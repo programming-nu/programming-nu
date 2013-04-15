@@ -10,7 +10,7 @@
 <div id="container">
 <%= (render-partial "header") %>
 <div id="content">
-<% ((posts subarrayWithRange:'(0 4)) eachWithIndex: (do (post index)  %>
+<% ((posts subarrayWithRange:'(0 3)) eachWithIndex: (do (post index)  %>
 <div class="atomentry" style="clear:both">
 <h2 class="title">
 <a href="<%= (post "linkForDate") %>">
