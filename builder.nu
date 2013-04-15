@@ -6,11 +6,11 @@
 (set $siteDescription "The Nu Language Website")
 (set $siteAddress "http://programming.nu")
 
-(load "YAML")
+(load "RadKit")
 (load "template")
 ;(load "NuMarkdown")
 
-(class NSObject (+ objectWithYAML:(id) yaml is (self fromYAML:yaml)))
+(class NSObject (+ objectWithYAML:(id) yaml is (yaml YAMLValue)))
 
 (class NSString
      (- (id) markdownToHTML is
@@ -85,9 +85,9 @@
      (- (id) path is
         (self descriptionWithCalendarFormat:"%Y/%m/%d" timeZone:nil locale:nil)))
 
-(macro-0 render-partial
-     (try
-         (set __name (eval (car margs)))
+(macro render-partial (name)
+     `(try
+         (set __name ,name)
          (set __result (eval (NuTemplate codeForString:(NSString stringWithContentsOfFile:"views/_#{__name}.nuhtml"))))
          (unless __result
                  ;; log expanded template for debugging
@@ -98,17 +98,17 @@
                 (puts "error in template _#{__name}.nuhtml (#{(__exception name)} #{(__exception reason)})")
                 "")))
 
-(macro-0 render-page
-     (try
-         (set __name (eval (car margs)))
+(macro render-page (name)
+     `(try
+         (set __name ,name)
          (eval (NuTemplate codeForString:(NSString stringWithContentsOfFile:"views/#{__name}.nuhtml")))
          (catch (__exception)
                 (puts "error in template #{__name}.nuhtml (#{(__exception name)} #{(__exception reason)})")
                 "")))
 
-(macro-0 render-xml
-     (try
-         (set __name (eval (car margs)))
+(macro render-xml (name)
+     `(try
+         (set __name ,name)
          (eval (NuTemplate codeForString:(NSString stringWithContentsOfFile:"views/#{__name}.nuxml")))
          (catch (__exception)
                 (puts "error in template #{__name}.nuxml (#{(__exception name)} #{(__exception reason)})")
@@ -151,37 +151,36 @@
 (puts "building site")
 
 ;; create the site directory
-(system "rm -rf site")
-(system "mkdir -p site/public")
-(system "cp nunja.nu site/site.nu")
-(system "cp -rp assets/* site/public")
+(system "rm -rf public")
+(system "mkdir -p public")
+(system "cp -rp assets/* public")
 
 ;; build the index page
 (set index-page (render-page "index"))
-(index-page writeToFile:"site/public/index" atomically:NO)
-(index-page writeToFile:"site/public/index.html" atomically:NO)
+(index-page writeToFile:"public/index" atomically:NO)
+(index-page writeToFile:"public/index.html" atomically:NO)
 
 ;; render pages
 (pages each:
        (do (post)
            (puts (+ "rendering " (post "permalink")))
-           ((render-page "show") writeToFile:(+ "site/public/" (post "permalink")) atomically:NO)))
+           ((render-page "show") writeToFile:(+ "public/" (post "permalink")) atomically:NO)))
 
 ;; render posts
 (posts each:
        (do (post)
            (puts (+ "rendering " (post "permalink")))
-           (set path (+ "site/public/posts/" ((post "creationDate") path)))
+           (set path (+ "public/posts/" ((post "creationDate") path)))
            (system (+ "mkdir -p " path))
            ((render-page "show") writeToFile:(+ path "/" (post "permalink")) atomically:NO)))
 
 ;; render feeds
 (set feedposts (posts subarrayWithRange:'(0 7)))
 
-(let (path "site/public/xml/rss20")
+(let (path "public/xml/rss20")
      (system (+ "mkdir -p " path))
      ((render-xml "rss") writeToFile:(+ path "/feed.xml") atomically:NO))
-(let (path "site/public/xml/atom10")
+(let (path "public/xml/atom10")
      (system (+ "mkdir -p " path))
      ((render-xml "atom") writeToFile:(+ path "/feed.xml") atomically:NO))
 

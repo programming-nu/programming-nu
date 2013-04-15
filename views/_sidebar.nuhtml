@@ -63,7 +63,7 @@
 <li><a href="/syntax">- Syntax</a></li>
 <li><a href="/operators">- Operators</a></li>
 <li><a href="/types">- Types</a></li>
-<li><a href="/doc">- Class Reference</a></li>
+<li><a href="/doc/index.html">- Class Reference</a></li>
 <li><a href="/help">Getting and Providing Help</a></li>
 <li><a href="/debugging">Debugging Nu Programs</a></li>
 <li><a href="/textmate">A Bundle for TextMate Users</a></li>

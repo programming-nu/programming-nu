@@ -1,6 +1,14 @@
 #!/usr/local/bin/nush
-(load "Kurt")
+(load "RadKit")
 
-(get "/" (REQUEST redirectResponseToLocation:"/index"))
+(get "/" (NSString stringWithContentsOfFile:"public/index"))
 
-(Kurt run)
+(files "/*path:" "public")
+
+(get "/*anything:"
+     (RESPONSE setStatus:404)
+     (&html (&body (&h1 "Not Found")
+                   (&h3 "/" *anything)
+                   (&p "Resource not found"))))
+
+(RadHTTPServer run)

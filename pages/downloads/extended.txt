@@ -3,92 +3,87 @@
 <table width="100%" class="bordered">
 <tr>
 <th align="left" width="20%">date</th>
-<th align="left" width="20%">binary</th>
-<th align="left" width="20%">source</th>
+<th align="left" width="20%">release</th>
 <th align="left">notes</th>
 </tr>
 
 <tr>
+<td>15-Apr-2013</td>
+<td>Nu-2.1.0</td>
+<td>Built-in markup operators.
+</td>
+</tr>
+
+<tr>
 <td>02-Sep-2011</td>
-<td><a href="/releases/Nu-2.0.1.dmg">Nu-2.0.1.dmg</a></td>
-<td><a href="/releases/Nu-2.0.1.tgz">Nu-2.0.1.tgz</a></td>
+<td>Nu-2.0.1</td>
 <td>Better init handling and parsing.
 </td>
 </tr>
 
 <tr>
 <td>25-Aug-2011</td>
-<td><a href="/releases/Nu-2.0.0.dmg">Nu-2.0.0.dmg</a></td>
-<td><a href="/releases/Nu-2.0.0.tgz">Nu-2.0.0.tgz</a></td>
+<td>Nu-2.0.0</td>
 <td>Simplifications and improvements for Mac OS 10.7 (Lion).
 </td>
 </tr>
 
 <tr>
 <td>17-Nov-2009</td>
-<td><a href="/releases/Nu-0.4.0.dmg">Nu-0.4.0.dmg</a></td>
-<td><a href="/releases/Nu-0.4.0.tgz">Nu-0.4.0.tgz</a></td>
+<td>Nu-0.4.0</td>
 <td>A new macro operator, support for Debian Linux.
 </td>
 </tr>
 
 <tr>
 <td>03-Dec-2008</td>
-<td><a href="/releases/Nu-0.3.3.dmg">Nu-0.3.3.dmg</a></td>
-<td><a href="/releases/Nu-0.3.3.tgz">Nu-0.3.3.tgz</a></td>
+<td>Nu-0.3.3</td>
 <td>Community-contributed enhancements.
 </td>
 </tr>
 
 <tr>
 <td>08-Jun-2008</td>
-<td><a href="/releases/Nu-0.3.2.dmg">Nu-0.3.2.dmg</a></td>
-<td><a href="/releases/Nu-0.3.2.tgz">Nu-0.3.2.tgz</a></td>
+<td>Nu-0.3.2</td>
 <td>WWDC08 update.
 </td>
 </tr>
 
 <tr>
 <td>22-Mar-2008</td>
-<td><a href="/releases/Nu-0.3.1.dmg">Nu-0.3.1.dmg</a></td>
-<td><a href="/releases/Nu-0.3.1.tgz">Nu-0.3.1.tgz</a></td>
+<td>Nu-0.3.1</td>
 <td>Cross-platform (Linux and iPhone) support, Apache License v2.0, bug fixes.
 </td>
 </tr>
 
 <tr>
 <td>13-Feb-2008</td>
-<td><a href="/releases/Nu-0.3.0.dmg">Nu-0.3.0.dmg</a></td>
-<td><a href="/releases/Nu-0.3.0.tgz">Nu-0.3.0.tgz</a></td>
+<td>Nu-0.3.0</td>
 <td>First Leopard-only version. Protocol creation, optional 64-bit support, proxy improvements, better bridge support.
 </td>
 </tr>
 
 <tr>
 <td>12-Dec-2007</td>
-<td><a href="/releases/Nu-0.2.4.dmg">Nu-0.2.4.dmg</a></td>
-<td><a href="/releases/Nu-0.2.4.tgz">Nu-0.2.4.tgz</a></td>
+<td>Nu-0.2.4</td>
 <td>Initial BridgeSupport, Nu methods that accept pass-by-reference arguments, min/max operators, concatenate strings with the '+' operator.
 </td>
 </tr>
 <tr>
 <td>7-Dec-2007</td>
-<td><a href="/releases/Nu-0.2.3.dmg">Nu-0.2.3.dmg</a></td>
-<td><a href="/releases/Nu-0.2.3.tgz">Nu-0.2.3.tgz</a></td>
+<td>Nu-0.2.3</td>
 <td>Support for invocation-based undo, nil converts to zero on bridge crossings, C-style ternary operator, Leopard warnings cleaned up.
 </td>
 </tr>
 <tr>
 <td>26-Nov-2007</td>
-<td><a href="/releases/Nu-0.2.2.dmg">Nu-0.2.2.dmg</a></td>
-<td><a href="/releases/Nu-0.2.2.tgz">Nu-0.2.2.tgz</a></td>
+<td>Nu-0.2.2</td>
 <td>More assorted improvements: enhancements to the TextMate bundle, preliminary support for CoreData applications, and a fix to allow NuAnywhere to work on Mac OS 10.5.
 </td>
 </tr>
 <tr>
 <td>12-Nov-2007</td>
-<td><a href="/releases/Nu-0.2.1.dmg">Nu-0.2.1.dmg</a></td>
-<td><a href="/releases/Nu-0.2.1.tgz">Nu-0.2.1.tgz</a></td>
+<td>Nu-0.2.1</td>
 <td>Assorted practical improvements: 
 nuke terminates on build errors, MacPorts build support changes merged, new NSArray sortedArrayUsingBlock: and eachInReverse: methods, new test macros, assorted crashes fixed, new example program (MailDemo), 
 blocks and functions now can be defined to accept variable numbers of arguments, % operator, and much-improved syntax highlighting in the TextMate bundle.
@@ -96,39 +91,33 @@ blocks and functions now can be defined to accept variable numbers of arguments,
 </tr>
 <tr>
 <td>17-Oct-2007</td>
-<td><a href="/releases/Nu-0.2.0.dmg">Nu-0.2.0.dmg</a></td>
-<td><a href="/releases/Nu-0.2.0.tgz">Nu-0.2.0.tgz</a></td>
+<td>Nu-0.2.0</td>
 <td>String escape sequences, character and regular expression literals, 
 "true" closures (closures on bindings), NuAnywhere example</td>
 </tr>
 <tr>
 <td>11-Oct-2007</td>
-<td><a href="/releases/Nu-0.1.4.dmg">Nu-0.1.4.dmg</a></td>
-<td><a href="/releases/Nu-0.1.4.tgz">Nu-0.1.4.tgz</a></td>
+<td>Nu-0.1.4</td>
 <td>new ScreenSaver example, nuke support for building bundles</td>
 </tr>
 <tr>
 <td>05-Oct-2007</td>
-<td><a href="/releases/Nu-0.1.3.dmg">Nu-0.1.3.dmg</a></td>
-<td><a href="/releases/Nu-0.1.3.tgz">Nu-0.1.3.tgz</a></td>
+<td>Nu-0.1.3</td>
 <td>more error handling improvements, minor build enhancements for MacPorts, small changes to better match user expectations</td>
 </tr>
 <tr>
 <td>02-Oct-2007</td>
-<td><a href="/releases/Nu-0.1.2.dmg">Nu-0.1.2.dmg</a></td>
-<td><a href="/releases/Nu-0.1.2.tgz">Nu-0.1.2.tgz</a></td>
+<td>Nu-0.1.2</td>
 <td>improved error handling to reduce problems for new users</td>
 </tr>
 <tr>
 <td>30-Sep-2007</td>
-<td><a href="/releases/Nu-0.1.1.dmg">Nu-0.1.1.dmg</a></td>
-<td><a href="/releases/Nu-0.1.1.tgz">Nu-0.1.1.tgz</a></td>
+<td>Nu-0.1.1</td>
 <td>public release; contains a few small build improvements</td>
 </tr>
 <tr>
 <td>27-Sep-2007</td>
-<td><a href="/releases/Nu-0.1.0.dmg">Nu-0.1.0.dmg</a></td>
-<td><a href="/releases/Nu-0.1.0.tgz">Nu-0.1.0.tgz</a></td>
+<td>Nu-0.1.0</td>
 <td>preview</td>
 </tr>
 </table>

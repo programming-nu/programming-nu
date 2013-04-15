@@ -4,8 +4,6 @@ It also changes loading of modules to use a single shared parser
 so that assignments made in a loaded file are available in the
 calling context (as they should have been).
 
-See the [downloads](/downloads) page.
-
 This build was made from the "amalgamated" branch. Soon this branch
 will become "master". As with 2.0, this version of Nu is
 exclusively for systems running Mac OS 10.7 or iOS 4.3 and 
