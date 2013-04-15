@@ -2,7 +2,7 @@
 <br style="clear:both;" />
 <div id="footer">
 <div style="float:left"><a href="/">programming.nu</a></div>
-<div style="float:left; width:450px; text-align:center">Copyright 2007 Neon Design Technology, Inc.</div>
-<div style="margin-left:573px">Published with <a href="/figleaf">FigLeaf</a></div>
+<div style="float:left; width:450px; text-align:center">Copyright 2007 Radtastical Inc.</div>
+<div style="margin-left:573px">Running on Xmachine.</div>
 </div>
 <% ) %>

@@ -10,7 +10,7 @@
 <div id="container">
 <%= (render-partial "header") %>
 <div id="content">
-<% (posts eachWithIndex: (do (post index)  %>
+<% ((posts subarrayWithRange:'(0 4)) eachWithIndex: (do (post index)  %>
 <div class="atomentry" style="clear:both">
 <h2 class="title">
 <a href="<%= (post "linkForDate") %>">
@@ -19,7 +19,6 @@
 <p class="author">
 <%= ((post "creationDate") descriptionForBlog) %> 
 </p>
-<% (if (< index 10) %>
 <div class="content">
 <%= (post bodyAsHTML) %>    
 <% (if (and (!= (post "extended") nil) (!= (post "extended") "")) %>
@@ -28,14 +27,12 @@
 More...</a></p>
 <% ) %>
 </div>
-<% ) %>
 </div> <!-- atomentry -->
 <% (if (eq index 1) %>
 <div style="background:#eee; padding:1em">
 <h3>What&#8217;s Nu?</h3>
 <p>Nu is an interpreted object-oriented language.  Its syntax comes from Lisp, but Nu is semantically closer to Ruby than Lisp.  Nu is implemented in Objective-C and is designed to take full advantange of the Objective-C runtime and the many mature class libraries written in Objective-C.  Nu code can fully interoperate with code written in Objective-C; messages can be sent to and from objects with no concern for whether those messages are implemented in Objective-C or Nu.</p>
-<p>Nu currently requires Mac OS X version 10.5 or greater and runs on PowerPC and Intel systems.  Ports to Linux and the Apple iPhone are also available; contact me directly or visit <a href="http://blog.neontology.com">my blog</a> for more details.
-</p>
+<p>Nu currently requires Mac OS X 10.7 or iOS 4.3 or later.</p>
 </div>
 <% ) %>
 <% )) %>

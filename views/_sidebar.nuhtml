@@ -1,19 +1,7 @@
 <div id="sidebar">
 
 <div class="sidebar-node">
-<h2><a href="/about">About Nu&#8482;</a></h2>
-</div>
-
-<div class="sidebar-node">
-<h2><a href="/community">Community</a></h2>
-<ul>
-<li><a href="http://twitter.com/timburks">twitter.com/timburks</a></li>
-<li><a href="http://twitter.com/itfrombit">twitter.com/itfrombit</a></li>
-<li><a href="http://twitter.com/grayson">twitter.com/grayson</a></li>
-<li><a href="http://twitter.com/jsallis">twitter.com/jsallis</a></li>
-<li><a href="http://twitter.com/importantshock">twitter.com/importantshock</a></li>
-<li><a href="mailto:tim@neontology.com">...who have we missed?</a></li>
-</ul>
+<h2><a href="/about">About Nu</a></h2>
 </div>
 
 <div class="sidebar-node">
@@ -21,11 +9,7 @@
 </div>
 
 <div class="sidebar-node">
-<h2><a href="/legal">Legal Details</a></h2>
-</div>
-
-<div class="sidebar-node">
-<h2><a href="/downloads">Downloads</a></h2>
+<h2><a href="/downloads">Download Nu</a></h2>
 </div>
 
 <div class="sidebar-node">
@@ -33,23 +17,6 @@
 <ul>
 <li><a href="http://github.com/timburks/nu">github.com/timburks/nu</a></li>
 <li><a href="http://github.com/timburks/programmingnu">github.com/timburks/programmingnu</a></li>
-</ul>
-</div>
-
-<div class="sidebar-node">
-<h2><a href="/">News</a></h2>
-<ul>
-<% (set oldMonthAndYear nil) %>
-<% (posts each: (do (post) %>
-<% (set monthAndYear ((post "creationDate") monthAndYear)) %>
-<% (unless (eq monthAndYear oldMonthAndYear) %>
-<li style="font-weight:bold; font-size:smaller; background:#eee; line-height:100%"><%= monthAndYear %></li>
-<% (set oldMonthAndYear monthAndYear)) %>
-<li>
-<a href="<%= (+ "/posts/" ((post "creationDate") path) "/" (post "permalink")) %>">
-<%= (post "title") %></a> 
-</li>                                        
-<% )) %>
 </ul>
 </div>
 
@@ -95,30 +62,28 @@
 <li><a href="/nudoc">nudoc, a documentation generator</a></li>
 <li><a href="/nutemplate">nutemplate, a templating tool</a></li>
 <li><a href="/nubake">nubake, a code generation tool</a></li>
-
 </ul>
 </div>
 
 <div class="sidebar-node">
-<h2><a href="/faq">FAQ about Nu</a></h2>
-</div>
-
-<div class="sidebar-node">
-<h2><a href="/background">Background</a></h2>
+<h2><a href="/">Archives</a></h2>
 <ul>
-<li><a href="/lisp-links">Lisp Links</a></li>
-<li><a href="/objective-c">Objective-C References</a></li>
-<li><a href="/rubycocoa-and-rubyobjc">RubyCocoa and RubyObjC</a></li>
+<% (set oldMonthAndYear nil) %>
+<% (posts each: (do (post) %>
+<% (set monthAndYear ((post "creationDate") monthAndYear)) %>
+<% (unless (eq monthAndYear oldMonthAndYear) %>
+<li style="font-weight:bold; font-size:smaller; background:#eee; line-height:100%"><%= monthAndYear %></li>
+<% (set oldMonthAndYear monthAndYear)) %>
+<li>
+<a href="<%= (+ "/posts/" ((post "creationDate") path) "/" (post "permalink")) %>">
+<%= (post "title") %></a> 
+</li>                                        
+<% )) %>
 </ul>
 </div>
 
 <div class="sidebar-node">
-<h2><a href="/wishlist">Wish List</a></h2>
-</div>
-
-<div class="sidebar-node">
-<p><a href="/legal">Nu&#8482;</a> and <a href="/legal">Programming Nu&#8482;</a> are trademarks of <a href="http://www.neontology.com">Neon Design Technology, Inc.</a></p>
-<p><a href="http://via.net/">Site Hosting by via.net</a></p>
+<h2><a href="/legal">Legal Details</a></h2>
 </div>
 
 </div> <!-- sidebar -->

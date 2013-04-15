@@ -8,7 +8,6 @@
 
 (load "RadKit")
 (load "template")
-;(load "NuMarkdown")
 
 (class NSObject (+ objectWithYAML:(id) yaml is (yaml YAMLValue)))
 
@@ -16,8 +15,6 @@
      (- (id) markdownToHTML is
         (set x (NSString stringWithShellCommand:"markdown" standardInput:(self dataUsingEncoding:NSUTF8StringEncoding)))
 	x))
-
- ;    (- (id) markdownToHTML is self)) ;; (NuMarkdown convert:self)))
      
 (class NSDictionary
      

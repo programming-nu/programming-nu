@@ -1,4 +1,4 @@
-# Downloads
+# Download Nu
 
 ## <a name="binary">Binary</a>
 
