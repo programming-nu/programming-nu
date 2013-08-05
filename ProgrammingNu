@@ -1,5 +1,5 @@
 #!/usr/local/bin/nush
-(load "RadKit")
+(load "RadHTTP:macros")
 
 (get "/" (NSString stringWithContentsOfFile:"public/index"))
 
