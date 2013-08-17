@@ -8,4 +8,8 @@ The Nu binary installer: [Nu-2.1.0.dmg](http://xmachine.net/Nu/Nu-2.1.0.dmg)
 
 ## <a name="git">Git</a>
 
-The Nu source code is managed with [git](http://git.or.cz). You can browse and download the Nu repository at [github.com/timburks/nu](http://github.com/timburks/nu). 
+The Nu source code is managed with [Git](http://git-scm.com). You can browse the Nu repository at [github.com/timburks/nu](https://github.com/timburks/nu).
+
+Downloads:
+* [Zipball](https://github.com/timburks/nu/zipball/master)
+* [Tarball](https://github.com/timburks/nu/tarball/master)
