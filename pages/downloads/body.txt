@@ -11,5 +11,5 @@ The Nu binary installer: [Nu-2.1.0.dmg](http://xmachine.net/Nu/Nu-2.1.0.dmg)
 The Nu source code is managed with [Git](http://git-scm.com). You can browse the Nu repository at [github.com/timburks/nu](https://github.com/timburks/nu).
 
 Downloads:
-* [Zipball](https://github.com/timburks/nu/zipball/master)
-* [Tarball](https://github.com/timburks/nu/tarball/master)
+* [Zipball](https://github.com/timburks/nu/archive/v2.1.1.zip)
+* [Tarball](https://github.com/timburks/nu/archive/v2.1.1.tar.gz)
