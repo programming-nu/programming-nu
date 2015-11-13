@@ -1,15 +1,6 @@
 # Download Nu
 
-## <a name="binary">Binary</a>
-
-Here is a link to a binary installer for Nu.  It will install the Nu framework in <code>/Library/Frameworks</code>, the Nu shell and several utilities in <code>/usr/local/bin</code>, and examples and support files in <code>/usr/local/share</code>.
-
-The Nu binary installer: [Nu-2.1.0.dmg](http://xmachine.net/Nu/Nu-2.1.0.dmg)
-
 ## <a name="git">Git</a>
 
 The Nu source code is managed with [Git](http://git-scm.com). You can browse the Nu repository at [github.com/timburks/nu](https://github.com/timburks/nu).
 
-Downloads:
-* [Zipball](https://github.com/timburks/nu/archive/v2.1.1.zip)
-* [Tarball](https://github.com/timburks/nu/archive/v2.1.1.tar.gz)
