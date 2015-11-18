@@ -6,7 +6,7 @@
 (set $siteDescription "The Nu Language Website")
 (set $siteAddress "http://programming.nu")
 
-(load "RadKit")
+(load "RadYAML")
 (load "template")
 
 (class NSObject (+ objectWithYAML:(id) yaml is (yaml YAMLValue)))
