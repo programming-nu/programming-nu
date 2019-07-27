@@ -2,5 +2,5 @@
 
 ## <a name="git">Git</a>
 
-The Nu source code is managed with [Git](http://git-scm.com). You can browse the Nu repository at [github.com/timburks/nu](https://github.com/timburks/nu).
+The Nu source code is managed with [Git](http://git-scm.com). You can browse the Nu repository at [github.com/programming-nu/nu](https://github.com/programming-nu/nu).
 

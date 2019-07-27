@@ -1,0 +1,3 @@
+Nu and related projects are 
+now in the [programming-nu](https://github.com/programming-nu) organization
+on GitHub.

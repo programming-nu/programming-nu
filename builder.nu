@@ -1,10 +1,10 @@
 ;; site builder
 
-(set $siteName "programming.nu")
+(set $siteName "programming-nu")
 (set $siteTitle "Programming Nu")
-(set $siteSubtitle "Website for the Nu programming language.")
+(set $siteSubtitle "<a href=\"https://programming-nu.github.io\">programming-nu.github.io</a>")
 (set $siteDescription "The Nu Language Website")
-(set $siteAddress "http://programming.nu")
+(set $siteAddress "http://programming-nu.github.io")
 
 (load "RadYAML")
 (load "template")
@@ -154,14 +154,13 @@
 
 ;; build the index page
 (set index-page (render-page "index"))
-(index-page writeToFile:"public/index" atomically:NO)
 (index-page writeToFile:"public/index.html" atomically:NO)
 
 ;; render pages
 (pages each:
        (do (post)
            (puts (+ "rendering " (post "permalink")))
-           ((render-page "show") writeToFile:(+ "public/" (post "permalink")) atomically:NO)))
+           ((render-page "show") writeToFile:(+ "public/" (post "permalink") ".html") atomically:NO)))
 
 ;; render posts
 (posts each:
@@ -169,7 +168,7 @@
            (puts (+ "rendering " (post "permalink")))
            (set path (+ "public/posts/" ((post "creationDate") path)))
            (system (+ "mkdir -p " path))
-           ((render-page "show") writeToFile:(+ path "/" (post "permalink")) atomically:NO)))
+           ((render-page "show") writeToFile:(+ path "/" (post "permalink") ".html") atomically:NO)))
 
 ;; render feeds
 (set feedposts (posts subarrayWithRange:'(0 7)))

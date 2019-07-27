@@ -15,8 +15,8 @@
 <div class="sidebar-node">
 <h2>Git Repositories</h2>
 <ul>
-<li><a href="http://github.com/timburks/nu">github.com/timburks/nu</a></li>
-<li><a href="http://github.com/timburks/programmingnu">github.com/timburks/programmingnu</a></li>
+<li><a href="http://github.com/programming-nu/nu">nu</a></li>
+<li><a href="http://github.com/programming-nu/programming-nu">programming-nu</a></li>
 </ul>
 </div>
 
