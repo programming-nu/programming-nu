@@ -2,7 +2,7 @@
 
 (set $siteName "programming-nu")
 (set $siteTitle "Programming Nu")
-(set $siteSubtitle "<a href=\"https://programming-nu.github.io\">programming-nu.github.io</a>")
+(set $siteSubtitle "<a href=\"https://github.com/programming-nu\">github.com/programming-nu</a>")
 (set $siteDescription "The Nu Language Website")
 (set $siteAddress "http://programming-nu.github.io")
 
