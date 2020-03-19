@@ -73,7 +73,7 @@ Now use **mininush** to run nuke to complete the Nu build process.
 This builds **Nu.framework**, the Nu framework, 
 and **nush**, the Nu shell.
 
-<pre> 
+<pre>
 % ./mininush tools/nuke
 </pre>
 

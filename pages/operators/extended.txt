@@ -177,7 +177,7 @@ hello, world
 
 **help** returns help text for an object.
 
-<pre> 
+<pre>
 % (help do)
 This operator is used to create blocks.
 For example, the following expression creates a 
